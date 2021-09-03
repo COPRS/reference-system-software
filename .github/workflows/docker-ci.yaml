@@ -1,0 +1,110 @@
+name: Docker CI
+
+# This workflow uses actions that are not certified by GitHub.
+# They are provided by a third-party and are governed by
+# separate terms of service, privacy policy, and support
+# documentation.
+
+on:
+  push
+
+env:
+  # Use docker.io for Docker Hub if empty
+  REGISTRY: ghcr.io
+  # github.repository as <account>/<repo>
+  IMAGE_NAME: ${{ github.repository }}
+
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      packages: write
+      security-events: write
+
+    steps:
+      # Extract metadata (tags, labels) for Docker
+      # https://github.com/docker/metadata-action
+      - name: Extract Docker metadata
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+
+      # Build Docker image using Buildx
+      # This Action automatically pull the code from the branch it's launched from
+      # https://github.com/docker/build-push-action
+      - name: Build image
+        uses: docker/build-push-action@v2
+        with:
+          load: true
+          tags: ${{ steps.meta.outputs.tags }}
+          labels: ${{ steps.meta.outputs.labels }}
+
+      - name: Scan image 
+        uses: anchore/scan-action@v2
+        id: scan
+        with:
+          image: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+          acs-report-enable: true
+          fail-build: true
+          severity-cutoff: critical
+
+      - name: Upload Anchore scan SARIF report
+        uses: github/codeql-action/upload-sarif@v1
+        with:
+          sarif_file: ${{ steps.scan.outputs.sarif }}
+
+      - name: Upload Anchore scan json report
+        uses: actions/upload-artifact@master
+        with:
+          name: vulnerabilities
+          path: ${{ steps.scan.outputs.vulnerabilities }}
+
+      # Login against a Docker registry except on PR
+      # https://github.com/docker/login-action
+      - name: Log into registry ${{ env.REGISTRY }}
+        if: github.event_name != 'pull_request'
+        uses: docker/login-action@v1
+        with:
+          registry: ${{ env.REGISTRY }}
+          username: ${{ github.actor }}
+          password: ${{ secrets.GITHUB_TOKEN }}
+
+      - name: Push image
+        run: |
+          docker push ${{ fromJSON(steps.meta.outputs.json).tags[0] }};
+
+  generate_reports:
+    needs: build
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      
+    steps:
+      - name: Download json report from build job
+        uses: actions/download-artifact@v2
+        with:
+          name: vulnerabilities
+          
+      - name: Generate CSV and intermediate HTML report
+        run: |  
+          echo "SEVERITY;ID;PACKAGE;VERSION;LINK" > vulnerabilities.csv
+          cat vulnerabilities.json | jq -r '.matches[] | "\(.vulnerability.severity);\(.vulnerability.id);\(.artifact.name);\(.artifact.version);\(.vulnerability.links[0])"' >> vulnerabilities.csv
+          echo -e '<table>\n<thead>\n<tr class="header">\n<th><p>SEVERITY</p></th>\n<th><p>ID</p></th>\n<th><p>PACKAGE</p></th>\n<th><p>VERSION</p></th>\n</tr>\n</thead>\n<tbody>' > vulnerabilities.html
+          cat vulnerabilities.json | jq -r '.matches[] | "<tr>;<td><p>\(.vulnerability.severity)</p></td>;<td><p><a href=\"\(.vulnerability.links[0])\">\(.vulnerability.id)</a></p></td>;<td><p>\(.artifact.name)</p></td>;<td><p>\(.artifact.version)</p></td>;</tr>"' | tr -s ';' '\n' | sed 's!><p>Negligible! style="background-color:#FFFFFF;"><p>Negligible!g' | sed 's!><p>Low! style="background-color:#FFFC9E;"><p>Low!g' | sed 's!><p>Medium! style="background-color:#FE996B;"><p>Medium!g' | sed 's!><p>High! style="background-color:#FD6864;"><p>High!g' | sed 's!><p>Critical! style="background-color:#FE0000;"><p>Critical!g' >> vulnerabilities.html
+          echo -e '</tbody>\n</table>' >> vulnerabilities.html
+          
+      - name: Convert HTLM to PDF
+        uses: docker://ghcr.io/nleconte-csgroup/docker-wkhtmltopdf:main
+        with:
+          args: vulnerabilities.html vulnerabilities.pdf
+
+      - name: Upload Anchore scan reports
+        uses: actions/upload-artifact@master
+        with:
+          name: vulnerabilities
+          path: |
+            vulnerabilities.csv
+            vulnerabilities.pdf
