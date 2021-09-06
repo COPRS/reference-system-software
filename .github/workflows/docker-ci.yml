@@ -1,4 +1,4 @@
-name: Docker CI dependencies
+name: Docker CI dependencies wkhtmltopdf
 
 # This workflow uses actions that are not certified by GitHub.
 # They are provided by a third-party and are governed by
@@ -41,14 +41,14 @@ jobs:
         with:
           file: wkhtmltopdf.Dockerfile
           load: true
-          tags: ${{ steps.meta.outputs.tags }}
+          tags: ${{ steps.meta.outputs.tags }}_wkhtmltopdf
           labels: ${{ steps.meta.outputs.labels }}
 
       - name: Scan image 
         uses: anchore/scan-action@v2
         id: scan
         with:
-          image: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}
+          image: ${{ fromJSON(steps.meta.outputs.json).tags[0] }}_wkhtmltopdf
           acs-report-enable: true
           fail-build: true
           severity-cutoff: critical
@@ -76,7 +76,7 @@ jobs:
 
       - name: Push image
         run: |
-          docker push ${{ fromJSON(steps.meta.outputs.json).tags[0] }};
+          docker push ${{ fromJSON(steps.meta.outputs.json).tags[0] }}_wkhtmltopdf ;
 
   generate_reports:
     needs: build
