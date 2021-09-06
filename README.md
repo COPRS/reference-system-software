@@ -13,7 +13,7 @@ Push your project on the repo. The project should look like [this one](https://g
 On the root of the repo, create a folder called `.github`. 
 Inside this folder, create another folder called `workflows`
 
-Inside the `workflows` folder, paste [this GitHub Action configuration](.github/workflows/java-maven-ci.yaml)
+Inside the `workflows` folder, paste [this GitHub Action configuration](.github/workflows/docker-ci.yaml)  
 Then push your modifications
 
 
@@ -21,7 +21,7 @@ To understand the configuration file, you can refer to the [official documentati
 
 ## Check the state of the CI on the Action tab  
 
-Click on the [Action tab](https://github.com/SANDBOX-COPRS/Examples/actions) on the GitHub repository. 
+Click on the [Action tab](https://github.com/COPRS/reference-system/actions/workflows/docker-ci.yaml) on the GitHub repository. 
 
 The output should look like this:
 
