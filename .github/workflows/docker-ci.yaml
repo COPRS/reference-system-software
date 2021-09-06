@@ -97,7 +97,7 @@ jobs:
           echo -e '</tbody>\n</table>' >> vulnerabilities.html
           
       - name: Convert HTLM to PDF
-        uses: docker://ghcr.io/nleconte-csgroup/docker-wkhtmltopdf:main
+        uses: docker://ghcr.io/coprs/reference-system:dependencies_wkhtmltopdf
         with:
           args: vulnerabilities.html vulnerabilities.pdf
 
