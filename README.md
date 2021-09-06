@@ -21,7 +21,7 @@ To understand the configuration file, you can refer to the [official documentati
 
 ## Check the state of the CI on the Action tab  
 
-Click on the [Action tab](https://github.com/COPRS/reference-system/actions) on the GitHub repository. 
+Click on the [Action tab](https://github.com/COPRS/reference-system/actions/workflows/java-maven-ci.yml) on the GitHub repository. 
 
 The output should look like this:
 
