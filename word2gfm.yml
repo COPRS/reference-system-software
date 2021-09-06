@@ -2,7 +2,7 @@ name: Word2GFM
 
 on:
   push:
-    branches: [ main ]
+    branches: [ import-word ]
 
 jobs:
   create_gfm_file:
@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2 
           
       - name: Create GitHub Flavored Markdown file
-        uses: docker://ghcr.io/sandbox-coprs/importword:main
+        uses: docker://ghcr.io/coprs/reference-system:import-word
         with:
           args: bash -c "find input -mindepth 2 -type f -name '*.docx' -print0 | xargs -0 -n2 -P2 -I{} pandoc -s {} -t gfm --extract-media=input -o {}.md"
        
