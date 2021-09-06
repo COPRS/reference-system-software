@@ -12,7 +12,7 @@ jobs:
       - uses: actions/checkout@v2 
           
       - name: Create GitHub Flavored Markdown file
-        uses: docker://ghcr.io/coprs/reference-system:import-word
+        uses: docker://ghcr.io/coprs/reference-system:dependencies_pandoc
         with:
           args: bash -c "find input -mindepth 2 -type f -name '*.docx' -print0 | xargs -0 -n2 -P2 -I{} pandoc -s {} -t gfm --extract-media=input -o {}.md"
        
