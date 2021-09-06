@@ -3,4 +3,4 @@ FROM ubuntu
 
 RUN apt-get update 
 RUN apt-get install -y nginx 
-CMD ["echo"," new image created"] 
+CMD ["echo"," new image created"]
