@@ -1,8 +1,8 @@
-name: Documentation
+name: Markdown export
 
 on:
   push:
-    branches: [ documentation ]
+    branches: [ markdown-export ]
 
 jobs:
   convert_via_pandoc:
