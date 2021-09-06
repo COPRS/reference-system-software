@@ -17,7 +17,7 @@ jobs:
           distribution: 'adopt'
 
       - name: run test
-        run: ./run-test.sh
+        run: chmod +x run-test.sh && ./run-test.sh
 
       - name: sonarqube scan 
         run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
