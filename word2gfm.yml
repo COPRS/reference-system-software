@@ -1,0 +1,29 @@
+name: Word2GFM
+
+on:
+  push:
+    branches: [ main ]
+
+jobs:
+  create_gfm_file:
+    runs-on: ubuntu-latest
+    if: "contains(github.event.head_commit.message, 'convert')"
+    steps:
+      - uses: actions/checkout@v2 
+          
+      - name: Create GitHub Flavored Markdown file
+        uses: docker://ghcr.io/sandbox-coprs/importword:main
+        with:
+          args: bash -c "find input -mindepth 2 -type f -name '*.docx' -print0 | xargs -0 -n2 -P2 -I{} pandoc -s {} -t gfm --extract-media=input -o {}.md"
+       
+      - name: Move media to 
+        run: |
+          path=$(find . -maxdepth 2 -mindepth 2 ! -name "media" -type d)
+          sudo mv input/media ${path}/
+          
+      - uses: actions/upload-artifact@master
+        with:
+          name: documentation
+          path: |
+            input/*/*.md
+            input/*/media
