@@ -1,0 +1,38 @@
+name: Documentation
+
+on:
+  push:
+    branches: [ documentation ]
+
+jobs:
+  convert_via_pandoc:
+    runs-on: ubuntu-18.04
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: create file list
+        id: files_list
+        run: |
+          mkdir output  # create output dir
+          # this will also include README.md
+          # echo "::set-output name=files::$(printf '"%s" ' *.md)"
+          echo "::set-output name=files::$(find documentation -type f -name "*.md" -printf '"%h/%f" ')"
+      - name: Create PDF
+        uses: docker://pandoc/latex
+        with:
+          args: --table-of-contents --pdf-engine=xelatex --output=output/result.pdf ${{ steps.files_list.outputs.files }}
+      
+      - name: Create WORD
+        uses: docker://pandoc/latex
+        with:
+          args: --table-of-contents --from=markdown --to=docx --output=output/result.docx ${{ steps.files_list.outputs.files }}      
+          
+      - name: Create ODT
+        uses: docker://pandoc/latex
+        with:
+          args: --table-of-contents --from=markdown --to=odt --output=output/result.odt ${{ steps.files_list.outputs.files }}          
+
+      - uses: actions/upload-artifact@master
+        with:
+          name: documentation
+          path: output
