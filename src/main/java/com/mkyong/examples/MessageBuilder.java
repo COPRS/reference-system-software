@@ -5,6 +5,7 @@ public class MessageBuilder {
     public String getMessage(String name) {
 
         StringBuilder result = new StringBuilder();
+        StringBuilder result = new StringBuilder();
 
         if (name == null || name.trim().length() == 0) {
 
