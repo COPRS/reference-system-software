@@ -1,7 +1,7 @@
 # Exemples
 The purpose of this repository is to list exemples of CI used. Browse the branches for the differents usecases:  
-![image](https://user-images.githubusercontent.com/86782407/130099936-f2181b94-5ad9-49a3-8c2e-29458035fc78.png)  
-Go to https://github.com/SANDBOX-COPRS/Exemples/actions to check the GitHub actions.
+![branches](https://user-images.githubusercontent.com/86782407/132223702-e7fd5351-c091-4a0f-bce5-4f4871e3a4ab.png)  
+Go to https://github.com/COPRS/reference-system/actions to check the GitHub actions.
 
 # GitHub
 GitHub is the largest and most advanced development platform in the world. Millions of developers and companies build, ship, and maintain their software on GitHub.
