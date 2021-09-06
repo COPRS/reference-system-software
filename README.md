@@ -22,7 +22,7 @@ Click on "Upload files":
 ![image](https://user-images.githubusercontent.com/86782407/131990691-9738a324-c36e-449a-9e42-28b579649903.png)
 
 ## Step 3
-Then go to the word2gfm Action page, and click on the workflow of your commit: https://github.com/SANDBOX-COPRS/ImportWord/actions/workflows/word2gfm.yml  
+Then go to the word2gfm Action page, and click on the workflow of your commit: https://github.com/COPRS/reference-system/actions/workflows/word2gfm.yml  
 ![image](https://user-images.githubusercontent.com/86782407/131991643-d066d423-a252-4ec6-826a-4808d42529f6.png)
 
 ## Step 4
