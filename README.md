@@ -9,4 +9,4 @@ Inside the `workflows` folder, paste [this GitHub Action configuration](.github/
 Then push your modifications
 
 
-To understand the configuration file, you can refer to the [official documentation](https://github.com/features/actions)
+To understand the configuration file, you can refer to the [official documentation](https://github.com/features/actions)  
