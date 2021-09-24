@@ -35,3 +35,16 @@ Click on the [Action tab](https://github.com/COPRS/reference-system/actions/work
 Click on the Security tab on the GitHub repository. Go on the `Code scanning alert` section. 
 There you will find all the security alerts founded by Anchore
 ![Code scanning alert](images/code_scanning_alert.png)
+
+## How to pull the image
+
+```bash
+docker login -u XXX -p XXX
+docker pull artifactory.coprs.esa-copernicus.eu/abc-docker/csc-ps-s2/testrepolino:docker-ci
+```
+## Secret variable in the GitHub CI
+The following secret are needed by the CI. 
+The can be positionned in the GitHub GUI. Go to the Settings tab > Secret > New repository secret
+
+`secrets.ARTIFACTORY_USER` : The Jfrog Artifactory user who has permission to push images to the specific project. 
+`secrets.ARTIFACTORY_PASSWORD`: The password of this user. 
