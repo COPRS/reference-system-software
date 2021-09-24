@@ -33,3 +33,7 @@ That's the Jar that has been created.
 ## Technical Points
 
 Technicals explantations can be found on [this file](technical_points.md)
+
+## Environement variable to define
+  USERNAME: Username of the artifactory technical account 
+  PASSWORD: His password, encrypted. 

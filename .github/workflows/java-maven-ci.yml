@@ -2,6 +2,12 @@ name: Java Maven CI
 
 on: [push]
 
+env:
+  ARTIFACTORY_BASE_URL: "artifactory.coprs.esa-copernicus.eu" # TODO: Set as env variable
+  ARTIFACTORY_PROJECT: "abc-maven"
+  USERNAME: ${{ secrets.ARTIFACTORY_USER }}
+  PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
@@ -16,20 +22,19 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      - name: run test
-        run: chmod +x run-test.sh && ./run-test.sh
+      # - name: run test
+      #   run: chmod +x run-test.sh && ./run-test.sh
 
-      - name: sonarqube scan 
-        run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+      # - name: sonarqube scan 
+      #   run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
 
       - name: Build jar 
-        run: |
-          mvn clean install 
-          mkdir staging && cp target/*.jar staging
+        run: mvn clean install 
       
-
-      - name: Upload artifact
-        uses: actions/upload-artifact@v2
+      - name: Setup Maven settings.xml
+        uses: whelk-io/maven-settings-xml-action@v11
         with:
-          name: Package
-          path: staging
+          servers: '[{"id": "dummy-id","username": "${{ env.USERNAME }}", "password": "${{ env.PASSWORD }}"}]'
+
+      - name: Push to Artifactory
+        run: mvn jar:jar deploy:deploy -Dfile=target/*.jar -DrepositoryId=dummy-id -DpomFile=pom.xml -DaltDeploymentRepository=dummy-id::default::https://${{ env.ARTIFACTORY_BASE_URL }}/artifactory/${{ env.ARTIFACTORY_PROJECT }}
