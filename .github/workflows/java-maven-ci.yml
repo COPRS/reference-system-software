@@ -22,11 +22,11 @@ jobs:
           java-version: '11'
           distribution: 'adopt'
 
-      # - name: run test
-      #   run: chmod +x run-test.sh && ./run-test.sh
+      - name: run test
+        run: chmod +x run-test.sh && ./run-test.sh
 
-      # - name: sonarqube scan 
-      #   run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+      - name: sonarqube scan 
+        run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
 
       - name: Build jar 
         run: mvn clean install 
@@ -36,5 +36,5 @@ jobs:
         with:
           servers: '[{"id": "dummy-id","username": "${{ env.USERNAME }}", "password": "${{ env.PASSWORD }}"}]'
 
-      - name: Push to Artifactory
-        run: mvn jar:jar deploy:deploy -Dfile=target/*.jar -DrepositoryId=dummy-id -DpomFile=pom.xml -DaltDeploymentRepository=dummy-id::default::https://${{ env.ARTIFACTORY_BASE_URL }}/artifactory/${{ env.ARTIFACTORY_PROJECT }}
+      # - name: Push to Artifactory
+      #   run: mvn jar:jar deploy:deploy -Dfile=target/*.jar -DrepositoryId=dummy-id -DpomFile=pom.xml -DaltDeploymentRepository=dummy-id::default::https://${{ env.ARTIFACTORY_BASE_URL }}/artifactory/${{ env.ARTIFACTORY_PROJECT }}
