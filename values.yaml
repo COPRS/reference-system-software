@@ -1,0 +1,5 @@
+# helm install exemple-chart ./mychart --namespace=exemple --create-namespace -f values.yaml
+# helm upgrade exemple-chart ./mychart --namespace=exemple -f values.yaml
+
+service:
+  type: LoadBalancer

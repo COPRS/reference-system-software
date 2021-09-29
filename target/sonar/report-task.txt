@@ -1,0 +1,6 @@
+projectKey=test
+serverUrl=https://sonarqube.coprs.esa-copernicus.eu
+serverVersion=8.2.0.32929
+dashboardUrl=https://sonarqube.coprs.esa-copernicus.eu/dashboard?id=test
+ceTaskId=AXwskZlMM-1g4MBwanBT
+ceTaskUrl=https://sonarqube.coprs.esa-copernicus.eu/api/ce/task?id=AXwskZlMM-1g4MBwanBT
