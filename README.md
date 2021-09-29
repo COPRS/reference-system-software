@@ -11,10 +11,10 @@ helm install exemple-chart --dry-run --debug ./mychart --namespace exemple --cre
 helm package ./mychart
 ```
 
-# Connec to the repo 
+# Connect to the repo 
 https://artifactory.coprs.esa-copernicus.eu:443/artifactory/abc-helm-virtual/
 
-helm repo add abc-helm-virtual https://artifactory.coprs.esa-copernicus.eu:443/artifactory/abc-helm-virtual/ --username=admin --password=w[n@P.5PYvAkNE@
+helm repo add abc-helm-virtual https://artifactory.coprs.esa-copernicus.eu:443/artifactory/abc-helm-virtual/ --username=XXX --password=XXX
 helm repo update
 
 # Push to the repo

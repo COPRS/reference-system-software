@@ -1,0 +1,25 @@
+# https://github.com/helm/charts-repo-actions-demo/blob/main/.github/workflows/lint-test.yaml
+
+name: Helm Chart CI
+
+on: [push]
+
+env:
+  CHART_FOLDER: mychart
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
+
+      - name: Install Helm
+        uses: azure/setup-helm@v1
+        with:
+          version: v3.4.0
+
+      - name: Lint helm 
+        run: helm lint ./{{ env.CHART_FOLDER }}
