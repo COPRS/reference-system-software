@@ -22,4 +22,4 @@ jobs:
           version: v3.4.0
 
       - name: Lint helm 
-        run: helm lint ./{{ env.CHART_FOLDER }}
+        run: helm lint ./${{ env.CHART_FOLDER }}
