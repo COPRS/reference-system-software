@@ -6,6 +6,10 @@ on: [push]
 
 env:
   CHART_FOLDER: mychart
+  ARTIFACTORY_BASE_URL: "artifactory.coprs.esa-copernicus.eu" # TODO: Set as env variable
+  ARTIFACTORY_PROJECT: "abc-maven"
+  USERNAME: ${{ secrets.ARTIFACTORY_USER }}
+  PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
 
 jobs:
   release:
@@ -22,4 +26,10 @@ jobs:
           version: v3.4.0
 
       - name: Lint helm 
-        run: helm lint ./${{ env.CHART_FOLDER }}
+        run: helm lint ${{ env.CHART_FOLDER }}
+
+      - name: Package helm
+        run: helm package ${{ env.CHART_FOLDER }}
+
+      - name: Push to Artifactory
+        run: curl -u${{ env.USERNAME }}:${{ env.PASSWORD }} -T *.tgz "https://artifactory.coprs.esa-copernicus.eu/artifactory/abc-helm-local/${{ env.CHART_FOLDER }}.tgz"

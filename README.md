@@ -3,7 +3,7 @@ https://docs.bitnami.com/tutorials/create-your-first-helm-chart/
 
 # Package the chart to deploy it to artifactory 
 ```
-helm package ./mychart
+helm package mychart
 ```
 # Push to the repo
 curl -u<USERNAME>:<PASSWORD> -T <PATH_TO_FILE> "https://artifactory.coprs.esa-copernicus.eu/artifactory/abc-helm-local/<TARGET_FILE_PATH>"
