@@ -1,23 +1,18 @@
 # Install the chart on minikube 
 https://docs.bitnami.com/tutorials/create-your-first-helm-chart/
 
-```
-helm install exemple-chart --dry-run --debug ./mychart --namespace exemple --create-namespace
-```
-
-
 # Package the chart to deploy it to artifactory 
 ```
 helm package ./mychart
 ```
+# Push to the repo
+curl -u<USERNAME>:<PASSWORD> -T <PATH_TO_FILE> "https://artifactory.coprs.esa-copernicus.eu/artifactory/abc-helm-local/<TARGET_FILE_PATH>"
 
+ex: curl -uXXX:XXX -T mychart-0.1.0.tgz "https://artifactory.coprs.esa-copernicus.eu/artifactory/abc-helm-local/mychart-0.1.0.tgz"
 # Connect to the repo 
-https://artifactory.coprs.esa-copernicus.eu:443/artifactory/abc-helm-virtual/
 
 helm repo add abc-helm-virtual https://artifactory.coprs.esa-copernicus.eu:443/artifactory/abc-helm-virtual/ --username=XXX --password=XXX
 helm repo update
+# Deploy helm chart 
 
-# Push to the repo
-helm chart save mychart/ localhost:5000/myrepo/mychart:2.7.0
-helm chart push localhost:5000/myrepo/mychart:2.7.0
-helm chart remove localhost:5000/myrepo/mychart:2.7.0
+helm install abc-helm-virtual/mychart -n helm-exemple --create-namespace --generate-name
