@@ -1,16 +1,17 @@
 ## Where to find the maven project? 
 The maven projet is forked from [this source](https://github.com/mkyong/maven-examples/tree/master/maven-code-coverage)
 
-# Codacy
-## Configure Codacy Action 
-To cofigure Codacy Action, we need connect to our account on condacy.com and [generate a API Token](https://app.codacy.com/account/access-management).
-Then store this API token in a variabe called `CODACY_API_TOKEN` on GitHub, on the repository secret section. 
+## SonarQube
+This pipeline eecute a SonarQube Scan to enshure three points: best practices in code are respected, security scan are passing and quality gates are respected. 
+The SonarQube Server is accessible via [this link](https://sonarqube.coprs.esa-copernicus.eu). The credentials to access the GUI are team-based.
+![SonarQube](.github/images/sonarqube.png)
 
-## Codacy Dashboard
-Codacy Dashboard can be found [there](https://app.codacy.com/gh/CSC-PS-S2/TestRepoLino/dashboard)
-Qualtiy and security gates are parametrables on the [Quality Settings section](https://app.codacy.com/gh/CSC-PS-S2/TestRepoLino/settings/quality)
+## Artifactory
+Once the Jar is builded, it will be pushed on the Jforg Artifactory. 
+The Artifactory Server is accessible via [this link](https://sonarqube.coprs.esa-copernicus.eu/projects). The credentials to access the GUI are team-based. 
+![Artifactory](.github/images/artifactory.png)
 
-## Jacoco code coverage report
-In order for Codacy to display the code coverage report in his GUI, the jacoco.xml file must be available at the path: `target/site/jacoco/jacoco.xml`
-This path is configurable on the java-maven-ci.yaml file. 
-Keep in min that this path is the default path where Jacoco will generate the report file. 
+### How to pull the JAR ? 
+Access [the UI of the repo](https://artifactory.coprs.esa-copernicus.eu/ui/native/abc-maven-virtual/). Login to JFrog if necessary. 
+Browse through the folders, find and download the preffered JAR. 
+![pull-jar-gui](.github/images/pull-jar-gui.png)
