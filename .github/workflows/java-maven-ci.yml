@@ -13,6 +13,13 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
+    
+      - name: Set environment variables
+        run: |
+          # Short name for current branch. For PRs, use target branch (base ref)
+          GIT_BRANCH=${GITHUB_BASE_REF:-${GITHUB_REF#refs/heads/}}
+          echo "GIT_BRANCH=$GIT_BRANCH" >> $GITHUB_ENV
+          
       - name: checkout repository
         uses: actions/checkout@v2
         with:
@@ -37,7 +44,7 @@ jobs:
         run: chmod +x run-test.sh && ./run-test.sh
 
       - name: sonarqube scan 
-        run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }}
+        run: mvn sonar:sonar -Dsonar.projectKey=${{github.repository}} -Dsonar.host.url=${{ secrets.SONARQUBE_HOST }} -Dsonar.login=${{ secrets.SONARQUBE_TOKEN }} -Dsonar.branch.name=${{ env.GIT_BRANCH }}
 
       - name: Build jar 
         run: mvn clean install 
