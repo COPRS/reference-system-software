@@ -11,8 +11,8 @@ on:
 env:
   REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
   ARTIFACTORY_PROJECT: abc-docker
-  # github.repository as <account>/<repo>
-  IMAGE_NAME: ${{ github.repository }}
+  USERNAME: ${{ secrets.ARTIFACTORY_USER }}
+  PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
 
 
 jobs:
@@ -46,7 +46,7 @@ jobs:
         id: meta
         uses: docker/metadata-action@v3
         with:
-          images: ${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ env.IMAGE_NAME }}
+          images: ${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ github.repository }}
 
 
       # Build Docker image using Buildx
@@ -86,8 +86,8 @@ jobs:
         uses: docker/login-action@v1
         with:
           registry: ${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}
-          username: ${{ secrets.ARTIFACTORY_USER }}
-          password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          username: ${{ env.USERNAME }}
+          password: ${{ env.PASSWORD }}
 
       - name: Push image
         run: |
