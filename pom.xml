@@ -58,7 +58,20 @@
                 </executions>
             </plugin>
 
-        </plugins>
-    </build>
+<!-- Setting a main class -->
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-jar-plugin</artifactId>
+                <configuration>
+                <archive>
+                    <manifest>
+                    <addClasspath>true</addClasspath>
+                    <mainClass>com.mkyong.examples.App</mainClass>
+                    </manifest>
+                </archive>
+                </configuration>
+            </plugin>
+         </plugins>
+  </build>
 
 </project>
