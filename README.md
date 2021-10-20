@@ -28,6 +28,16 @@ Clicking on the most recent workflow will show you what happpened in this workfl
 ## Technical Points
 Technicals explantations can be found on [this file](technical_points.md)
 
-## Environement variable to define
-  USERNAME: Username of the artifactory technical account 
-  PASSWORD: His password, encrypted. 
+## Requiered secrets
+
+Sensitive informations informations needed by the CI are store as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+
+Here is the list of secret needed for the CI to work:
+
+| Name         | Description           |
+| ------------- |:-------------:|
+| ARTIFACTORY_USER | Username of the artifactory technical account |
+| ARTIFACTORY_PASSWORD | Password of the artifactory technical account |
+| SONARQUBE_HOST | url (or ip) of the sonarqube host  |
+| SONARQUBE_TOKEN | token generated in the SonarQube GUI |
+| GITGUARDIAN_API_KEY | API Key generated in the GitGuardian GUI |
