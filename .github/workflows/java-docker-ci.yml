@@ -3,8 +3,6 @@ name: Java Maven CI
 on: [push]
 
 env:
-  # ARTIFACTORY_BASE_URL: "artifactory.coprs.esa-copernicus.eu" # TODO: Set as env variable
-  # ARTIFACTORY_PROJECT: "abc-maven"
   USERNAME: ${{ secrets.ARTIFACTORY_USER }}
   PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}
   REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
@@ -95,8 +93,7 @@ jobs:
           password: ${{ env.PASSWORD }}
 
       - name: Push image
-        run: |
-          docker push ${{ fromJSON(steps.meta.outputs.json).tags[0] }};
+        run: docker push ${{ fromJSON(steps.meta.outputs.json).tags[0] }};
 
   generate_reports:
     needs: build
