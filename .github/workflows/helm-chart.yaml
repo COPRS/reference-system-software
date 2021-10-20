@@ -6,7 +6,7 @@ on: [push]
 
 env:
   CHART_FOLDER: mychart
-  ARTIFACTORY_BASE_URL: "artifactory.coprs.esa-copernicus.eu" # TODO: Set as env variable
+  ARTIFACTORY_BASE_URL: "artifactory.coprs.esa-copernicus.eu"
   ARTIFACTORY_PROJECT: "abc-maven"
   USERNAME: ${{ secrets.ARTIFACTORY_USER }}
   PASSWORD: ${{ secrets.ARTIFACTORY_PASSWORD }}

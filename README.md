@@ -16,3 +16,14 @@ helm repo update
 # Deploy helm chart 
 
 helm install abc-helm-virtual/mychart -n helm-exemple --create-namespace --generate-name
+
+## Requiered secrets
+
+Sensitive informations informations needed by the CI are store as [secrets](https://docs.github.com/en/actions/security-guides/encrypted-secrets)
+
+Here is the list of secret needed for the CI to work:
+
+| Name         | Description           |
+| ------------- |:-------------:|
+| ARTIFACTORY_USER | Username of the artifactory technical account |
+| ARTIFACTORY_PASSWORD | Password of the artifactory technical account |
