@@ -3,6 +3,18 @@ The purpose of this repository is to list exemples of CI used. Browse the branch
 ![branches](https://user-images.githubusercontent.com/86782407/132223702-e7fd5351-c091-4a0f-bce5-4f4871e3a4ab.png)  
 Go to https://github.com/COPRS/reference-system/actions to check the GitHub actions.
 
+# Branch meaning
+
+
+| Name | Purpose | Input | Output (deployed on artifactory) |
+|------|:------:|:-----:|:------:|
+| java-maven-ci | deploy libraires JAR. We call libraires JAR JARs that are used as dependencies by applications JAR. | maven project | maven project |
+| docker-ci | deploy docker image | Dockerfile | docker image |
+| java-docker-ci | deploy applications JARS on the artifactory. Application JARs are ment to be packaged as a docker image. | maven project | docker image |
+| helm-chart | deploy helm charts | helm project | helm project |
+
+
+
 # GitHub
 GitHub is the largest and most advanced development platform in the world. Millions of developers and companies build, ship, and maintain their software on GitHub.
 
@@ -54,3 +66,4 @@ https://www.zenhub.com/sprint-planning
 ZenHub Reporting tracks your work in GitHub to provide your entire team with real-time reports.  
 https://www.zenhub.com/reporting  
 https://help.zenhub.com/support/solutions/articles/43000010356-track-sprint-progress-with-burndown-charts
+
