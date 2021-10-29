@@ -39,7 +39,7 @@ jobs:
       - name: Build image
         uses: docker/build-push-action@v2
         with:
-          file: wkhtmltopdf.Dockerfile
+          file: pandoc-latex.Dockerfile
           load: true
           tags: ${{ steps.meta.outputs.tags }}_pandoc_latex
           labels: ${{ steps.meta.outputs.labels }}
