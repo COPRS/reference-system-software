@@ -49,7 +49,7 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
     chmod +x /root/install-texlive.sh &&\
     /root/install-texlive.sh &&\
     curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/install-tex-packages.sh &&\
-    chmod+x /root/install-tex-packages.sh &&\
+    chmod +x /root/install-tex-packages.sh &&\
     /root/install-tex-packages.sh &&\
     rm -f /root/texlive.profile \
           /root/install-texlive.sh \
