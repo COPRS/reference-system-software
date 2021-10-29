@@ -10,6 +10,16 @@ Custom docker image of Pandoc is needed to convert word documents to GitHub Flav
           args: bash -c "find input -mindepth 2 -type f -name '*.docx' -print0 | xargs -0 -n2 -P2 -I{} pandoc -s {} -t gfm --extract-media=input -o {}.md"
 ```
 
+## Pandoc with LaTeX based on Ubuntu
+Custom docker image of Pandoc with LaTeX is needed to convert GitHub Flavored Markdown document to PDF document in https://github.com/COPRS/reference-system-documentation/blob/develop/.github/workflows/documentation.yaml  
+Based from https://github.com/pandoc/dockerfiles/blob/master/ubuntu/latex.Dockerfile
+```
+      - name: Create PDF file
+        uses: docker://ghcr.io/coprs/reference-system:dependencies_pandoc_latex
+        with:
+          args: --table-of-contents --pdf-engine=xelatex --output="<CHANGE_ME>.pdf" "<CHANGE_ME>.md" 
+```
+
 ## wkhtmltopdf
 A docker image of wkhtmltopdf is needed to convert HTML to PDF in any docker-ci.yaml workflow, for e.g. https://github.com/COPRS/reference-system/blob/d73e03a43e433477e990f53f9204230f08805030/.github/workflows/docker-ci.yaml#L100
 ```
