@@ -56,3 +56,8 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
           /root/install-tex-packages.sh
 
 WORKDIR /data
+
+ENTRYPOINT ["pandoc"]
+
+# Show the extended help
+CMD ["-h"]
