@@ -53,7 +53,9 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
     /root/install-tex-packages.sh &&\
     rm -f /root/texlive.profile \
           /root/install-texlive.sh \
-          /root/install-tex-packages.sh
+          /root/install-tex-packages.sh 
+
+COPY resources/pandoc/templates/listings-setup.tex .pandoc/listings-setup.tex
 
 WORKDIR /data
 
