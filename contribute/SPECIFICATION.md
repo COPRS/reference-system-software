@@ -28,18 +28,21 @@ For the development, new branches only shall be created and used by the developm
 ###### Deliveries 
 For the deliveries, the development team shall :
 
-1) Commit to a branch named release/X.Y.Z-rci (e.g. release/1.0.1-rc2) where :
+1) Commit to a branch named release/X.Y.Z (e.g. release/1.0.1) where :
    1) X = MAJOR version when you make incompatible API changes,
    2) Y = MINOR version when you add functionality in a backwards compatible manner,
-   3) Z = PATCH version when you make backwards compatible bug fixes,
+   3) Z = PATCH version when you make backwards compatible bug fixes.
+
+![Example of branches](https://user-images.githubusercontent.com/86782407/142891053-29f78ac4-a520-484e-8eeb-e5a87c891f58.png)
+
+2) Create a tag nameed X.Y.Z-rci (e.g. 1.0.1-rc2).
+   1) X = MAJOR version when you make incompatible API changes,
+   2) Y = MINOR version when you add functionality in a backwards compatible manner,
+   3) Z = PATCH version when you make backwards compatible bug fixes.
    4) rc = stands for **r**elease **c**andidate,
    5) i = release candidate version.
 
-![Example of branches](https://user-images.githubusercontent.com/86782407/140076234-ce7b5ad1-7982-4417-81a8-316a05463732.png)
-
-2) Create a tag nameed X.Y.Z-rci (e.g. 1.0.1-rc2).
-
-![Example of tags](https://user-images.githubusercontent.com/86782407/140076275-36083d6f-1f7f-41eb-b4dd-3a4d0cad8539.png)
+![Example of tags](https://user-images.githubusercontent.com/86782407/142891144-26d32e92-3983-4384-b8de-48af8e8f2733.png)
 
 ------
 
