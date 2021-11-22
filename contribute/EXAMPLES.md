@@ -1,5 +1,5 @@
-# Exemples
-The purpose of this repository is to list exemples of CI used. Browse the branches for the differents usecases:  
+# Examples
+The purpose of this repository is to list examples of CI used. Browse the branches for the differents usecases:  
 ![branches](https://user-images.githubusercontent.com/86782407/132223702-e7fd5351-c091-4a0f-bce5-4f4871e3a4ab.png)  
 Go to https://github.com/COPRS/reference-system/actions to check the GitHub actions.
 
