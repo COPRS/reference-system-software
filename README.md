@@ -10,7 +10,7 @@ The Reference System Service is hosted on a secure Public Commercial Cloud and p
 
 This software is the exact complement of the ESA-driven Sentinel Data Processors. It provides all the components to integrate them in processing chains and to distribute the output products.
 
-![RS---context-schema](https://user-images.githubusercontent.com/86782407/142831211-5b6e0fb3-23ee-4b16-a745-e3ea58a5919d.jpg)
+![RS---context-schema](https://user-images.githubusercontent.com/86782407/142843311-38aaee5c-a245-4a3f-99a9-c9e439b41fd2.jpg)
 
 ## Contribute to the project
 
