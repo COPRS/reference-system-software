@@ -35,7 +35,7 @@ For the deliveries, the development team shall :
 
 ![Example of branches](https://user-images.githubusercontent.com/86782407/142891053-29f78ac4-a520-484e-8eeb-e5a87c891f58.png)
 
-2) Create a tag nameed X.Y.Z-rci (e.g. 1.0.1-rc2).
+2) Create a tag named X.Y.Z-rci (e.g. 1.0.1-rc2).
    1) X = MAJOR version when you make incompatible API changes,
    2) Y = MINOR version when you add functionality in a backwards compatible manner,
    3) Z = PATCH version when you make backwards compatible bug fixes.
@@ -48,7 +48,7 @@ For the deliveries, the development team shall :
 
 ##### CHANGELOG.md
 
-Every repository shall include the CHANGELOD.md file where all changes are described. Check the example provided on [reference-system repository](https://github.com/COPRS/reference-system/blob/release/CHANGELOG.md).
+Every repository shall include the CHANGELOG.md file where all changes are described. Check the example provided on [reference-system repository](https://github.com/COPRS/reference-system/blob/release/CHANGELOG.md).
 
 ![Example of CHANGELOG.md file](https://user-images.githubusercontent.com/86782407/140076390-4e79a26f-7afd-49e9-97a6-0a73a0c6794d.png)
 
@@ -77,5 +77,5 @@ Every repository shall include the README.md file to describe at least :
 
 ##### Backup
 
-We run a backup of every repository once in a while, but we are not responsible of your files. Please ensure you have a backup of your repositories on your computer or on the media of your choice.
+We run backup of every repository regularly, however we advise you to keep a backup of your repositories on your computer or on the media of your choice.
 
