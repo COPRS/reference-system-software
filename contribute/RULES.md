@@ -62,7 +62,7 @@ The automatic creation of a release is possible when using a tag (in the format 
 
 The content of the release note will include the commits and the assets will include the source code and the CHANGELOG.md file :
 
-![Example of a release](https://user-images.githubusercontent.com/86782407/140076478-66d80311-d100-46a9-adcc-1dcb354ec140.png)
+![Example of a release](https://user-images.githubusercontent.com/86782407/143057423-d4a345e3-0a32-443d-8361-648904c55300.png)
 
 ------
 
