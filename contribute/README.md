@@ -1,8 +1,8 @@
 # Contribute to the project
 
-## Read the specification
-First you want to read the specification of the CI/CD chain and understand how we work :  
-https://github.com/COPRS/reference-system-software/blob/main/contribute/SPECIFICATION.md
+## Read the rules
+First you want to read the rules of the CI/CD chain and understand how we work :  
+https://github.com/COPRS/reference-system-software/blob/main/contribute/RULES.md
 
 ## Check the examples
 You may want to check the examples we provide to build your component using our tools :  
