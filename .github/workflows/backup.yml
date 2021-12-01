@@ -1,0 +1,29 @@
+on:
+  push:
+    branches:
+      - backup
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        repository: [infrastructure, processing-sentinel-1, processing-sentinel-2, processing-sentinel-3, production-common, reference-system-documentation, reference-system-software, rs-config, rs-issues, security, user-web-client, website]
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          repository: COPRS/${{ matrix.repository }}
+          path: ${{ matrix.repository }}
+          fetch-depth: 0
+      - name: Backup
+        uses: peter-evans/s3-backup
+        env:
+          ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
+          MIRROR_TARGET: ${{ secrets.MIRROR_TARGET }}
+          SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
+          STORAGE_SERVICE_URL: ${{ secrets.STORAGE_SERVICE_URL }}
+          MIRROR_SOURCE: ${{ matrix.repository }}
+        with:
+          args: --overwrite --remove
