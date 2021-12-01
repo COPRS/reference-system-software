@@ -7,6 +7,7 @@ on:
 jobs:
   backup:
     runs-on: ubuntu-latest
+    environment: backup
     strategy:
       matrix:
         repository: [infrastructure, processing-sentinel-1, processing-sentinel-2, processing-sentinel-3, production-common, reference-system-documentation, reference-system-software, rs-config, rs-issues, security, user-web-client, website]
