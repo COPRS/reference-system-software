@@ -18,7 +18,7 @@ jobs:
           path: ${{ matrix.repository }}
           fetch-depth: 0
       - name: Backup
-        uses: peter-evans/s3-backup
+        uses: peter-evans/s3-backup@v1
         env:
           ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
           MIRROR_TARGET: ${{ secrets.MIRROR_TARGET }}
