@@ -18,6 +18,7 @@ jobs:
           repository: COPRS/${{ matrix.repository }}
           path: ${{ matrix.repository }}
           fetch-depth: 0
+          token: "${{ secrets.GITHUB_TOKEN }}"
       - name: Backup
         uses: peter-evans/s3-backup@v1
         env:
