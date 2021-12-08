@@ -2,7 +2,7 @@
 name: Bug report
 about: Create a report to help us improve
 title: "[BUG] My problem is .."
-labels: bug
+labels: bug, CCB
 assignees: cbouisson-csgroup, nleconte-csgroup
 
 ---
