@@ -11,3 +11,36 @@ https://github.com/COPRS/reference-system-software/blob/main/contribute/EXAMPLES
 ## Request access
 Last but not least, you shall request access to this organization.
 In order to do so, please open a new issue of type "Access request" on this repository and provide the informations needed.
+
+## How to containerize your application for Reference System (RS)
+Applications are running on Reference System inside containers.  
+Hence, the RS continuous integration workflow requires you to provide a Dockerfile along your application source code.
+A dockerfile describes the steps to build a container image.
+If you are not familiar with Dockerfiles, please refer to the following documentation.  
+https://docs.docker.com/engine/reference/builder/#format
+### RS constraints
+Reference System expect the image produced to meet the following requirements:
+1. Consider the [Official Ubuntu docker image version **20.04 LTS**](https://hub.docker.com/_/ubuntu) as base image for your containers.  
+    ```Dockerfile
+    FROM ubuntu:focal-20211006
+    ...
+    ```
+    It is important to use a precise version tag instead of a generic one like latest to overcome docker tags mutability.
+2. Application must run as a non root user.  
+    The security context policies forbid containers with root user to run.
+    ```Dockerfile
+    ...
+    USER 1001
+    # Do not forget to adapt open ports for non root users
+    # as ports below 1024 are considered privileged
+    # and normal users are not allowed to open them.
+    # For example:
+    # EXPOSE 8080
+    ...
+    ```
+3. The application **must not rely on privilege escalation**.  
+    Requesting a privilege escalation is forbidden by the security execution context policies.
+### Best practices to write a Dockerfile
+Reach the following links for a list of best practices for writing Dockefiles.
+- https://github.com/juan131/dockerfile-best-practices/tree/master
+- https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
