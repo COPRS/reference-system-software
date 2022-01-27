@@ -21,4 +21,4 @@ jobs:
 
     - name: Interact with object storage
       run: |
-        s3cmd --host=${{ env.HOST_BASE }} --host-bucket=${{ env.HOST_BUCKET }} ls
+        s3cmd --host=${{ secrets.HOST_BASE }} --host-bucket=${{ secrets.HOST_BUCKET }} ls
