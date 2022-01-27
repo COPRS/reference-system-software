@@ -1,0 +1,24 @@
+on:
+  push:
+    branches:
+      - main
+  schedule:
+    - cron: '0 0 * * *'  # every day at midnight
+  
+jobs:
+  backup:
+    runs-on: ubuntu-latest
+    environment: backup
+    strategy:
+      matrix:
+        repository: [infrastructure, processing-sentinel-1, processing-sentinel-2, processing-sentinel-3, production-common, reference-system-documentation, reference-system-software, rs-config, rs-issues, user-web-client, website]
+    steps:
+    - name: Set up S3cmd cli tool
+      uses: s3-actions/s3cmd@v1.1
+      with:
+        access_key: ${{ secrets.ACCESS_KEY_ID }}
+        secret_key: ${{ secrets.SECRET_ACCESS_KEY }}
+
+    - name: Interact with object storage
+      run: |
+        s3cmd --host=${{ env.HOST_BASE }} --host-bucket=${{ env.HOST_BUCKET }} ls
