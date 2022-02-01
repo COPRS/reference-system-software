@@ -6,7 +6,7 @@ on:
     - cron: '0 0 * * *'  # every day at midnight
   
 jobs:
-  backup:
+  backup_rolling:
     runs-on: ubuntu-latest
     environment: backup
     strategy:
@@ -21,4 +21,7 @@ jobs:
 
     - name: Interact with object storage
       run: |
-        s3cmd --host=${{ secrets.HOST_BASE }} --host-bucket=${{ secrets.HOST_BUCKET }} ls
+        LIST2DELDAILY=$(s3cmd --host=${{ secrets.HOST_BASE }} --host-bucket=${{ secrets.HOST_BUCKET }} ls s3://csc-rs-backup/COPRS/${{ matrix.repository }}/ | grep DAILY | cut -d '/' -f 5,6 | sort -t '/' -k 2 | head -n -15) ;
+        for BACKUP in ${LIST2DELDAILY} ; do s3cmd --host=${{ secrets.HOST_BASE }} --host-bucket=${{ secrets.HOST_BUCKET }} ls ${BACKUP} ; done ;
+        LIST2DELMONTHLY=$(s3cmd --host=${{ secrets.HOST_BASE }} --host-bucket=${{ secrets.HOST_BUCKET }} ls s3://csc-rs-backup/COPRS/${{ matrix.repository }}/ | grep MONTHLY | cut -d '/' -f 5,6 | sort -t '/' -k 2 | head -n -2) ;
+        for BACKUP in ${LIST2DELMONTHLY} ; do s3cmd --host=${{ secrets.HOST_BASE }} --host-bucket=${{ secrets.HOST_BUCKET }} ls ${BACKUP} ; done ;
