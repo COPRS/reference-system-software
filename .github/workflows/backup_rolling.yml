@@ -6,7 +6,7 @@ on:
     - cron: '0 0 * * *'  # every day at midnight
   
 jobs:
-  backup:
+  backup_rolling:
     runs-on: ubuntu-latest
     environment: backup
     strategy:
