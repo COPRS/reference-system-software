@@ -5,7 +5,7 @@ on:
   schedule:
     - cron: '0 0 * * *'  # every day at midnight
 jobs:
-  backup:
+  backup_daily:
     runs-on: ubuntu-latest
     environment: backup
     strategy:
@@ -29,7 +29,7 @@ jobs:
         uses: peter-evans/s3-backup@v1
         env:
           ACCESS_KEY_ID: ${{ secrets.ACCESS_KEY_ID }}
-          MIRROR_TARGET: ${{ secrets.MIRROR_TARGET }}/COPRS/${{ matrix.repository }}/${{ steps.extract_date.outputs.date }}/
+          MIRROR_TARGET: ${{ secrets.MIRROR_TARGET }}/COPRS/${{ matrix.repository }}/DAILY_${{ steps.extract_date.outputs.date }}/
           SECRET_ACCESS_KEY: ${{ secrets.SECRET_ACCESS_KEY }}
           STORAGE_SERVICE_URL: ${{ secrets.STORAGE_SERVICE_URL }}
           MIRROR_SOURCE: ${{ matrix.repository }}
