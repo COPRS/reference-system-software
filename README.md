@@ -35,4 +35,4 @@ The solution key points are as follows:
 
 ## Contribute to the project
 
-If you're interested in contributing to the reference system project, start by reading the [Contributing guide](https://github.com/COPRS/reference-system/tree/main/contribute)!
+If you're interested in contributing to the reference system project, please start by reading the [Contributing guide](https://github.com/COPRS/reference-system/tree/main/contribute) !
