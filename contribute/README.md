@@ -1,12 +1,14 @@
+:arrow_heading_up: Go back to the [Reference System Website](https://referencesystem.copernicus.eu/) :arrow_heading_up:
+
 # Contribute to the project
 
 ## Read the rules
 First you want to read the rules of the CI/CD chain and understand how we work :  
-https://github.com/COPRS/reference-system-software/blob/main/contribute/RULES.md
+[RULES.md](RULES.md)
 
 ## Check the examples
 You may want to check the examples we provide to build your component using our tools :  
-https://github.com/COPRS/reference-system-software/blob/main/contribute/EXAMPLES.md
+[EXAMPLES.md](EXAMPLES.md)
 
 ## Request access
 Last but not least, you shall request access to this organization.

@@ -1,4 +1,17 @@
-##### Request Secrets
+:arrow_heading_up: Go back to the [Reference System Website](https://referencesystem.copernicus.eu/) :arrow_heading_up:
+
+# Rules
+
+## Link to the Reference System Sotfware repository in your README
+You must add a link on your README page to go back to the Reference System Software repository :  
+> :arrow_heading_up: Go back to the [Reference System Sotfware repository](https://github.com/COPRS/reference-system-software) :arrow_heading_up:  
+
+Use the code snippet below :
+```Markdown
+:arrow_heading_up: Go back to the [Reference System Sotfware repository](https://github.com/COPRS/reference-system-software) :arrow_heading_up:
+
+```
+## Request Secrets
 
 By default the new repositories don't have access to the organization's secrets (no secret configured), meaning it's impossible to use the workflows. It is the responsibility of the repository's maintainer to request access to secrets in order to use the workflows. Access to secrets will unlock several features for a repository :
 
@@ -11,11 +24,11 @@ To request such access, you shall create a ticket under the [collaborative-envir
 
 ------
 
-##### Branches
+## Branches
 
 In a repository the **master** branch is reserved for the IVV team. 
 
-###### Development 
+## Development 
 
 For the development, new branches only shall be created and used by the development team :
 
@@ -25,7 +38,7 @@ For the development, new branches only shall be created and used by the developm
 - etc ...
 
 
-###### Deliveries 
+## Deliveries 
 For the deliveries, the development team shall :
 
 1) Commit to a branch named release/X.Y.Z (e.g. release/1.0.1) where :
@@ -46,7 +59,7 @@ For the deliveries, the development team shall :
 
 ------
 
-##### CHANGELOG.md
+## CHANGELOG.md
 
 Every repository shall include the CHANGELOG.md file where all changes are described. Check the example provided on [reference-system repository](https://github.com/COPRS/reference-system/blob/release/CHANGELOG.md).
 
@@ -56,7 +69,7 @@ Visit https://keepachangelog.com for more information and best practice.
 
 ------
 
-##### Releases
+## Releases
 
 The automatic creation of a release is possible when using a tag (in the format described in "Branches,Deliveries"). Visit [reference-system repository](https://github.com/COPRS/reference-system/tree/release#github-automatic-releases-using-tags) for an example to work from. 
 
@@ -66,7 +79,7 @@ The content of the release note will include the commits and the assets will inc
 
 ------
 
-##### README.md
+## README.md
 
 Every repository shall include the README.md file to describe at least :
 
@@ -75,7 +88,7 @@ Every repository shall include the README.md file to describe at least :
 
 ------
 
-##### Backup
+## Backup
 
 We run backup of every repository regularly, however we advise you to keep a backup of your repositories on your computer or on the media of your choice.
 
