@@ -28,7 +28,17 @@ Reference System expect the image produced to meet the following requirements:
     ...
     ```
     It is important to use a precise version tag instead of a generic one like latest to overcome docker tags mutability.
-2. Application must run as a non root user.  
+2. Install any dependencies you need.
+    For eg. install java :
+    ```Dockerfile
+    ...
+    RUN apt-get update && \
+        DEBIAN_FRONTEND=noninteractive apt-get -y install default-jre-headless && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/*
+    ...
+    ```
+3. Application must run as a non root user.  
     The security context policies forbid containers with root user to run.
     ```Dockerfile
     ...
@@ -40,7 +50,7 @@ Reference System expect the image produced to meet the following requirements:
     # EXPOSE 8080
     ...
     ```
-3. The application **must not rely on privilege escalation**.  
+4. The application **must not rely on privilege escalation**.  
     Requesting a privilege escalation is forbidden by the security execution context policies.
 ### Best practices to write a Dockerfile
 Reach the following links for a list of best practices for writing Dockefiles.
