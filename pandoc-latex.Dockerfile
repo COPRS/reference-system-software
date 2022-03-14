@@ -50,12 +50,11 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
     curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/install-texlive.sh &&\
     chmod +x /root/install-texlive.sh &&\
     /root/install-texlive.sh &&\
-    curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/install-tex-packages.sh &&\
-    chmod +x /root/install-tex-packages.sh &&\
-    /root/install-tex-packages.sh &&\
+    curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/packages.txt &&\
+    sed -e 's/ *#.*$//' -e '/^ *$/d' /root/packages.txt | xargs tlmgr install &&\
     rm -f /root/texlive.profile \
           /root/install-texlive.sh \
-          /root/install-tex-packages.sh 
+          /root/packages.txt
 
 COPY resources/pandoc/templates/listings-setup.tex resources/pandoc/templates/deeplists.tex .pandoc/
 
