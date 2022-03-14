@@ -44,6 +44,8 @@ RUN apt-get -q --no-allow-insecure-repositories update \
 ENV PATH="/opt/texlive/texdir/bin/x86_64-linux:${PATH}"
 WORKDIR /root
 
+RUN curl -O -L http://mirrors.ctan.org/macros/latex/contrib/enumitem/enumitem.sty
+
 RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/texlive.profile &&\
     curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/install-texlive.sh &&\
     chmod +x /root/install-texlive.sh &&\
@@ -55,7 +57,7 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
           /root/install-texlive.sh \
           /root/install-tex-packages.sh 
 
-COPY resources/pandoc/templates/listings-setup.tex .pandoc/listings-setup.tex
+COPY resources/pandoc/templates/listings-setup.tex resources/pandoc/templates/deeplists.tex .pandoc/
 
 WORKDIR /data
 
