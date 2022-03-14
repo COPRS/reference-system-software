@@ -44,8 +44,6 @@ RUN apt-get -q --no-allow-insecure-repositories update \
 ENV PATH="/opt/texlive/texdir/bin/x86_64-linux:${PATH}"
 WORKDIR /root
 
-RUN tlmgr install enumitem
-
 RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/texlive.profile &&\
     curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/install-texlive.sh &&\
     chmod +x /root/install-texlive.sh &&\
@@ -55,6 +53,8 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
     rm -f /root/texlive.profile \
           /root/install-texlive.sh \
           /root/packages.txt
+
+RUN tlmgr install enumitem
 
 COPY resources/pandoc/templates/listings-setup.tex resources/pandoc/templates/deeplists.tex .pandoc/
 
