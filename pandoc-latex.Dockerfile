@@ -44,7 +44,7 @@ RUN apt-get -q --no-allow-insecure-repositories update \
 ENV PATH="/opt/texlive/texdir/bin/x86_64-linux:${PATH}"
 WORKDIR /root
 
-RUN curl -O -L http://mirrors.ctan.org/macros/latex/contrib/enumitem/enumitem.sty
+RUN tlmgr install enumitem
 
 RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/texlive.profile &&\
     curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/common/latex/install-texlive.sh &&\
