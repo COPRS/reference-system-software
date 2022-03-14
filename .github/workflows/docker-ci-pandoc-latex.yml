@@ -8,6 +8,7 @@ name: Docker CI dependencies pandoc latex
 on:
   push:
     branches: [ dependencies ]
+  workflow_dispatch:
 
 env:
   # Use docker.io for Docker Hub if empty
