@@ -6,7 +6,7 @@ The purpose of this repository is to list examples of CI used. Browse the branch
 Go to https://github.com/COPRS/reference-system/actions to check the GitHub actions.
 
 # Branch meaning
-
+## Main workflows
 
 | Name | Purpose | Input | Output (deployed on artifactory) |
 |------|:------:|:-----:|:------:|
@@ -14,6 +14,17 @@ Go to https://github.com/COPRS/reference-system/actions to check the GitHub acti
 | docker-ci | deploy docker image | Dockerfile | docker image |
 | java-docker-ci | deploy applications JARS on the artifactory. Application JARs are ment to be packaged as a docker image. | maven project | docker image |
 | helm-chart | deploy helm charts | helm project | helm project |
+
+## Miscellaneous
+### Dependencies
+
+The goal of the [dependencies](https://github.com/COPRS/reference-system-software/tree/dependencies) branch is to provide dependecies for the building process. Three packages are built with three tags for three different purposes :
+
+| Package Name | Purpose | Input | Output |
+|------|------|:-----:|:------:|
+| [dependencies_wkhtmltopdf](https://ghcr.io/coprs/reference-system:dependencies_wkhtmltopdf) | Convert HTML to PDF (for security report) | HTML | PDF |
+| [dependencies_pandoc_latex](https://ghcr.io/coprs/reference-system-software:dependencies_pandoc_latex) | Convert Markdown to PDF (for documentation export) | Markdown | PDF |
+| [dependencies_pandoc](https://ghcr.io/coprs/reference-system:dependencies_pandoc) | Convert DOCX to Markdown (for documentation import| DOCX | Markdown |
 
 
 
