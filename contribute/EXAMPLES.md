@@ -9,7 +9,7 @@ Go to https://github.com/COPRS/reference-system/actions to check the GitHub acti
 ## Main workflows
 
 | Name | Purpose | Input | Output (deployed on artifactory) |
-|------|:------:|:-----:|:------:|
+|------|------|:-----:|:------:|
 | java-maven-ci | deploy libraires JAR. We call libraires JAR JARs that are used as dependencies by applications JAR. | maven project | maven project |
 | docker-ci | deploy docker image | Dockerfile | docker image |
 | java-docker-ci | deploy applications JARS on the artifactory. Application JARs are ment to be packaged as a docker image. | maven project | docker image |
