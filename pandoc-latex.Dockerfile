@@ -56,7 +56,7 @@ RUN curl -O -L https://raw.githubusercontent.com/pandoc/dockerfiles/master/commo
 
 RUN tlmgr install enumitem
 
-COPY resources/pandoc/templates/listings-setup.tex resources/pandoc/templates/deeplists.tex .pandoc/
+COPY resources/pandoc/templates/listings-setup.tex resources/pandoc/templates/deeplists.tex resources/pandoc/templates/linebreak.lua .pandoc/
 
 WORKDIR /data
 
