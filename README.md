@@ -16,7 +16,7 @@ All the module listed bellow are the pillar of the reference system. In order to
 - **production-common** : This repository contains multi-Sentinel common processing components such as Ingestion chain, PRIP I/F, Data life Cycle, Catalog....
 - **user-web-client** : This repository contains the User web-client component aiming at displaying products on a map
 
-In this environment, satellite's processor can be installed (there are no need to install all of them) :
+In this environment, satellite's processor can be installed (it isn't mandatory to install all of them) :
 
 - **processing-sentinel-1** : This repository contains components for sentinel-1 processing chain : production trigger, preparation worker, execution worker and internal interface management with S3 Object Storage.
 - **processing-sentinel-2** : This repository contains components for sentinel-2 processing chain : production trigger, preparation worker, execution worker and internal interface management with S3 Object Storage.
