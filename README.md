@@ -14,7 +14,7 @@ The modules listed bellow are the pillar of the reference system. In order to ex
 - **production-common** : This repository contains multi-Sentinel common processing components such as Ingestion chain, PRIP I/F, Data life Cycle, Catalog....
 
 There are two nonessential modules for monitoring and for providing a user web client. 
-They're deployment is strongly recommended :
+Their deployment is strongly recommended :
 
 - **monitoring** : This repository contains the components that support monitoring functions for Sentinel-1, Sentinel-2 and Sentinel-3 missions. Including metrics, log & trace collection, performance Indicator computing and monitoring GUI.
 - **user-web-client** : **This description must be remade** This repository contains the User web-client component aiming at displaying products on a map
