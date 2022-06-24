@@ -4,9 +4,16 @@
 
 ## About
 
+### Context
+
 The Reference System (RS) is a key component of the Copernicus Space Component (CSC) Ground Segment: it provides to the community a open source processing and distribution environment software. Integrated with the Sentinel Data Processors, it has the capacity to substitute the nominal CSC Production and Distribution services. 
 
 The Reference System Service works with Kubernetes and can be hosted on multiple Cloud Service like Orange Flexible Engine and OVH Public Cloud.
+
+> :warning: The reference sytem service consists of a **core** part that must be installed first and optional **add-ons** that can be deployed on top. If you know what you are doing, go to [Get Started](#get-started)
+
+### Modules core / add-ons
+insert here schema
 
 The modules listed bellow are the pillar of the reference system. In order to execute the project, this modules must be deployed :
 
