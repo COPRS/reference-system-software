@@ -24,7 +24,7 @@ There are two nonessential modules for monitoring and for providing a user web c
 Their deployment is strongly recommended :
 
 - **monitoring** : This repository contains the components that support monitoring functions for Sentinel-1, Sentinel-2 and Sentinel-3 missions. Including metrics, log & trace collection, performance Indicator computing and monitoring GUI.
-- **user-web-client** : **This description must be remade** This repository contains the User web-client component aiming at displaying products on a map
+- **user-web-client (included in production common)** : **This description must be remade** This module installed in production common contains the User web-client component aiming at displaying products on a map
 
 On the RS environment previously deployed, the user can install as well all or some of Sentinel processing chains listed below. These Processing chain use ESA Sentinel processors provided through the ESA Sentinel Data Processor publication Service :
 
