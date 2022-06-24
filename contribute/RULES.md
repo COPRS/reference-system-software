@@ -11,6 +11,14 @@ Use the code snippet below :
 :arrow_heading_up: Go back to the [Reference System Sotfware repository](https://github.com/COPRS/reference-system-software) :arrow_heading_up:
 
 ```
+
+## README.md
+
+Every repository shall include the README.md file to describe at least :
+
+- Minimal instructions to deploy/clone/install/use the content of this repository,
+- The purpose of this repository.
+
 ## Request Secrets
 
 By default the new repositories don't have access to the organization's secrets (no secret configured), meaning it's impossible to use the workflows. It is the responsibility of the repository's maintainer to request access to secrets in order to use the workflows. Access to secrets will unlock several features for a repository :
@@ -77,14 +85,6 @@ The content of the release note will include the commits and the assets will inc
 
 ![Example of a release](https://user-images.githubusercontent.com/86782407/143057423-d4a345e3-0a32-443d-8361-648904c55300.png)
 
-------
-
-## README.md
-
-Every repository shall include the README.md file to describe at least :
-
-- Minimal instructions to deploy/clone/install/use the content of this repository,
-- The purpose of this repository.
 
 ------
 
