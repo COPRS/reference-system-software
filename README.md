@@ -13,7 +13,8 @@ The Reference System Service works with Kubernetes and can be hosted on multiple
 > :warning: The reference sytem service consists of a **core** part that must be installed first, and optional **add-ons** that can be deployed on top. If you know what you are doing, go to [Get Started](#get-started)
 
 ### Modules core / add-ons
-![RS---context-schema-github](https://raw.githubusercontent.com/COPRS/reference-system-software/moe/.github/assets/images/Reference-System-6.png)
+
+![Reference System Schema of all modules](https://raw.githubusercontent.com/COPRS/reference-system-software/moe/.github/assets/images/Reference-System-6.png)
 
 The modules listed bellow are the pillar of the reference system. In order to execute the project, this modules must be deployed :
 
