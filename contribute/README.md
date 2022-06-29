@@ -3,15 +3,15 @@
 # Contribute to the project
 
 ## Read the rules
-First you want to read the rules of the CI/CD chain and understand how we work :  
+First you want to read the rules of the CI/CD chain and understand how we work:  
 [RULES.md](RULES.md)
 
 ## See how to organise your repository
-You shall check how to organise your GitHub repository to respect the homogeneity :  
+You shall check how to organise your GitHub repository to respect the homogeneity of the COPRS organisation:  
 [REPOSITORY_ORGANISATION.md](REPOSITORY_ORGANISATION.md)
 
 ## Check the examples
-You may want to check the examples we provide to build your component using our tools :  
+You may want to check the examples we provide to build your component using our tools:  
 [EXAMPLES.md](EXAMPLES.md)
 
 ## Request access
