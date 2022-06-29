@@ -29,7 +29,7 @@ You shall arrange your **git** repository like below.
 ### CHANGELOG.md
 Every repository shall include the `CHANGELOG.md` file where all changes are described. Check the example provided on [reference-system-software repository](https://github.com/COPRS/reference-system-software/blob/release/CHANGELOG.md).
 
-![Example of CHANGELOG.md file](.github/assets/images/changelog.png)
+![Example of CHANGELOG.md file](/.github/assets/images/changelog.png)
 
 Visit https://keepachangelog.com for more information and best practice.
 
