@@ -35,12 +35,14 @@ On the RS environment previously deployed, the user can install as well all or s
 
 ## Get started
 
-Description of how to install and showing a short description of the version in a table.
-| Milestones | Description                                                                                                            |
-| :----------: | ---------------------------------------------------------------------------------------------------------------------- |
-| **V1.0**       | Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1 and S3 workflows without SCDF<br>\- SRN |
-| ***V1.1***       | *TBC*                                                                                                                    |
-| ***V2.0***       | *TBC*                                                                                                                    |
+This table is an overview of the documentation and related resources of Reference System.
+TBC
+
+| Milestones | Description                                                                                                            | Releases |
+| :----------: | -------------------------------------------------------------------------------------------------------------------- | -------- |
+| **V1.0**       | [Release note System](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md)<br>*Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1 and S3 workflows without SCDF* |<br>\- [infrastructure](https://github.com/COPRS/infrastructure/tree/0.3.0-rc4)<br>\- [production-common](https://github.com/COPRS/production-common/tree/0.3.0-rc11)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/0.3.0-rc11)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/0.3.0-rc11) |
+| ***V1.1***       | *TBC*                                                                                                                    |   |
+| ***V2.0***       | *TBC*                                                                                                                    |   |
 
 ## Contribute to the project
 
