@@ -6,7 +6,7 @@
 First you want to read the rules of the CI/CD chain and understand how we work:  
 [RULES.md](RULES.md)
 
-## See how to organise your repository
+## how to organise your repository
 You shall check how to organise your GitHub repository to respect the homogeneity of the COPRS organisation:  
 [REPOSITORY_ORGANISATION.md](REPOSITORY_ORGANISATION.md)
 
