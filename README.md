@@ -48,6 +48,6 @@ TBC
 
 This project has been created in order to facilitate the incorporation of new satellite's processor without having to recreate the infrastructure, the production common, the monitoring and the user web client.
 
-If you're interested in contributing to the reference system project, for exemple to incorporate new processing for satellite, please start by reading the [Contributing guide](/contribute/) !
+If you're interested in contributing to the reference system project, for exemple to incorporate new processing for satellite or reporting a bug, please start by reading the [Contributing guide](/contribute/) !
 
 
