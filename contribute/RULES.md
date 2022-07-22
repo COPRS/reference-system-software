@@ -34,7 +34,7 @@ To request such access, you shall create a ticket under the [collaborative-envir
 
 ## Branches
 
-In a repository the **master** branch is reserved for the IVV team. 
+In a repository the **main** branch is reserved for the IVV team. 
 
 ## Development 
 
