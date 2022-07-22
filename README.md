@@ -36,11 +36,19 @@ On the RS environment previously deployed, the user can install as well all or s
 ## Get started
 
 This table is an overview of the documentation and related resources of Reference System.
-TBC
+The table below summarizes the different versions of the system and the available features as well as a link for each of the components that make up the system.
+To set up Reference System, choose a version and let yourself be guided by the links that will take you directly to their installation guide.
+
+```
+Let's start by installing the mandatory base of our system:
+- click on the infrastructure link and follow the readme.md
+- click on the production-common link and follow the readme.md
+```
+*As explained above with this base you can now install the different processings and functionalities by following their readme on the same model as the base presented above.*
 
 | Milestones | Description                                                                                                            | Releases |
 | :----------: | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| **V1.0**       | [Release note System](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md)<br>*Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1 and S3 workflows without SCDF* |<br>\- [infrastructure](https://github.com/COPRS/infrastructure/tree/0.3.0-rc4)<br>\- [production-common](https://github.com/COPRS/production-common/tree/0.3.0-rc11)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/0.3.0-rc11)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/0.3.0-rc11) |
+| **V1.0**       | [Release note System](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md)<br>*Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1 and S3 workflows without SCDF* |<br>\- [infrastructure](https://github.com/COPRS/infrastructure/tree/0.3.0-rc4)<br>\- [production-common](https://github.com/COPRS/production-common/tree/0.3.0-rc14)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/0.3.0-rc07)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/0.3.0-rc10) |
 | ***V1.1***       | *Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1, S2 and S3 workflows with SCDF*<br>\- Monitoring<br>\- Autoscaler|   |
 | ***V2.0***       | *Scope :<br>\- Deployment on RS platform<br>\- L0, L1 and L2 products are available for S1, S2 and S3 workflows with SCDF*<br>\- Monitoring<br>\- Autoscaler|   |
 
