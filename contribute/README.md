@@ -10,7 +10,7 @@ First you want to read the rules of the CI/CD chain and understand how we work:
 If you want to report a bug, please head to the dedicated rs-issue's repository:  
 https://github.com/COPRS/rs-issues
 
-## how to organise your repository
+## How to organise your repository
 You shall check how to organise your GitHub repository to respect the homogeneity of the COPRS organisation:  
 [REPOSITORY_ORGANISATION.md](REPOSITORY_ORGANISATION.md)
 
