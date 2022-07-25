@@ -10,7 +10,7 @@ The Reference System (RS) is a key component of the Copernicus Space Component (
 
 The Reference System Service works with Kubernetes and can be hosted on multiple Cloud Service like Orange Flexible Engine and OVH Public Cloud.
 
-> :warning: The reference sytem service consists of a **core** part that must be installed first, and optional **add-ons** that can be deployed on top. If you are already familiar with, go to [Get Started](#get-started)
+> :warning: The reference sytem service consists of a **core** part that must be installed first, and optional **add-ons** that can be deployed on top. If you are already familiar with the reference system software, you might go to [Get Started](#get-started)
 
 ### Modules core / add-ons
 
