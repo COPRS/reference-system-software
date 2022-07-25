@@ -46,7 +46,7 @@ Let's start by installing the mandatory base of our system:
 ```
 *As explained above, usign these mandatory components, you can now install the different processings and functionalities by following their readme on the same model as the base presented above.*
 
-| Milestones | Description                                                                                                            | Releases |
+| RS SW version | Description                                                                                                            | Components Releases |
 | :----------: | -------------------------------------------------------------------------------------------------------------------- | -------- |
 | **V1.0**       | [system Release note](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md)<br>*Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1 and S3 workflows without SCDF* |<br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/tree/0.3.0-rc4)<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/tree/0.3.0-rc14)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/0.3.0-rc07)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/0.3.0-rc10) |
 | ***V1.1***       | *Scope :<br>\- Deployment on RS platform<br>\- L0 products are available for S1, S2 and S3 workflows with SCDF*<br>\- Monitoring<br>\- Autoscaler|   |
