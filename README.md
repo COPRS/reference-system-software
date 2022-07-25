@@ -44,7 +44,7 @@ Let's start by installing the mandatory base of our system:
 - click on the infrastructure link and follow the readme.md
 - click on the production-common link and follow the readme.md
 ```
-*As explained above with this base you can now install the different processings and functionalities by following their readme on the same model as the base presented above.*
+*As explained above, usign these mandatory components, you can now install the different processings and functionalities by following their readme on the same model as the base presented above.*
 
 | Milestones | Description                                                                                                            | Releases |
 | :----------: | -------------------------------------------------------------------------------------------------------------------- | -------- |
