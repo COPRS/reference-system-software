@@ -33,6 +33,8 @@ On the RS environment previously deployed, the user can install as well all or s
 - **processing-sentinel-2** : This repository contains components for sentinel-2 processing chain : production trigger, preparation worker, execution worker and internal interface management with S3 Object Storage.
 - **processing-sentinel-3** : This repository contains components for sentinel-3 processing chain : production trigger, preparation worker, execution worker and internal interface management with S3 Object Storage.
 
+If you need more information on RS software internal architecture please refer to the Architecture and design document [Architecture and design section](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md)
+
 ## Get started
 
 This table is an overview of the documentation and related resources of Reference System.
