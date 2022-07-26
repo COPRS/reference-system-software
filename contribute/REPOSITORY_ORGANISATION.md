@@ -11,19 +11,38 @@ Table of content:
   - [Installation procedure](#installation-procedure)
 
 ## Git repository tree
-You shall arrange your **git** repository like below.
+You shall arrange your **git** repository like below:
 
 - .github
 - CHANGELOG.md
 - LICENCE.md
 - README.md
-- User Manuals
-  - UM1
-  - UM2
-  - …
+- docs
+  - architecture
+  - install_manuals
+  - interface
+  - user_manuals
 - Apps
 - Specific folder
-- …
+- Sub Components
+- ...
+
+
+OR if you have several sub components in your repository:
+
+- .github
+- CHANGELOG.md
+- LICENCE.md
+- README.md
+- Apps
+- Specific folder
+- *Sub Component X*
+  - *docs*
+    - *architecture*
+    - *install_manuals*
+    - *interface*
+    - *user_manuals*
+- ...
 
 ### .github
 `.github` is a folder to improve [repository managment](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file) and [developer interactions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions).
