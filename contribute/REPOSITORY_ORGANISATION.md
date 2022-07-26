@@ -7,7 +7,7 @@ Table of content:
 - [Git repository tree](#git-repository-tree)
 - [README.md](#readmemd-1)
   - [Link to the Reference System Sotfware repository](#link-to-the-reference-system-sotfware-repository)
-  - [Pre-requierements](#pre-requierements)
+  - [Pre-requirement](#pre-requirement)
   - [Installation procedure](#installation-procedure)
 
 ## Git repository tree
@@ -77,8 +77,8 @@ Use the code snippet below:
 :arrow_heading_up: Go back to the [Reference System Sotfware repository](https://github.com/COPRS/reference-system-software) :arrow_heading_up:
 ```
 
-### Pre-requierements
-Describe the pre-requierements: What is needed in order to execute the installation procedure. For e.g. :
+### Pre-requirement
+Describe the pre-requirements: What is needed in order to execute the installation procedure. For e.g. :
 - A cloud provider
 - Access to the internet
 - ssh
