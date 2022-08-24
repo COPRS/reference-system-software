@@ -1,0 +1,71 @@
+
+System Release Note V1.1
+========================
+
+| Component | Version |
+| :---------- | :----------: |
+| infrastructure (mandatory) | [0.10.0-rc1](https://github.com/COPRS/infrastructure/releases/tag/0.10.0-rc1) |
+| production-common(mandatory) | [1.4.0-rc1](https://github.com/COPRS/production-common/releases/tag/1.4.0-rc1) |
+| processing-sentinel-1 | [1.4.0-rc1](https://github.com/COPRS/processing-sentinel-1/releases/tag/1.4.0-rc1) |
+| processing-sentinel-2 | [0.11.0-rc1](https://github.com/COPRS/processing-sentinel-2/releases/tag/0.11.0-rc1) |
+| processing-sentinel-3 | [1.4.0-rc1](https://github.com/COPRS/processing-sentinel-3/releases/tag/1.4.0-rc1) |
+| monitoring | [0.10.0-rc1](https://github.com/COPRS/monitoring/releases/tag/0.10.0-rc1) |
+
+
+Contents
+========
+
+* [Development done](#development-done)
+* [Bugs closed](#bugs-closed)
+
+# Development done
+
+[122 - SECURITY: Deploy the secret management solution](https://github.com/COPRS/rs-issues/issues/122)  
+[89 - Deploy Sprint Cloud Data Flow](https://github.com/COPRS/rs-issues/issues/89)  
+[121 - INFRA/SECURITY: Deploy the new IAM solution](https://github.com/COPRS/rs-issues/issues/121)  
+[189 - Ingress Controller](https://github.com/COPRS/rs-issues/issues/189)  
+[123 - INFRA: Provide a base image to use for future developments](https://github.com/COPRS/rs-issues/issues/123)  
+[97 - Deploy infrastructure ](https://github.com/COPRS/rs-issues/issues/97)  
+[79 - SECURITY: live demonstration of FALCO](https://github.com/COPRS/rs-issues/issues/79)  
+[77 - INFRA: Create and deploy a new template image of Operating System](https://github.com/COPRS/rs-issues/issues/77)  
+[178 - Compliance to "Non Functional Requirements"](https://github.com/COPRS/rs-issues/issues/178)  
+[120 - Security : List of trusted sources](https://github.com/COPRS/rs-issues/issues/120)  
+[55 - SECURITY: Tradeoff on secret management](https://github.com/COPRS/rs-issues/issues/55)  
+[83 - Create Ansible playbooks to deploy Kubernetes](https://github.com/COPRS/rs-issues/issues/83)  
+[102 - [Tradeoff] Using ISTIO ?](https://github.com/COPRS/rs-issues/issues/102)  
+[119 - MONITORING: deploy LOKI](https://github.com/COPRS/rs-issues/issues/119)  
+[84 - Deploy the latest version of databases](https://github.com/COPRS/rs-issues/issues/84)  
+[90 - Deploy the latest version of Kafka](https://github.com/COPRS/rs-issues/issues/90)  
+[53 - SECURITY: Tradeoff on a new IAM solution](https://github.com/COPRS/rs-issues/issues/53)  
+[124 - SECURITY: Provide a security clearance after deployment](https://github.com/COPRS/rs-issues/issues/124)  
+[91 - Deploy Rook/CephFS into the cluster](https://github.com/COPRS/rs-issues/issues/91)  
+[105 - Integrate S3 Acquisition Workflow into S1PRO software](https://github.com/COPRS/rs-issues/issues/105)  
+[183 - Allow to specify a branch for configuraton repo used by rs_init](https://github.com/COPRS/rs-issues/issues/183)  
+[139 - Adding support for point and line queries in PRIP](https://github.com/COPRS/rs-issues/issues/139)  
+[88 - Migrate content of rs-documentation repo to reference-system-documentation repo](https://github.com/COPRS/rs-issues/issues/88)  
+[151 - Build CFI ACQ L0 S3 container](https://github.com/COPRS/rs-issues/issues/151)  
+[136 - User Web Client shall be able to communicate with DDIP](https://github.com/COPRS/rs-issues/issues/136)  
+[1 - Initiate Werum's backlog for V1 delivery](https://github.com/COPRS/rs-issues/issues/1)  
+[134 - AUXIP Integration](https://github.com/COPRS/rs-issues/issues/134)  
+[152 - Push WERUM Simulators to collaborative plateform](https://github.com/COPRS/rs-issues/issues/152)  
+[150 - Build CFI L0 S1 container](https://github.com/COPRS/rs-issues/issues/150)
+
+# Bugs closed
+
+[274 - [BUG] [Infra] Processing traces are not forwarded to elasticsearch](https://github.com/COPRS/rs-issues/issues/274)  
+[154 - [IVV] [Infra] Second master fails to join cluster during Kubernetes deployment](https://github.com/COPRS/rs-issues/issues/154)  
+[287 - [BUG] [Infra] Apparmor prevents node-exporter from exporting utilisation metrics](https://github.com/COPRS/rs-issues/issues/287)  
+[374 - [BUG][Infra] Keda: Missing CRD](https://github.com/COPRS/rs-issues/issues/374)  
+[177 - [BUG][Documentation] Installation manual of the infrastructure deployment (infrastructure readme)](https://github.com/COPRS/rs-issues/issues/177)  
+[281 - [BUG] Several Grafana actions are forbidden](https://github.com/COPRS/rs-issues/issues/281)  
+[251 - [BUG] [Infra] Elasticsearch app sample configuration has no coordinating node](https://github.com/COPRS/rs-issues/issues/251)  
+[211 - [BUG] [Processing] Missing kafka topic for the s1-l0 asp production trigger](https://github.com/COPRS/rs-issues/issues/211)  
+[398 - [BUG][WERUM] Nullpointer exception when query S2_AUX via SearchMetadata Controller](https://github.com/COPRS/rs-issues/issues/398)  
+[283 - [BUG] AUX_IP  worker restart many times due to typo in configuration](https://github.com/COPRS/rs-issues/issues/283)  
+[275 - [BUG] [PRO] s1pro-s3-acq-ipf-execution-worker fails before processing any data](https://github.com/COPRS/rs-issues/issues/275)  
+[285 - [BUG] [PRO] s1pro-s3-l0-execution-worker fails during its cleaning step](https://github.com/COPRS/rs-issues/issues/285)  
+[250 - [BUG] AUXIP trigger failed to detect product on ADGS server in bearer mode](https://github.com/COPRS/rs-issues/issues/250)  
+[159 - [BUG] [IVV] [Processing] rs_init must be run in $HOME directory for rs binaries to be added in $PATH](https://github.com/COPRS/rs-issues/issues/159)  
+[397 - [BUG] [PRO] compression-worker: one of two s2 auxiliary directory format is not taken into account](https://github.com/COPRS/rs-issues/issues/397)  
+[168 - [BUG] [IVV] [Processing] s1-prip-frontend expects Kong resources](https://github.com/COPRS/rs-issues/issues/168)  
+[282 - [BUG] [PRO] Image installed on s3-acq processor is the simulator despite simulateS3ACQIpf set to false](https://github.com/COPRS/rs-issues/issues/282)
