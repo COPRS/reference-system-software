@@ -14,7 +14,7 @@ The Reference System Service works with Kubernetes and can be hosted on multiple
 
 ### Modules core / add-ons
 
-![Reference System Schema of all modules](https://raw.githubusercontent.com/COPRS/reference-system-software/moe/.github/assets/images/Reference-System-6.png)
+![Reference System Schema of all modules](/.github/assets/images/Reference-System-6.png)
 
 The modules listed bellow are the pillar of the reference system. In order to execute the project, this modules must be deployed :
 
@@ -33,7 +33,7 @@ On the RS environment previously deployed, the user can install as well all or s
 - **processing-sentinel-2** : This repository contains components for sentinel-2 processing chain : production trigger, preparation worker, execution worker and internal interface management with S3 Object Storage.
 - **processing-sentinel-3** : This repository contains components for sentinel-3 processing chain : production trigger, preparation worker, execution worker and internal interface management with S3 Object Storage.
 
-If you need more information on RS software internal architecture please refer to the Architecture and Design Document [Architecture and design section](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md)
+If you need more information on RS software internal architecture please refer to the Architecture and Design Document [Architecture and design section](/releases/v1.1.md)
 
 ## Get started
 
@@ -57,7 +57,7 @@ Let's start by installing the mandatory base of our system:
 
 ### Usage
 
-To use the Reference System Software you can follow the [operationnal producedures](https://github.com/COPRS/reference-system-software/blob/moe/releases/v1.0.md). 
+To use the Reference System Software you can follow the [operationnal producedures](/releases/v1.1.md). 
 
 ## Contribute to the project
 
