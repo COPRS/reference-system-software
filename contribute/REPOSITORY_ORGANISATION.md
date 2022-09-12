@@ -50,12 +50,21 @@ OR if you have several sub components in your repository:
 
 #### infrastructure
 
-![markmap-infrastructure](https://user-images.githubusercontent.com/86782407/189622405-5f094618-5baa-4733-87a7-173c7ed868b4.svg)
+![infrastructure tree view](/.github/assets/images/markmap-infrastructure.png)
 
-![infrastructure tree view](/.github/assets/images/markmap-infrastructure.svg)
+Click to open directly on [markmap](https://markmap.js.org/repl#?d=github%3ACOPRS%2Freference-system-software%40main%2F.github%2Fassets%2Fmarkmap%2Finfrastructure.md)
 
 #### production-common
 
+![infrastructure tree view](/.github/assets/images/markmap-production-common.png)
+
+Click to open directly on [markmap](https://markmap.js.org/repl#?d=github%3ACOPRS%2Freference-system-software%40main%2F.github%2Fassets%2Fmarkmap%2Fproduction-common.md)
+
+#### processing-sentinel-2
+
+![infrastructure tree view](/.github/assets/images/markmap-processing-sentinel-2.png)
+
+Click to open directly on [markmap](https://markmap.js.org/repl#?d=github%3ACOPRS%2Freference-system-software%40main%2F.github%2Fassets%2Fmarkmap%2Fprocessing-sentinel-2.md)
 
 ### .github
 `.github` is a folder to improve [repository managment](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file) and [developer interactions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions).
