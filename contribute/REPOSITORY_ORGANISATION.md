@@ -16,6 +16,7 @@ You shall arrange your **git** repository like below:
 - .github
 - CHANGELOG.md
 - LICENCE.md
+- NOTICE.md
 - README.md
 - docs
   - architecture
@@ -33,6 +34,7 @@ OR if you have several sub components in your repository:
 - .github
 - CHANGELOG.md
 - LICENCE.md
+- NOTICE.md
 - README.md
 - Apps
 - Specific folder
@@ -44,6 +46,26 @@ OR if you have several sub components in your repository:
     - *user_manuals*
 - ...
 
+### Examples of existing repositories
+
+#### infrastructure
+
+![infrastructure tree view](/.github/assets/images/markmap-infrastructure.png)
+
+Click to open directly on [markmap](https://markmap.js.org/repl#?d=github%3ACOPRS%2Freference-system-software%40main%2F.github%2Fassets%2Fmarkmap%2Finfrastructure.md)
+
+#### production-common
+
+![infrastructure tree view](/.github/assets/images/markmap-production-common.png)
+
+Click to open directly on [markmap](https://markmap.js.org/repl#?d=github%3ACOPRS%2Freference-system-software%40main%2F.github%2Fassets%2Fmarkmap%2Fproduction-common.md)
+
+#### processing-sentinel-2
+
+![infrastructure tree view](/.github/assets/images/markmap-processing-sentinel-2.png)
+
+Click to open directly on [markmap](https://markmap.js.org/repl#?d=github%3ACOPRS%2Freference-system-software%40main%2F.github%2Fassets%2Fmarkmap%2Fprocessing-sentinel-2.md)
+
 ### .github
 `.github` is a folder to improve [repository managment](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/creating-a-default-community-health-file) and [developer interactions](https://docs.github.com/en/actions/learn-github-actions/understanding-github-actions).
 
@@ -53,6 +75,9 @@ Every repository shall include the `CHANGELOG.md` file where all changes are des
 > ![Example of CHANGELOG.md file](/.github/assets/images/changelog.png)
 
 Visit https://keepachangelog.com for more information and best practice.
+
+### NOTICE.md
+Every piece of code and/or software that is used but not directly developped by contributors of the COPRS organization shall be identified. Therefore the file `NOTICE.md` should contain all the information neccessary to identify the original author(s) and comply with the license usage.
 
 ### LICENCE.md
 The `LICENCE.md` file explains the respostory's legal license, such as any legal rights, any copyright restrictions, etc. If you include a detectable license in your repository, people who visit your repository will see it at the top of the repository page.  
