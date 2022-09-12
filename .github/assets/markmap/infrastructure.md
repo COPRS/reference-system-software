@@ -2,7 +2,7 @@
 ## ==README.md== (includes Installation Manual)
 ## CHANGELOG.md
 ## LICENSE
-## NOTICE.md (thrid party)
+## NOTICE.md (third party)
 
 ## docs
 ### user_manuals
