@@ -46,7 +46,12 @@ OR if you have several sub components in your repository:
     - *user_manuals*
 - ...
 
-here below are examples of existing repositories:
+### Examples of existing repositories
+
+#### infrastructure
+
+
+#### production-common
 
 
 ### .github
