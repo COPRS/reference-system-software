@@ -50,6 +50,9 @@ OR if you have several sub components in your repository:
 
 #### infrastructure
 
+![markmap-infrastructure](https://user-images.githubusercontent.com/86782407/189622405-5f094618-5baa-4733-87a7-173c7ed868b4.svg)
+
+![infrastructure tree view](/.github/assets/images/markmap-infrastructure.svg)
 
 #### production-common
 
