@@ -14,30 +14,3 @@
 ### media
 ### interfaces
 ### architecture
-
-## rs-addons
-
-### S2_L0U
-#### ==Manuifest.json==
-#### ==README.md==
-#### Executables
-##### additionnal_resource
-###### ==ConfigMap.yaml==
-###### ==KafkaTopic.yaml==
-###### ==PVC.yaml==
-###### ==Secret.yaml==
-##### ==stream-application-list.properties==
-##### ==stream-definition.properties==
-##### ==stream-parameters.properties==
-#### ==Release_Note.md==
-
-### S2_L0C
-#### ==Manuifest.json==
-#### ==README.md==
-#### Executables
-##### additionnal_resource
-###### ==Secret.yaml==
-##### ==stream-application-list.properties==
-##### ==stream-definition.properties==
-##### ==stream-parameters.properties==
-#### ==Release_Note.md==
