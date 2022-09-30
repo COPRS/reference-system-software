@@ -19,7 +19,7 @@ Moreover, the service is able to temporarily substitute the nominal Production a
 
 Finally this service environment brings a new mind-set in the development based on an open source community to reinforce the adoption and attractiveness of Sentinel data.
 
-![](./media/image23.png)
+![](./.github/assets/images/image23.png)
 
 ## Cloud native architecture
 The system is based on a full Cloud native system so the solution can meet Copernicus unpredictable user scenarios while optimising costs. Sentinel-1 PDGS returns of experience is fully integrated in the design of the service.
@@ -36,7 +36,7 @@ Workflows allow breaking down complex problems into smaller, reusable pieces. Wi
 In the Reference System requirements, workflows appear as interface elements, which users can browse, instantiate and monitor. The design promotes workflows as a key concept on top of which the rest of the system is built. We integrate Spring Cloud Data Flow, a cloud-native programming and operating model for composable data micro services, to develop our system as a collection of workflows, each orchestrating business specific micro services.
 
 Since this concept is built into the orchestrator, the system exposes excellent progress information and error handling mechanisms out of the box. No need to reconstruct workflow states by correlating monitoring data from individual micro services. The operation, monitoring and maintenance of the system are therefore made easier. Less operators are required and using a parametric cost model allows to offer the right service for the right costs for the benefits of both the users and the Agency.
-![](./media/image24.png)
+![](./.github/assets/images/image24.png)
 
 
 
@@ -115,19 +115,19 @@ Processing and monitoring chain shall be isolated. This came with a large fault 
 If one of them does not work, it must not impact the other.
 
 # STATIC BREAKDOWN OF THE SYSTEM <a name="STATIC_BREAKDOWN_OF_THE_SYSTEM"></a>
-![](./media/image22.png)
+![](./.github/assets/images/image22.png)
 
 
 
 # SYSTEM DYNAMIC<a name="SYSTEM_DYNAMIC"></a>
 ## Deployment
 ### Sentinel 1
-![](./media/image40.png)
+![](./.github/assets/images/image40.png)
 
 ### Sentinel 2
-![](./media/image26.png)
+![](./.github/assets/images/image26.png)
 
 ### Sentinel 3
-![](./media/image19.png)
+![](./.github/assets/images/image19.png)
 
 
