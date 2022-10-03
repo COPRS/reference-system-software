@@ -15,9 +15,7 @@ It is completed all along the software development lifecycle.
 # Presentation of the system and its environment <a name="Presentation_of_the_system_and_its_environment"></a>
 The Copernicus Reference System Service is the key component of the CSC Ground Segment. It provides an open source and versatile capacity to integrate and validate new Sentinel Data Processors and therefore to improve performances of the system.
 
-Moreover, the service is able to temporarily substitute the nominal Production and Distribution services with a high-demanding level of service.
-
-Finally this service environment brings a new mind-set in the development based on an open source community to reinforce the adoption and attractiveness of Sentinel data.
+This service environment brings a new mind-set in the development based on an open source community to reinforce the adoption and attractiveness of Sentinel data.
 
 ![](./.github/assets/images/image23.png)
 
