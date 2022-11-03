@@ -55,7 +55,17 @@ Let's start by installing the mandatory base of our system:
 | :----------:  | -------------------------------------------------------------------------------------------------------------------- | -------- |
 | **V1.0**      | [System Release Note](/releases/v1.0.md)<br>*Scope :<br>\- Deployment of RS platform<br>\- L0 products are available for S1 and S3 workflows without SCDF* |<br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/tree/0.3.0-rc4)<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/tree/0.3.0-rc14)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/0.3.0-rc07)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/0.3.0-rc10) |
 | **V1.1**      | [System Release Note](/releases/v1.1.md)<br>*Scope :<br>\- Deployment of RS platform<br>\- L0 products are available for S1, S2 and S3 workflows with SCDF*<br>\- Monitoring | <br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/tree/0.10.0)<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/tree/1.4.1)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/1.4.1)<br>\- [processing-sentinel-2](https://github.com/COPRS/processing-sentinel-2/tree/1.0.0)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/1.4.1)<br>\- [monitoring](https://github.com/COPRS/monitoring/tree/1.1.0)<br>\- [user-web-client](https://github.com/COPRS/user-web-client/tree/1.4.0) |
-| **V2.0**      | [System Release Note](/releases/v2.0.md)<br>*Scope :<br>\- Deployment of RS platform<br>\- L0, L1 and L2 products are available for S1, S2 and S3 workflows with SCDF*<br>\- Monitoring<br>\- Autoscaler| <br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/tree/1.2.0-rc1)<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/tree/1.7.0-rc1)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/1.7.0-rc1)<br>\- [processing-sentinel-2](https://github.com/COPRS/processing-sentinel-2/tree/1.1.0-rc1)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/1.7.0-rc1)<br>\- [monitoring](https://github.com/COPRS/monitoring/tree/1.2.0-rc1)<br>\- [user-web-client](https://github.com/COPRS/user-web-client/tree/1.5.0-rc2) |
+| **V2.0**      | [System Release Note](/releases/v2.0.md)<br>*Scope :
+<br>\- Deployment of RS platform
+<br>\- L0, L1 and L2 products are available for S1, S2 and S3 workflows with SCDF*
+<br>\- Monitoring<br>\- Autoscaler| 
+<br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/tree/1.3.0-rc1)
+<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/tree/1.7.0-rc1)
+<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/tree/1.7.0-rc1)
+<br>\- [processing-sentinel-2](https://github.com/COPRS/processing-sentinel-2/tree/1.1.0-rc1)
+<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/tree/1.7.0-rc1)
+<br>\- [monitoring](https://github.com/COPRS/monitoring/tree/1.2.0-rc1)
+<br>\- [user-web-client](https://github.com/COPRS/user-web-client/tree/1.5.0-rc2) |
 
 ### Usage
 
