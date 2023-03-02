@@ -1,0 +1,89 @@
+name: Trivy-Security-Scan
+
+# Controls when the workflow will run
+env:
+  REGISTRY_BASE: artifactory.coprs.esa-copernicus.eu
+  ARTIFACTORY_PROJECT: rs-docker-private
+          
+on:
+  workflow_dispatch:
+jobs:
+  scan:
+    runs-on: ubuntu-latest
+    name: Trivy-Security-Scan
+    steps:
+      #- uses: actions/checkout@v2
+      
+      - name: Login to Artifactory
+        uses: docker/login-action@v2
+        with:
+          registry: ${{ env.REGISTRY_BASE }}
+          username: ${{ secrets.ARTIFACTORY_USERNAME }}
+          password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+
+      - name: Pull image
+        run: |
+          docker pull ${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ matrix.ARTIFACTORY_IMAGE }}:${{ matrix.ARTIFACTORY_TAG }}
+
+      - name: Run Trivy vulnerability scanner HTML
+        uses: aquasecurity/trivy-action@master
+        continue-on-error: true
+        with:
+          image-ref: '${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ matrix.ARTIFACTORY_IMAGE }}:${{ matrix.ARTIFACTORY_TAG }}'
+          format: 'template'
+          template: '@/contrib/html.tpl'
+          output: 'vulnerabilities.html'
+          exit-code: '0'
+          ignore-unfixed: false
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Run Trivy vulnerability scanner SARIF
+        uses: aquasecurity/trivy-action@master
+        continue-on-error: true
+        with:
+          image-ref: '${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ matrix.ARTIFACTORY_IMAGE }}:${{ matrix.ARTIFACTORY_TAG }}'
+          format: 'sarif'
+          output: trivy-results.sarif
+          exit-code: '0'
+          ignore-unfixed: false
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Upload Trivy scan results to GitHub Security tab
+        uses: github/codeql-action/upload-sarif@v2
+        if: always()
+        with:
+          sarif_file: 'trivy-results.sarif'
+
+      - name: Run Trivy vulnerability scanner JSON
+        uses: aquasecurity/trivy-action@master
+        continue-on-error: true
+        with:
+          image-ref: '${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ matrix.ARTIFACTORY_IMAGE }}:${{ matrix.ARTIFACTORY_TAG }}'
+          format: 'json'
+          output: 'vulnerabilities.json'
+          exit-code: '0'
+          ignore-unfixed: false
+          vuln-type: 'os,library'
+          severity: 'CRITICAL,HIGH'
+
+      - name: Generate CSV
+        run: |
+          cat vulnerabilities.json | jq --raw-output '[ "SEVERITY", "ID", "PACKAGE", "VERSION", "LINK" ], ( .Results[].Vulnerabilities[] | [.Severity, .VulnerabilityID, .PkgName, .InstalledVersion, .PrimaryURL]) | @csv' > vulnerabilities.csv
+
+      - name: Convert HTML to PDF
+        uses: docker://ghcr.io/coprs/reference-system:dependencies_wkhtmltopdf
+        with:
+          args: --orientation Landscape vulnerabilities.html vulnerabilities.pdf
+
+      - name: Upload Anchore scan reports
+        uses: actions/upload-artifact@master
+        with:
+          name: vulnerabilities-${{ matrix.ARTIFACTORY_IMAGE }}-${{ matrix.ARTIFACTORY_TAG }}
+          path: |
+            vulnerabilities.html
+            vulnerabilities.pdf
+            vulnerabilities.csv
+            vulnerabilities.json
+
