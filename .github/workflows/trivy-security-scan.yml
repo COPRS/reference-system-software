@@ -30,7 +30,7 @@ jobs:
 
       - name: Pull image
         run: |
-          docker pull ${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ matrix.ARTIFACTORY_IMAGE }}:${{ matrix.ARTIFACTORY_TAG }}
+          docker pull ${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ env.ARTIFACTORY_IMAGE }}:${{ matrix.ARTIFACTORY_TAG }}
 
       - name: Run Trivy vulnerability scanner HTML
         uses: aquasecurity/trivy-action@master
