@@ -8,6 +8,13 @@ env:
 on:
   workflow_dispatch:
   workflow_call:
+    inputs:
+      ARTIFACTORY_IMAGE:
+        required: true
+        type: string
+      ARTIFACTORY_TAG:
+        required: true
+        type: string
     secrets:
       ARTIFACTORY_USERNAME:
         required: true
