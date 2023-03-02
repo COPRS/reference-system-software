@@ -1,0 +1,209 @@
+name: 'Trivy Scan'
+description: 'Scan vulns with Trivy'
+inputs:
+  output:
+    description: 'writes results to a file with the specified file name (without extension)'
+    required: false
+    default: 'vulnerabilites'
+  artifact:
+    description: 'Name of the artifact to upload'
+    required: true
+    default: 'vulnerabilites'
+  upload-sarif:
+    description: 'To upload the sarif report in GitHub'
+    required: false
+    default: ''
+  format:
+    description: 'output format (table, json, template)'
+    required: false
+    default: 'sarif,json,template'
+  template:
+    description: 'use an existing template for rendering output (@/contrib/sarif.tpl, @/contrib/gitlab.tpl, @/contrib/junit.tpl'
+    required: false
+    default: '@/contrib/html.tpl'
+  image-ref:
+    description: 'image reference (for backward compatibility)'
+    required: true
+  scan-type:
+    description: 'Scan type to use for scanning vulnerability'
+    required: false
+    default: 'image'
+  input:
+    description: 'reference of tar file to scan'
+    required: false
+    default: ''
+  scan-ref:
+    description: 'Scan reference'
+    required: false
+    default: '.'
+  exit-code:
+    description: 'exit code when vulnerabilities were found'
+    required: false
+    default: '0'
+  ignore-unfixed:
+    description: 'ignore unfixed vulnerabilities'
+    required: false
+    default: 'false'
+  vuln-type:
+    description: 'comma-separated list of vulnerability types (os,library)'
+    required: false
+    default: 'os,library'
+  severity:
+    description: 'severities of vulnerabilities to be displayed'
+    required: false
+    default: 'UNKNOWN,LOW,MEDIUM,HIGH,CRITICAL'
+  skip-dirs:
+    description: 'comma separated list of directories where traversal is skipped'
+    required: false
+    default: ''
+  skip-files:
+    description: 'comma separated list of files to be skipped'
+    required: false
+    default: ''
+  cache-dir:
+    description: 'specify where the cache is stored'
+    required: false
+    default: ''
+  timeout:
+    description: 'timeout (default 5m0s)'
+    required: false
+    default: ''
+  ignore-policy:
+    description: 'filter vulnerabilities with OPA rego language'
+    required: false
+    default: ''
+  hide-progress:
+    description: 'hide progress output'
+    required: false
+    default: 'true'
+  list-all-pkgs:
+    description: 'output all packages regardless of vulnerability'
+    required: false
+    default: 'false'
+  security-checks:
+    description: 'comma-separated list of what security issues to detect'
+    required: false
+    default: ''
+  trivyignores:
+    description: 'comma-separated list of relative paths in repository to one or more .trivyignore files'
+    required: false
+    default: ''
+runs:
+  using: "composite"
+  steps:
+    - name: Check for output json
+      if: ${{ contains(inputs.format, 'json') }}
+      id: check-json
+      uses: aquasecurity/trivy-action@master
+      with:
+        format: 'json'
+        output: '${{ inputs.output }}.json'
+        scan-type: '${{ inputs.scan-type }}'
+        input: '${{ inputs.input }}'
+        image-ref: '${{ inputs.image-ref }}'
+        scan-ref: '${{ inputs.scan-ref }}'
+        exit-code: '${{ inputs.exit-code }}'
+        ignore-unfixed: '${{ inputs.ignore-unfixed }}'
+        vuln-type: '${{ inputs.vuln-type }}'
+        severity: '${{ inputs.severity }}'
+        skip-dirs: '${{ inputs.skip-dirs }}'
+        skip-files: '${{ inputs.skip-files }}'
+        cache-dir: '${{ inputs.cache-dir }}'
+        timeout: '${{ inputs.timeout }}'
+        ignore-policy: '${{ inputs.ignore-policy }}'
+        list-all-pkgs: '${{ inputs.list-all-pkgs }}'
+        security-checks: '${{ inputs.security-checks }}'
+        trivyignores: '${{ inputs.trivyignores }}'
+    - name: Check for output sarif
+      if: ${{ contains(inputs.format, 'sarif') }}
+      id: check-sarif
+      uses: aquasecurity/trivy-action@master
+      with:
+        format: 'sarif'
+        output: '${{ inputs.output }}.sarif'
+        scan-type: '${{ inputs.scan-type }}'
+        input: '${{ inputs.input }}'
+        image-ref: '${{ inputs.image-ref }}'
+        scan-ref: '${{ inputs.scan-ref }}'
+        exit-code: '${{ inputs.exit-code }}'
+        ignore-unfixed: '${{ inputs.ignore-unfixed }}'
+        vuln-type: '${{ inputs.vuln-type }}'
+        severity: '${{ inputs.severity }}'
+        skip-dirs: '${{ inputs.skip-dirs }}'
+        skip-files: '${{ inputs.skip-files }}'
+        cache-dir: '${{ inputs.cache-dir }}'
+        timeout: '${{ inputs.timeout }}'
+        ignore-policy: '${{ inputs.ignore-policy }}'
+        list-all-pkgs: '${{ inputs.list-all-pkgs }}'
+        security-checks: '${{ inputs.security-checks }}'
+        trivyignores: '${{ inputs.trivyignores }}'
+    - name: Check for output html
+      if: ${{ contains(inputs.template, 'html') && contains(inputs.format, 'template') }}
+      id: check-html
+      uses: aquasecurity/trivy-action@master
+      with:
+        format: 'template'
+        output: '${{ inputs.output }}.html'
+        scan-type: '${{ inputs.scan-type }}'
+        input: '${{ inputs.input }}'
+        image-ref: '${{ inputs.image-ref }}'
+        scan-ref: '${{ inputs.scan-ref }}'
+        template: '${{ inputs.template }}'
+        exit-code: '${{ inputs.exit-code }}'
+        ignore-unfixed: '${{ inputs.ignore-unfixed }}'
+        vuln-type: '${{ inputs.vuln-type }}'
+        severity: '${{ inputs.severity }}'
+        skip-dirs: '${{ inputs.skip-dirs }}'
+        skip-files: '${{ inputs.skip-files }}'
+        cache-dir: '${{ inputs.cache-dir }}'
+        timeout: '${{ inputs.timeout }}'
+        ignore-policy: '${{ inputs.ignore-policy }}'
+        list-all-pkgs: '${{ inputs.list-all-pkgs }}'
+        security-checks: '${{ inputs.security-checks }}'
+        trivyignores: '${{ inputs.trivyignores }}'
+    - name: Check for output table
+      if: ${{ contains(inputs.format, 'table') }}      
+      id: check-table
+      uses: aquasecurity/trivy-action@master
+      with:
+        format: 'table'
+        output: '${{ inputs.output }}.table'
+        scan-type: '${{ inputs.scan-type }}'
+        input: '${{ inputs.input }}'
+        image-ref: '${{ inputs.image-ref }}'
+        scan-ref: '${{ inputs.scan-ref }}'
+        exit-code: '${{ inputs.exit-code }}'
+        ignore-unfixed: '${{ inputs.ignore-unfixed }}'
+        vuln-type: '${{ inputs.vuln-type }}'
+        severity: '${{ inputs.severity }}'
+        skip-dirs: '${{ inputs.skip-dirs }}'
+        skip-files: '${{ inputs.skip-files }}'
+        cache-dir: '${{ inputs.cache-dir }}'
+        timeout: '${{ inputs.timeout }}'
+        ignore-policy: '${{ inputs.ignore-policy }}'
+        list-all-pkgs: '${{ inputs.list-all-pkgs }}'
+        security-checks: '${{ inputs.security-checks }}'
+        trivyignores: '${{ inputs.trivyignores }}'
+
+    - name: Upload Trivy scan results to GitHub Security tab
+      if: ${{ success() && inputs.upload-sarif }}
+      id: upload-sarif
+      uses: github/codeql-action/upload-sarif@v2
+      with:
+        sarif_file: '${{ inputs.output }}.sarif'
+
+    - name: Convert HTML to PDF
+      if: ${{ success() && contains(inputs.template, 'html') && contains(inputs.template, 'html') }}
+      id: convert-html-pdf
+      uses: docker://ghcr.io/coprs/reference-system:dependencies_wkhtmltopdf
+      with:
+        args: '--orientation Landscape ${{ inputs.output }}.html ${{ inputs.output }}.pdf'
+
+    - name: Upload Anchore scan reports
+      if: ${{ success() }}
+      id: upload-artifact
+      uses: actions/upload-artifact@master
+      with:
+        name: ${{ inputs.artifact }}
+        path: |
+          ${{ inputs.output }}*
