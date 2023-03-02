@@ -19,8 +19,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: ${{ env.REGISTRY_BASE }}
-          username: ${{ secrets.ARTIFACTORY_USERNAME }}
-          password: ${{ secrets.ARTIFACTORY_PASSWORD }}
+          username: ${{ env.ARTIFACTORY_USERNAME }}
+          password: ${{ env.ARTIFACTORY_PASSWORD }}
 
       - name: Pull image
         run: |
