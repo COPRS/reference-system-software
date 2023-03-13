@@ -3,22 +3,15 @@ name: Trivy-Security-Scan
 # Controls when the workflow will run
          
 inputs:
-  IMAGE:
-    required: true
-    type: string
-  IMAGE_TAG:
-    required: true
-    type: string
   SEVERITY:
     required: true
     type: string
   EXIT_CODE:
     required: true
     type: string
-  PROJECT: 
+  IMAGE_REF: 
     required: true
     type: string
-
 
 runs:
   using: "composite"
@@ -27,7 +20,7 @@ runs:
       uses: aquasecurity/trivy-action@master
       continue-on-error: true
       with:
-        image-ref: '${{ inputs.PROJECT }}/${{ inputs.IMAGE }}:${{ inputs.IMAGE_TAG }}'
+        image-ref: '${{ inputs.IMAGE_REF }}'
         format: 'template'
         template: '@/contrib/html.tpl'
         output: 'vulnerabilities.html'
@@ -40,7 +33,7 @@ runs:
       uses: aquasecurity/trivy-action@master
       continue-on-error: true
       with:
-        image-ref: '${{ inputs.PROJECT }}/${{ inputs.IMAGE }}:${{ inputs.IMAGE_TAG }}'
+        image-ref: '${{ inputs.IMAGE_REF }}'
         format: 'sarif'
         output: trivy-results.sarif
         exit-code: ${{ inputs.EXIT_CODE }}
@@ -57,7 +50,7 @@ runs:
       uses: aquasecurity/trivy-action@master
       continue-on-error: true
       with:
-        image-ref: '${{ inputs.PROJECT }}/${{ inputs.IMAGE }}:${{ inputs.IMAGE_TAG }}'
+        image-ref: '${{ inputs.IMAGE_REF }}'
         format: 'json'
         output: 'vulnerabilities.json'
         exit-code: ${{ inputs.EXIT_CODE }}
