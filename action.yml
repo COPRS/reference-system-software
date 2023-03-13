@@ -66,6 +66,7 @@ runs:
         severity: ${{ inputs.SEVERITY }}
 
     - name: Generate CSV
+      shell: bash
       run: |
         cat vulnerabilities.json | jq --raw-output '[ "SEVERITY", "ID", "PACKAGE", "VERSION", "LINK" ], ( .Results[].Vulnerabilities[] | [.Severity, .VulnerabilityID, .PkgName, .InstalledVersion, .PrimaryURL]) | @csv' > vulnerabilities.csv
 
@@ -74,13 +75,13 @@ runs:
       with:
         args: --orientation Landscape vulnerabilities.html vulnerabilities.pdf
 
-      - name: Upload Anchore scan reports
-        uses: actions/upload-artifact@master
-        with:
-          name: vulnerabilities-${{ inputs.IMAGE }}-${{ inputs.IMAGE_TAG }}
-          path: |
-            vulnerabilities.html
-            vulnerabilities.pdf
-            vulnerabilities.csv
-            vulnerabilities.json
+    - name: Upload Anchore scan reports
+      uses: actions/upload-artifact@master
+      with:
+        name: vulnerabilities-${{ inputs.IMAGE }}-${{ inputs.IMAGE_TAG }}
+        path: |
+          vulnerabilities.html
+          vulnerabilities.pdf
+          vulnerabilities.csv
+          vulnerabilities.json
 
