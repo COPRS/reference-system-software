@@ -15,6 +15,12 @@ on:
       ARTIFACTORY_TAG:
         required: true
         type: string
+      SEVERITY:
+        required: true
+        type: string
+      EXIT_CODE:
+        required: true
+        type: string
     secrets:
       ARTIFACTORY_USERNAME:
         required: true
@@ -47,10 +53,10 @@ jobs:
           format: 'template'
           template: '@/contrib/html.tpl'
           output: 'vulnerabilities.html'
-          exit-code: '0'
+          exit-code: ${{ inputs.EXIT_CODE }}
           ignore-unfixed: false
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: ${{ inputs.SEVERITY }}
 
       - name: Run Trivy vulnerability scanner SARIF
         uses: aquasecurity/trivy-action@master
@@ -59,10 +65,10 @@ jobs:
           image-ref: '${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ inputs.ARTIFACTORY_IMAGE }}:${{ inputs.ARTIFACTORY_TAG }}'
           format: 'sarif'
           output: trivy-results.sarif
-          exit-code: '0'
+          exit-code: ${{ inputs.EXIT_CODE }}
           ignore-unfixed: false
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: ${{ inputs.SEVERITY }}
 
       - name: Upload Trivy scan results to GitHub Security tab
         uses: github/codeql-action/upload-sarif@v2
@@ -77,10 +83,10 @@ jobs:
           image-ref: '${{ env.REGISTRY_BASE }}/${{ env.ARTIFACTORY_PROJECT }}/${{ inputs.ARTIFACTORY_IMAGE }}:${{ inputs.ARTIFACTORY_TAG }}'
           format: 'json'
           output: 'vulnerabilities.json'
-          exit-code: '0'
+          exit-code: ${{ inputs.EXIT_CODE }}
           ignore-unfixed: false
           vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+          severity: ${{ inputs.SEVERITY }}
 
       - name: Generate CSV
         run: |
