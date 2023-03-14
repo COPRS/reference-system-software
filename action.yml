@@ -30,6 +30,7 @@ runs:
         ignore-unfixed: false
         vuln-type: 'os,library'
         severity: ${{ inputs.SEVERITY }}
+        timeout: '30m'
 
     - name: Run Trivy vulnerability scanner SARIF
       uses: aquasecurity/trivy-action@master
@@ -42,6 +43,7 @@ runs:
         ignore-unfixed: false
         vuln-type: 'os,library'
         severity: ${{ inputs.SEVERITY }}
+        timeout: '30m'
 
     - name: Upload Trivy scan results to GitHub Security tab
       uses: github/codeql-action/upload-sarif@v2
@@ -60,6 +62,7 @@ runs:
         ignore-unfixed: false
         vuln-type: 'os,library'
         severity: ${{ inputs.SEVERITY }}
+        timeout: '30m'
 
     - name: Generate CSV
       shell: bash
