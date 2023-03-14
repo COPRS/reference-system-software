@@ -12,7 +12,9 @@ inputs:
   IMAGE_REF: 
     required: true
     type: string
-
+  ARTIFACT_NAME:
+    required: true
+    type: string
 runs:
   using: "composite"
   steps:
@@ -72,7 +74,7 @@ runs:
     - name: Upload Anchore scan reports
       uses: actions/upload-artifact@master
       with:
-        name: vulnerabilities-${{ inputs.IMAGE_REF }}
+        name: vulnerabilities-${{ inputs.ARTIFACT_NAME }}
         path: |
           vulnerabilities.html
           vulnerabilities.pdf
