@@ -61,7 +61,7 @@ runs:
     - name: Generate CSV
       shell: bash
       run: |
-        cat vulnerabilities.json | jq --raw-output '[ "SEVERITY", "ID", "PACKAGE", "VERSION", "LINK" ], ( .Results[].Vulnerabilities[] | [.Severity, .VulnerabilityID, .PkgName, .InstalledVersion, .PrimaryURL]) | @csv' > vulnerabilities.csv
+        cat vulnerabilities.json | jq --raw-output '[ "SEVERITY", "ID", "PACKAGE", "VERSION", "LINK" ], ( .Results[].Vulnerabilities[]? | [.Severity, .VulnerabilityID, .PkgName, .InstalledVersion, .PrimaryURL]?) | @csv' > vulnerabilities.csv
 
     - name: Convert HTML to PDF
       uses: docker://ghcr.io/coprs/reference-system:dependencies_wkhtmltopdf
