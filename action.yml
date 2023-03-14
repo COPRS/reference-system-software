@@ -74,7 +74,7 @@ runs:
     - name: Upload Anchore scan reports
       uses: actions/upload-artifact@master
       with:
-        name: vulnerabilities-${{ inputs.ARTIFACT_NAME }}
+        name: ${{ inputs.ARTIFACT_NAME }}
         path: |
           vulnerabilities.html
           vulnerabilities.pdf
