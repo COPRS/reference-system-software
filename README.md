@@ -27,7 +27,7 @@ There are two nonessential modules for monitoring and for providing a user web c
 Their deployment is strongly recommended :
 
 - **monitoring** : This repository contains the components that support monitoring functions for Sentinel-1, Sentinel-2 and Sentinel-3 missions. Including metrics, log & trace collection, performance Indicator computing and monitoring GUI.
-- **user-web-client** : This repository contains the user facing web application of the Copernicus Reference System (COPRS). This web application intends to be used by an end user to query products in the Sentinel-1, Sentinel-2 or Sentinel-3 catalogs and display them on a map.
+- **user-web-client** : This repository contains the user facing web application of the Copernicus Reference System (COPRS). This web application intends to be used by an end user to query products in the Sentinel-1, Sentinel-2 or Sentinel-3 catalogs and displays them on a map.
 
 On the RS environment previously deployed, the user can install as well all or some of Sentinel processing chains listed below. These Processing chain use ESA Sentinel processors provided through the ESA Sentinel Data Processor publication Service :
 
