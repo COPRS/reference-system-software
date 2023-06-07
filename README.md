@@ -16,7 +16,7 @@ The Reference System Service works with Kubernetes and can be hosted on multiple
 
 ### Modules core / add-ons
 
-![Reference System Schema of all modules](/.github/assets/images/Reference-System-6.png)
+![Reference System Schema of all modules](/.github/assets/images/rssoftware.png)
 
 The modules listed bellow are the pillar of the reference system. In order to execute the project, this modules must be deployed :
 
