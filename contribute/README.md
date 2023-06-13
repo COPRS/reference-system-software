@@ -28,6 +28,7 @@ Hence, the RS continuous integration workflow requires you to provide a Dockerfi
 A dockerfile describes the steps to build a container image.
 If you are not familiar with Dockerfiles, please refer to the following documentation.  
 https://docs.docker.com/engine/reference/builder/#format
+
 ### RS constraints
 Reference System expect the image produced to meet the following requirements:
 1. Consider the [Official Ubuntu docker image version **20.04 LTS**](https://hub.docker.com/_/ubuntu) as base image for your containers.  
@@ -60,7 +61,11 @@ Reference System expect the image produced to meet the following requirements:
     ```
 4. The application **must not rely on privilege escalation**.  
     Requesting a privilege escalation is forbidden by the security execution context policies.
+
 ### Best practices to write a Dockerfile
 Reach the following links for a list of best practices for writing Dockefiles.
 - https://github.com/juan131/dockerfile-best-practices/tree/master
 - https://docs.docker.com/develop/develop-images/dockerfile_best-practices/
+
+## Ask for support
+If you have any question regarding the COPRS solution please contact: ops_coprs@airbus.com
