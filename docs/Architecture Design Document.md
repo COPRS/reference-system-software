@@ -1,1 +1,0 @@
-# Architecture Design Document

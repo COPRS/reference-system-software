@@ -61,37 +61,6 @@ You can manage your work on GitHub by creating labels to categorize issues, pull
 <https://docs.github.com/en/issues/using-labels-and-milestones-to-track-work/managing-labels>
 
 We highly suggest you to have a look at the Kubernetes project on GitHub to check how one of the most ever popular project uses labels, and learn how you can also use labels.  
-List of labels: <https://github.com/kubernetes/kubernetes/labels>  
-Kanban: <https://github.com/kubernetes/kubernetes/projects/10>
 
-# ZenHub
-
-ZenHub is a layer of agile project management tools that exists both within GitHub and directly through your browser. Developers can engage with project management in a comfortable environment, while non-technical team members have total visibility into the development process. ZenHub lets users easily move issues through pipelines on a Kanban board and organize complex projects into Epics. Have a look at the key differences between GitHub and ZenHub :  
-<https://blog.zenhub.com/zenhub-vs-github-projects-what-are-the-key-differences/>
-
-You can connect to ZenHub with your GitHub credentials through <https://www.zenhub.com/> or via directly in GitHub with the browser extension.
-
-ZenHub is **free** for open source project and on public repositories. It allows full access to all ZenHub’s features and functionalities.
-
-## Workspace
-
-A Workspace is how you keep issues in GitHub organized using ZenHub. You can add any number of GitHub repositories into the same ZenHub Workspace, letting your team benefit from a shared view of all your work. With ZenHub Workspaces, the same GitHub repository can be added to multiple Boards. This allows individual teams to work on the same set of issues but follow their own workflow and pipeline structure.  
-<https://help.zenhub.com/support/solutions/articles/43000504792-workspaces-overview>  
-<https://help.zenhub.com/support/solutions/articles/43000497224-creating-your-first-team-workspace>
-
-## Managing pipelines with the board
-
-Pipelines are the columns of Kanban. When viewing the Board, you will see a collection of pipelines that represent the stages that work goes through within your team.  
-<https://help.zenhub.com/support/solutions/articles/43000497278-getting-started-with-the-zenhub-board>
-
-## Sprint planning
-
-In Agile-Scrum, sprints are a fixed length of time (typically two weeks) during which an agreed-upon chunk of work is completed and ready to be shipped. ZenHub sprints allow teams to group issues together that will be completed within this timeframe.  
-<https://help.zenhub.com/support/solutions/articles/43000616465-getting-started-with-zenhub-sprints>  
-https://www.zenhub.com/sprint-planning
-
-## Reporting
-
-ZenHub Reporting tracks your work in GitHub to provide your entire team with real-time reports.  
-https://www.zenhub.com/reporting  
-<https://help.zenhub.com/support/solutions/articles/43000010356-track-sprint-progress-with-burndown-charts>
+List of labels: https://github.com/kubernetes/kubernetes/labels  
+Kanban: https://github.com/kubernetes/kubernetes/projects/10
