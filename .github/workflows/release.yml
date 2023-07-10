@@ -3,10 +3,7 @@
 
 name: Release
 
-on:
-  push:
-    branches:
-      - ci/python-new
+on: [push]
 
 jobs:
   build-and-publish:
