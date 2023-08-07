@@ -33,6 +33,7 @@ Applications are running on Reference System inside containers.
 Hence, the RS continuous integration workflow requires you to provide a Dockerfile along your application source code.
 A dockerfile describes the steps to build a container image.
 If you are not familiar with Dockerfiles, please refer to the following documentation.  
+
 <https://docs.docker.com/engine/reference/builder/#format>
 
 ### RS constraints
@@ -82,3 +83,6 @@ Reach the following links for a list of best practices for writing Dockefiles.
 
 - <https://github.com/juan131/dockerfile-best-practices/tree/master>
 - <https://docs.docker.com/develop/develop-images/dockerfile_best-practices/>
+
+## Ask for support
+If you have any question regarding the COPRS solution please contact: ops_coprs@airbus.com
