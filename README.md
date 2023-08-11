@@ -53,11 +53,11 @@ Let's start by installing the mandatory base of our system:
 
 | RS SW version | Description                                                                                                          | Components Releases |
 | :----------:  | -------------------------------------------------------------------------------------------------------------------- | -------- |
-| **V2.0.0-rc1**      | [System Release Note](https://github.com/COPRS/reference-system-software/blob/main/releases/V2.0.0-rc1.md)<br>*Scope :<br>\- Deployment of RS infrastructure<br>\- Common Services: Ingestion, Catalog, Compression, Prip...<br>\- L0, L1, L2 products are available for S1, S2 and S3 workflows with SCDF<br>\- Monitoring<br>\- User Web Client* | <br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/releases/tag/1.5.0)<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/releases/tag/1.13.0)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/releases/tag/1.13.0)<br>\- [processing-sentinel-2](https://github.com/COPRS/processing-sentinel-2/releases/tag/1.6.0)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/releases/tag/1.13.0)<br>\- [monitoring](https://github.com/COPRS/monitoring/releases/tag/1.5.0)<br>\- [user-web-client](https://github.com/COPRS/user-web-client/releases/tag/1.8.0) |
+| **V2.0.0**      | [System Release Note](https://github.com/COPRS/reference-system-software/blob/main/releases/V2.0.0.md)<br>*Scope :<br>\- Deployment of RS infrastructure<br>\- Common Services: Ingestion, Catalog, Compression, Prip...<br>\- L0, L1, L2 products are available for S1, S2 and S3 workflows with SCDF<br>\- Monitoring<br>\- User Web Client* | <br>\- [infrastructure (mandatory)](https://github.com/COPRS/infrastructure/releases/tag/1.6.0)<br>\- [production-common(mandatory)](https://github.com/COPRS/production-common/releases/tag/1.14.0)<br>\- [processing-sentinel-1](https://github.com/COPRS/processing-sentinel-1/releases/tag/1.14.0)<br>\- [processing-sentinel-2](https://github.com/COPRS/processing-sentinel-2/releases/tag/1.8.0)<br>\- [processing-sentinel-3](https://github.com/COPRS/processing-sentinel-3/releases/tag/1.14.0)<br>\- [monitoring](https://github.com/COPRS/monitoring/releases/tag/1.6.0)<br>\- [user-web-client](https://github.com/COPRS/user-web-client/releases/tag/1.10.0) |
 
 ### Usage
 
-To use the Reference System Software you can follow the [operationnal producedures](/releases/v1.1.md). 
+To use the Reference System Software you can follow the [operationnal producedures](https://github.com/COPRS/reference-system-software/blob/main/releases/V2.0.0.md). 
 
 ## Contribute to the project
 
