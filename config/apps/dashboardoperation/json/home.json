@@ -1,0 +1,1215 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "folderId": 524,
+    "folderName": "1. Home Page",
+    "graphTooltip": 0,
+    "id": null,
+    "links": [
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "INFRASTRUCTURE_ENG"
+            ],
+            "title": "INFRASTRUCTURE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "SERVICE_ENG"
+            ],
+            "title": "SERVICE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PROCESSING_ENG"
+            ],
+            "title": "PROCESSING",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PI_ENG"
+            ],
+            "title": "PERFORMANCE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "ANALYSIS_ENG"
+            ],
+            "targetBlank": false,
+            "title": "ANALYSIS",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "OPS_MANAGER_ENG"
+            ],
+            "title": "OPS MANAGER",
+            "type": "dashboards"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "editable": true,
+            "gridPos": {
+                "h": 3,
+                "w": 23,
+                "x": 0,
+                "y": 0
+            },
+            "id": 96,
+            "links": [],
+            "options": {
+                "content": " <center>\n       \n      <h1 style=\"font-size:30px; color:#dc832b; margin:10px\">Reference System</h1>\n</center>",
+                "mode": "html"
+            },
+            "pluginVersion": "8.3.3",
+            "style": {},
+            "transparent": true,
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PE138C89913AF055B"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "drawStyle": "bars",
+                        "fillOpacity": 35,
+                        "gradientMode": "hue",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 7,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "normal"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1_AUX"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "super-light-blue",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1_L0_SEGMENT"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "light-blue",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1_L0_ACN"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-blue",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1_L0_SLICE"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "dark-blue",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S3_GRANULES"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "super-light-yellow",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S3_L0"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "light-yellow",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S3_AUX"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-yellow",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 10,
+                "w": 23,
+                "x": 0,
+                "y": 3
+            },
+            "id": 88,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "sortBy": "Total",
+                    "sortDesc": true
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "targets": [
+                {
+                    "alias": "S1_AUX",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:AUXILIARY_FILE_ZIP",
+                    "refId": "A",
+                    "timeField": "creationDate"
+                },
+                {
+                    "alias": "S1_L0_SEGMENT",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:L0_SEGMENT_ZIP",
+                    "refId": "B",
+                    "timeField": "creationDate"
+                },
+                {
+                    "alias": "S1_L0_ACN",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:L0_ACN_ZIP",
+                    "refId": "C",
+                    "timeField": "creationDate"
+                },
+                {
+                    "alias": "S1_L0_SLICE",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:L0_SLICE_ZIP",
+                    "refId": "D",
+                    "timeField": "creationDate"
+                },
+                {
+                    "alias": "S3_GRANULES",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:S3_GRANULES_ZIP",
+                    "refId": "E",
+                    "timeField": "creationDate"
+                },
+                {
+                    "alias": "S3_L0",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:S3_L0_ZIP",
+                    "refId": "F",
+                    "timeField": "creationDate"
+                },
+                {
+                    "alias": "S3_AUX",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:S3_AUX_ZIP",
+                    "refId": "G",
+                    "timeField": "creationDate"
+                }
+            ],
+            "title": "PRIP content",
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "datasource",
+                "uid": "-- Mixed --"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "continuous-BlPu"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 11,
+                "x": 0,
+                "y": 13
+            },
+            "id": 94,
+            "options": {
+                "displayMode": "lcd",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [],
+                    "fields": "/^Count$/",
+                    "values": true
+                },
+                "showUnfilled": true
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [
+                        {
+                            "field": "productType.keyword",
+                            "id": "2",
+                            "settings": {
+                                "min_doc_count": "1",
+                                "order": "desc",
+                                "orderBy": "_term",
+                                "size": "0"
+                            },
+                            "type": "terms"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "P9708F97308964D14"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "S1 AUX count",
+            "transformations": [],
+            "type": "bargauge"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PF2C686F2C261DFD0"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "fixedColor": "semi-dark-blue",
+                        "mode": "fixed"
+                    },
+                    "custom": {
+                        "axisGridShow": true,
+                        "axisLabel": "",
+                        "axisPlacement": "left",
+                        "axisSoftMin": 0,
+                        "barAlignment": 0,
+                        "drawStyle": "bars",
+                        "fillOpacity": 37,
+                        "gradientMode": "opacity",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 2,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "auto",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "normal"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S3"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-yellow",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-blue",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 12,
+                "x": 11,
+                "y": 13
+            },
+            "id": 89,
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right"
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [
+                        {
+                            "field": "missionId.keyword",
+                            "id": "3",
+                            "settings": {
+                                "min_doc_count": "1",
+                                "order": "desc",
+                                "orderBy": "_term",
+                                "size": "10"
+                            },
+                            "type": "terms"
+                        },
+                        {
+                            "field": "insertionTime",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "Chunks count",
+            "transformations": [],
+            "type": "timeseries"
+        },
+        {
+            "datasource": {
+                "type": "datasource",
+                "uid": "-- Mixed --"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "continuous-RdYlGr"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 12,
+                "w": 11,
+                "x": 0,
+                "y": 17
+            },
+            "id": 97,
+            "options": {
+                "displayMode": "lcd",
+                "orientation": "horizontal",
+                "reduceOptions": {
+                    "calcs": [],
+                    "fields": "/^Count$/",
+                    "values": true
+                },
+                "showUnfilled": true
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [
+                        {
+                            "field": "productType.keyword",
+                            "id": "2",
+                            "settings": {
+                                "min_doc_count": "1",
+                                "order": "desc",
+                                "orderBy": "_term",
+                                "size": "0"
+                            },
+                            "type": "terms"
+                        }
+                    ],
+                    "datasource": {
+                        "uid": "PF446C77962C73B4E"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "",
+                    "refId": "B",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "S3 AUX count",
+            "transformations": [],
+            "type": "bargauge"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PF2C686F2C261DFD0"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": "center",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "channelId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 82
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.displayMode",
+                                "value": "auto"
+                            },
+                            {
+                                "id": "custom.width",
+                                "value": 236
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 64
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 58
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.filterable",
+                                "value": true
+                            },
+                            {
+                                "id": "custom.displayMode",
+                                "value": "auto"
+                            },
+                            {
+                                "id": "color",
+                                "value": {
+                                    "mode": "palette-classic"
+                                }
+                            },
+                            {
+                                "id": "custom.filterable",
+                                "value": true
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "stop"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 198
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "start"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 186
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 13,
+                "x": 11,
+                "y": 20
+            },
+            "id": 98,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "sessionId"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "limit": "3000"
+                            },
+                            "type": "logs"
+                        }
+                    ],
+                    "query": "",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "Sessions ingested",
+            "transformations": [
+                {
+                    "id": "convertFieldType",
+                    "options": {
+                        "conversions": [
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "insertionTime"
+                            }
+                        ],
+                        "fields": {}
+                    }
+                },
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "channelId": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "insertionTime": {
+                                "aggregations": [
+                                    "max",
+                                    "min"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "missionId": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "productName": {
+                                "aggregations": [
+                                    "count"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "satelliteId": {
+                                "aggregations": []
+                            },
+                            "sessionId": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "stationCode": {
+                                "aggregations": []
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "convertFieldType",
+                    "options": {
+                        "conversions": [
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "insertionTime (max)"
+                            },
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "insertionTime (min)"
+                            }
+                        ],
+                        "fields": {}
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {
+                            "channelId": 4,
+                            "insertionTime (max)": 3,
+                            "insertionTime (min)": 2,
+                            "missionId": 0,
+                            "productName (count)": 5,
+                            "sessionId": 1
+                        },
+                        "renameByName": {
+                            "channelId": "channel",
+                            "insertionTime (max)": "stop",
+                            "insertionTime (min)": "start",
+                            "productName (count)": "count"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 29
+            },
+            "id": 84,
+            "options": {
+                "content": "<center>\n<b>    \n<p style=\"color: black ;background-color: #52be80;font-family: 'Roboto';font-size: 20px;\">Main alerts\n    <br><br></p>\n</b>\n</center>\n",
+                "mode": "html"
+            },
+            "pluginVersion": "8.3.3",
+            "transparent": true,
+            "type": "text"
+        },
+        {
+            "gridPos": {
+                "h": 6,
+                "w": 6,
+                "x": 0,
+                "y": 31
+            },
+            "id": 20,
+            "options": {
+                "alertName": "",
+                "dashboardAlerts": false,
+                "dashboardTitle": "",
+                "folderId": 265,
+                "maxItems": 20,
+                "showOptions": "current",
+                "sortOrder": 1,
+                "stateFilter": {
+                    "alerting": true,
+                    "execution_error": false,
+                    "firing": true,
+                    "inactive": false,
+                    "no_data": false,
+                    "ok": false,
+                    "paused": false,
+                    "pending": true
+                },
+                "tags": []
+            },
+            "pluginVersion": "8.3.3",
+            "title": "Infrastructure Alerts",
+            "type": "alertlist"
+        },
+        {
+            "description": "",
+            "gridPos": {
+                "h": 6,
+                "w": 6,
+                "x": 6,
+                "y": 31
+            },
+            "id": 4,
+            "options": {
+                "alertName": "",
+                "dashboardAlerts": false,
+                "dashboardTitle": "",
+                "folderId": 263,
+                "maxItems": 20,
+                "showOptions": "current",
+                "sortOrder": 1,
+                "stateFilter": {
+                    "alerting": false,
+                    "execution_error": false,
+                    "firing": true,
+                    "inactive": false,
+                    "no_data": false,
+                    "ok": false,
+                    "paused": false,
+                    "pending": true
+                },
+                "tags": []
+            },
+            "pluginVersion": "8.3.3",
+            "title": "Service Alerts",
+            "type": "alertlist"
+        },
+        {
+            "description": "",
+            "gridPos": {
+                "h": 6,
+                "w": 6,
+                "x": 12,
+                "y": 31
+            },
+            "id": 35,
+            "options": {
+                "alertName": "",
+                "dashboardAlerts": false,
+                "dashboardTitle": "",
+                "folderId": 264,
+                "maxItems": 5,
+                "showOptions": "current",
+                "sortOrder": 1,
+                "stateFilter": {
+                    "alerting": true,
+                    "execution_error": false,
+                    "firing": true,
+                    "inactive": false,
+                    "no_data": false,
+                    "ok": false,
+                    "paused": false,
+                    "pending": true
+                },
+                "tags": []
+            },
+            "pluginVersion": "8.3.3",
+            "title": "Processing Chain Alerts",
+            "type": "alertlist"
+        },
+        {
+            "gridPos": {
+                "h": 6,
+                "w": 6,
+                "x": 18,
+                "y": 31
+            },
+            "id": 5,
+            "options": {
+                "alertName": "",
+                "dashboardAlerts": false,
+                "dashboardTitle": "",
+                "folderId": 316,
+                "maxItems": 20,
+                "showOptions": "current",
+                "sortOrder": 1,
+                "stateFilter": {
+                    "alerting": false,
+                    "execution_error": false,
+                    "firing": true,
+                    "inactive": false,
+                    "no_data": false,
+                    "ok": false,
+                    "paused": false,
+                    "pending": true
+                },
+                "tags": []
+            },
+            "pluginVersion": "8.3.3",
+            "title": "Performance Alerts",
+            "type": "alertlist"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-7d",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "HOME",
+    "uid": "kjjyGMUMk",
+    "version": 1,
+    "weekStart": ""
+}

@@ -1,0 +1,169 @@
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+namespace: monitoring
+
+resources:
+  - elastic-datasource-aux-ins.yaml
+  - elastic-datasource-aux.yaml
+  - elastic-datasource-datalifecyle.yaml
+  - elastic-datasource-l0acn.yaml
+  - elastic-datasource-l0segment.yaml
+  - elastic-datasource-l0slice.yaml
+  - elastic-datasource-prip.yaml
+  - elastic-datasource-raw.yaml
+  - elastic-datasource-session.yaml
+  - elasticsearch-processing-index-aux_mpl_msk.yaml
+  - elasticsearch-processing-index-s3_aux.yaml
+  - elasticsearch-processing-index-s3_granules.yaml
+  - elasticsearch-processing-index-s3_l0.yaml
+  - elasticsearch-processing-index-s2_aux.yaml
+  - elasticsearch-processing-traces.yaml
+  - postgres-datasource-monitoring.yaml
+
+# Put grafana datasource in the right namespace
+patchesJson6902:
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-aux-ins
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-aux
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-datalifecycle
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-l0acn
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-l0segment
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-l0slice
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-prip
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-raw
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-session
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-processing-aux_mpl_msk
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s3_aux
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s3_granules
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s3_l0
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-processing
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s2_aux
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: postgres-datasource-monitoring
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring

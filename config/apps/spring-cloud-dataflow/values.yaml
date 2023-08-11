@@ -1,0 +1,94 @@
+global:
+  storageClass: ceph-block
+rbac:
+  create: false
+server:
+  image:
+    tag: 2.9.6-debian-11-r18
+  configuration:
+    defaultSpringApplicationJSON: false
+  extraEnvVarsSecret: spring-cloud-dataflow-config
+  composedTaskRunner:
+    image:
+      tag: 2.9.6-debian-11-r18
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: "node-role.kubernetes.io/infra"
+              operator: Exists
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  existingConfigmap: spring-cloud-dataflow-server
+skipper:
+  image:
+    tag: 2.8.6-debian-11-r19
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: "node-role.kubernetes.io/infra"
+              operator: Exists
+  resources:
+    limits:
+      cpu: 1000m
+      memory: 2Gi
+    requests:
+      cpu: 500m
+      memory: 1Gi
+  existingConfigmap: spring-cloud-dataflow-skipper
+  extraEnvVars:
+    name: JAVA_OPTS
+    value: "-Xms1024m -Xmx1024m"
+metrics:
+  enabled: true
+  image:
+    repository: bitnami/prometheus-rsocket-proxy
+    tag: 1.5.0-debian-11-r28
+  serviceMonitor:
+    enabled: true
+    interval: 2m
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: "node-role.kubernetes.io/infra"
+              operator: Exists
+  resources:
+    limits:
+      cpu: 500m
+      memory: 768Mi
+    requests:
+      cpu: 100m
+      memory: 512Mi
+waitForBackends:
+  image:
+    tag: 1.22.2-debian-10-r39
+mariadb:
+  enabled: false
+rabbitmq:
+  enabled: false
+externalDatabase:
+  host: postgresql-primary-hl.database.svc.cluster.local
+  port: 5432
+  driver: org.postgresql.Driver
+  scheme: postgresql
+  password: {{ scdf.database.password }}
+  dataflow:
+    database: dataflow
+    username: scdf
+  skipper:
+    database: skipper
+    username: scdf
+externalKafka:
+  enabled: true
+  brokers: kafka-cluster-kafka-bootstrap.infra.svc.cluster.local:9092
+  zkNodes: kafka-cluster-zookeeper-client.infra.svc.cluster.local:2181

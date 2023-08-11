@@ -1,0 +1,34 @@
+docker:
+  enabled: false
+
+containerd:
+  enabled: true
+  socket: /run/containerd/containerd.sock
+
+kubernetesSupport:
+  enabled: true
+  apiAuth: /var/run/secrets/kubernetes.io/serviceaccount/token
+  apiUrl: "https://$(KUBERNETES_SERVICE_HOST)"
+
+priorityClassName: falco-priority
+
+falco:
+  grpc:
+    enabled: true
+    unixSocketPath: "unix:///var/run/falco/falco.sock"
+
+  grpcOutput:
+    enabled: true
+
+resources:
+  requests:
+    cpu: 200m
+    memory: 50Mi
+  limits:
+    cpu: 300m
+    memory: 256Mi
+
+# Allow Falco to run on Kubernetes 1.6 masters.
+tolerations:
+  - effect: NoSchedule
+    operator: Exists

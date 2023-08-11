@@ -1,0 +1,55 @@
+# Default values for rs-user-client-chart.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+env:
+  apiUrl: https://processing.platform.ops-csc.com/ddip/odata/v1/Products
+  baseHref: /uwc/
+  mapBackgrounds: |
+    "[
+      {\"name\": \"OpenStreetMap background map\",\"layers\":[{\"url\":\"https://tiles.esa.maps.eox.at/wms\",\"layerName\":\"osm_3857\"}]},
+      {\"name\": \"Sentinel-2 cloudless 2018 background map\",\"layers\": [{\"url\": \"https://tiles.esa.maps.eox.at/wms\",\"layerName\": \"s2cloudless_3857\"},{\"url\":\"https://tiles.esa.maps.eox.at/wms\",\"layerName\":\"overlay_3857\"}]},
+      {\"name\": \"Terrain background map\",\"layers\": [{\"url\": \"https://tiles.esa.maps.eox.at/wms\",\"layerName\": \"terrain_3857\"},{\"url\":\"https://tiles.esa.maps.eox.at/wms\",\"layerName\":\"overlay_3857\"}]}
+    ]"  
+  keycloak: |
+    "{\"url\":\"https://iam.platform.ops-csc.com/auth\",\"realm\":\"RS\",\"clientId\": \"user-web-client\"}"
+  mapView: |
+    "{\"regionSelectionFillColor\":\"rgba(255,155,51,0.3)\",\"regionSelectionStrokeColor\":\"rgba(255,155,51,0.6)\",\"selectionFillColor\":\"rgba(0, 114, 163, 0.3)\",\"selectionStrokeColor\":\"rgba(0, 114, 163, 0.6)\",\"highlightFillColor\":\"rgba(50, 211, 63, 0.3)\",\"highlightStrokeColor\":\"rgba(50, 211, 63, 0.8)\"}"
+  filterConfig: |
+    "[
+      {\"attributeName\":\"PublicationDate\",\"valueType\":\"date\"},
+      {\"attributeName\":\"EvictionDate\",\"valueType\":\"date\"},
+      {\"attributeName\":\"ContentDate/Start\",\"valueType\":\"date\"},
+      {\"attributeName\":\"ContentDate/End\",\"valueType\":\"date\"},
+      {\"attributeName\":\"ContentLength\",\"valueType\":\"size\"},
+      {\"attributeName\":\"Name\",\"valueType\":\"string\"},
+      {\"attributeName\":\"ProductType\",\"valueType\":\"string\"}
+    ]"
+  additionalAttributes: |
+    "[{\"label\":\"Orbit Number\", \"value\": \"orbitNumber\"}]"
+image:
+  # Overrides the image tag whose default is the chart appVersion.
+  # use image from COPRS repository
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker
+  
+  name: rs-user-web-client
+  tag: develop
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+
+  # use image from local computer
+  #repository: rs-user-client
+  #tag: dev # use image from local computer
+  #pullPolicy: Never
+
+nameOverride: ""
+fullnameOverride: ""
+
+service:
+  type: ClusterIP
+  port: 80
+
+ingress:
+  enabled: false
+

@@ -1,0 +1,12 @@
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+namespace: processing
+
+helmCharts:
+- name: rs-metadata-catalog-searchcontroller
+  repo: https://artifactory.coprs.esa-copernicus.eu/artifactory/rs-helm
+  version: 1.14.0
+  valuesFile: values.yaml
+  releaseName: "{{ app_name }}"
+  namespace: processing

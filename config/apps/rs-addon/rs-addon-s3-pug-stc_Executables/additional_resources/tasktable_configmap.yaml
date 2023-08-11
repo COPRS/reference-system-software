@@ -1,0 +1,1380 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-pug-stc-tasktables
+  namespace: processing
+
+data:
+  TaskTable.PUG_SY_2_SYN.03.xml: |
+    <?xml version ="1.0" encoding="UTF-8"?>
+    <Ipf_Task_Table xmlns:a="http://www.acsys.it/schemas/IPF" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" >
+      <Processor_Name>PUG_SY_2_SYN</Processor_Name>
+      <Version>03.48</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">1024</Min_Disk_Space>
+      <Max_Time units="sec">0</Max_Time>
+      <List_of_Cfg_Files count="12">
+        <Cfg_File>
+          <Version>1.0</Version>
+          <File_Name>/usr/local/conf/PUG-3.48/S3_PUG_PCONF.01.xml</File_Name>
+        </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3A/S3IPF_SY2_Product_Map.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3A/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3B/S3IPF_SY2_Product_Map.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3B/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3C/S3IPF_SY2_Product_Map.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3C/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3D/S3IPF_SY2_Product_Map.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3D/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/COTS/exelis/configuration/olqc_app_configuration.xml</File_Name>
+          <!-- config for OLQC Core application-->
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/MPM/OLQC_Wrapper.xml</File_Name>
+          <!-- config for OLQC Wrapper application-->
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/COTS/exelis/configuration/S3__AX___OLQ_AX_20151101T000000_20991231T235959_20151101T000000_______________________O_______.SEN3</File_Name>
+          <!-- config for  OLQC Quality Checks QC-Check Configuration-->
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="13">
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name> <!-- Timeliness of the product -->
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>PDUTimeIntervals</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>LeftTimeMargin</Param_Name>
+          <Param_Type>number</Param_Type>
+          <Param_Default>0</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>RightTimeMargin</Param_Name>
+          <Param_Type>number</Param_Type>
+          <Param_Default>0</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>QcApply</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default>false</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>browseStubMode</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>false</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <!-- Dyn parameter for OLQC-->
+          <Param_Name>OLQCReportTemplate</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>OLQC_Main.jasper</Param_Default>
+        </Dyn_ProcParam>    
+              <Dyn_ProcParam>
+                  <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+                  <Param_Type>String</Param_Type>
+                  <Param_Default>002</Param_Default>
+              </Dyn_ProcParam>  
+        <Dyn_ProcParam>
+          <Param_Name>pduLength</Param_Name>
+          <Param_Type>number</Param_Type>
+          <Param_Default>180</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>MtdPDUFrameNumbers</Param_Name>
+          <Param_Type>number</Param_Type>
+          <!--Param_Default>0</Param_Default-->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>pduType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>frame</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <List_of_Pools count="5">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGCoreProcessor</Name>
+              <Version>03.48</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGCoreProcessor</File_Name>
+              <List_of_Inputs count="2">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_SYN___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="2">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>SY_2_SYNINT</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>PDUStatistics</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0">
+              </List_of_Breakpoints>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGPostProcessor</Name>
+              <Version>03.48</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGPostProcessor</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_SYNINT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>PDUStatistics</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>SY_2_SYN___</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0">
+              </List_of_Breakpoints>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGReportGenerator</Name>
+              <Version>01.00</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGReportGenerator</File_Name>
+              <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>LOG</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>LOG</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>REPORT</File_Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+            <Pool>
+                <Detached>false</Detached>
+                <Killing_Signal>2</Killing_Signal>
+                <List_of_Tasks count="1">
+                    <!-- ======================================= -->
+                    <!-- L2 Processing of SYN BROWSE             -->
+                    <!-- ======================================= -->
+                    <Task>
+                        <Name>SY2_BP</Name>
+                        <Version>01.00</Version>
+                        <Critical>false</Critical>
+                        <Criticality_Level>1</Criticality_Level>
+                        <File_Name>/usr/local/components/S3IPF_SY2_BP/bin/SY2_BP.bin</File_Name>
+                        <List_of_Inputs count="3">
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>PROC</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_SYN___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_PCPBAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_PLTBAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                       </List_of_Inputs>
+                        
+                        <List_of_Outputs count="1">
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>Yes</Mandatory>
+                                <Type>SY_2_SYN_BW</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                        </List_of_Outputs>
+                        <List_of_Breakpoints count="0"/>
+                        
+                    </Task>
+                </List_of_Tasks>
+            </Pool>
+        <Pool>
+        <Detached>false</Detached>
+        <Killing_Signal>15</Killing_Signal>
+        <List_of_Tasks count="1">
+          <Task>
+            <Name>OLQC_Wrapper</Name>
+            <Version>02.00</Version>
+            <Critical>false</Critical>
+            <Criticality_Level>1</Criticality_Level>
+            <File_Name>/usr/local/components/MPM/bin/OLQC_Wrapper</File_Name>
+            <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_SYN___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>            
+            </List_of_Inputs>
+            <List_of_Outputs count="1">
+            <!-- OLQC Report when required -->
+              <Output>
+                <Destination>DBPROC</Destination>
+                <Mandatory>No</Mandatory>
+                <Type>S3__SY_2_SYN</Type>
+                <File_Name_Type>Directory</File_Name_Type>
+              </Output>
+            </List_of_Outputs>
+            <List_of_Breakpoints count="0"/>
+          </Task>
+        </List_of_Tasks>
+      </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>
+
+  TaskTable.PUG_SY_2_V10.03.xml: |
+    <?xml version ="1.0" encoding="UTF-8"?>
+    <Ipf_Task_Table xmlns:a="http://www.acsys.it/schemas/IPF" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" >
+      <Processor_Name>PUG_SY_2_V10</Processor_Name>
+      <Version>03.48</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">1024</Min_Disk_Space>
+      <Max_Time units="sec">0</Max_Time>
+      <List_of_Cfg_Files count="12">
+        <Cfg_File>
+          <Version>1.0</Version>
+          <File_Name>/usr/local/conf/PUG-3.48/S3_PUG_PCONF.01.xml</File_Name>
+        </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3A/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3A/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3B/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3B/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3C/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3C/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3D/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3D/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/COTS/exelis/configuration/olqc_app_configuration.xml</File_Name>
+          <!-- config for OLQC Core application-->
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/MPM/OLQC_Wrapper.xml</File_Name>
+          <!-- config for OLQC Wrapper application-->
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/COTS/exelis/configuration/S3__AX___OLQ_AX_20151101T000000_20991231T235959_20151101T000000_______________________O_______.SEN3</File_Name>
+          <!-- config for  OLQC Quality Checks QC-Check Configuration-->
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="12">
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name> <!-- Timeliness of the product -->
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>TileCoordinates</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>TileIdentifiers</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>QcApply</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default>false</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>browseStubMode</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>false</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <!-- Dyn parameter for OLQC-->
+          <Param_Name>OLQCReportTemplate</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>OLQC_Main.jasper</Param_Default>
+        </Dyn_ProcParam>    
+              <Dyn_ProcParam>
+                  <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+                  <Param_Type>String</Param_Type>
+                  <Param_Default>002</Param_Default>
+              </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>pduLength</Param_Name>
+          <Param_Type>number</Param_Type>
+          <!--am_Default>180</Param_Default-->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>MtdPDUFrameNumbers</Param_Name>
+          <Param_Type>number</Param_Type>
+          <!--Param_Default>0</Param_Default-->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>pduType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>tile</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <List_of_Pools count="5">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGCoreProcessor</Name>
+              <Version>03.48</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGCoreProcessor</File_Name>
+              <List_of_Inputs count="2">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_V10___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="2">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>SY_2_V10INT</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>PDUStatistics</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0">
+              </List_of_Breakpoints>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGPostProcessor</Name>
+              <Version>03.48</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGPostProcessor</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_V10INT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>PDUStatistics</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>SY_2_V10___</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0">
+              </List_of_Breakpoints>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGReportGenerator</Name>
+              <Version>01.00</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGReportGenerator</File_Name>
+              <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>LOG</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>LOG</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>REPORT</File_Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+            <Pool>
+                <Detached>false</Detached>
+                <Killing_Signal>2</Killing_Signal>
+                <List_of_Tasks count="1">
+                    <!-- ======================================= -->
+                    <!-- L2 Processing of SYN BROWSE             -->
+                    <!-- ======================================= -->
+                    <Task>
+                        <Name>SY2_VGS_BP</Name>
+                        <Version>01.00</Version>
+                        <Critical>false</Critical>
+                        <Criticality_Level>1</Criticality_Level>
+                        <File_Name>/usr/local/components/S3IPF_SY2_BP/bin/SY2_VGS_BP.bin</File_Name>
+                        <List_of_Inputs count="3">
+                            <Input>  
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+              <List_of_Alternatives count="1">
+                                    <!-- SYN L2 VGS 10 day product -->
+                                    <Alternative>
+                                        <Order>2</Order>
+                                        <Origin>PROC</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_V10___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+           <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Processing control parameter  -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_CVSBAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Palette  -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_PVSBAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>      
+                       </List_of_Inputs>          
+                        <List_of_Outputs count="1">
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>Yes</Mandatory>
+                                <Type>SY_2_V10_BW</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                        </List_of_Outputs>
+                        <List_of_Breakpoints count="0"/>
+                    </Task>
+                </List_of_Tasks>
+            </Pool>
+      <Pool>
+        <Detached>false</Detached>
+        <Killing_Signal>15</Killing_Signal>
+        <List_of_Tasks count="1">
+          <Task>
+            <Name>OLQC_Wrapper</Name>
+            <Version>02.00</Version>
+            <Critical>false</Critical>
+            <Criticality_Level>1</Criticality_Level>
+            <File_Name>/usr/local/components/MPM/bin/OLQC_Wrapper</File_Name>
+            <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_V10___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>            
+            </List_of_Inputs>
+            <List_of_Outputs count="1">
+            <!-- OLQC Report when required -->
+              <Output>
+                <Destination>DBPROC</Destination>
+                <Mandatory>No</Mandatory>
+                <Type>S3__SY_2_VG10</Type>
+                <File_Name_Type>Directory</File_Name_Type>
+              </Output>
+            </List_of_Outputs>
+            <List_of_Breakpoints count="0"/>
+          </Task>
+        </List_of_Tasks>
+      </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>
+
+  TaskTable.PUG_SY_2_VG1.03.xml: |
+    <?xml version ="1.0" encoding="UTF-8"?>
+    <Ipf_Task_Table xmlns:a="http://www.acsys.it/schemas/IPF" xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance" >
+      <Processor_Name>PUG_SY_2_VG1</Processor_Name>
+      <Version>03.48</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">1024</Min_Disk_Space>
+      <Max_Time units="sec">0</Max_Time>
+      <List_of_Cfg_Files count="12">
+        <Cfg_File>
+          <Version>1.0</Version>
+          <File_Name>/usr/local/conf/PUG-3.48/S3_PUG_PCONF.01.xml</File_Name>
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3A/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3A/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3B/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3B/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3C/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3C/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3D/S3IPF_SY2_VGS_ProductMap.xml</File_Name>
+              </Cfg_File>
+              <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_BP/S3D/S3IPF_SY2_FacilityFile.xml</File_Name>
+              </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/COTS/exelis/configuration/olqc_app_configuration.xml</File_Name>
+          <!-- config for OLQC Core application-->
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/conf/MPM/OLQC_Wrapper.xml</File_Name>
+          <!-- config for OLQC Wrapper application-->
+        </Cfg_File>
+        <Cfg_File>
+          <File_Name>/usr/local/COTS/exelis/configuration/S3__AX___OLQ_AX_20151101T000000_20991231T235959_20151101T000000_______________________O_______.SEN3</File_Name>
+          <!-- config for  OLQC Quality Checks QC-Check Configuration-->
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="12">
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name> <!-- Timeliness of the product -->
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>TileCoordinates</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>TileIdentifiers</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default></Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>QcApply</Param_Name>
+          <Param_Type>string</Param_Type>
+          <Param_Default>false</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>browseStubMode</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>false</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <!-- Dyn parameter for OLQC-->
+          <Param_Name>OLQCReportTemplate</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>OLQC_Main.jasper</Param_Default>
+        </Dyn_ProcParam>    
+              <Dyn_ProcParam>
+                  <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+                  <Param_Type>String</Param_Type>
+                  <Param_Default>002</Param_Default>
+              </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>pduLength</Param_Name>
+          <Param_Type>number</Param_Type>
+          <!--Param_Default>180</Param_Default-->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>MtdPDUFrameNumbers</Param_Name>
+          <Param_Type>number</Param_Type>
+          <!--Param_Default>0</Param_Default-->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>pduType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>tile</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <List_of_Pools count="5">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGCoreProcessor</Name>
+              <Version>03.48</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGCoreProcessor</File_Name>
+              <List_of_Inputs count="2">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_VG1___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="2">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>SY_2_VG1INT</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>PDUStatistics</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0">
+              </List_of_Breakpoints>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGPostProcessor</Name>
+              <Version>03.48</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGPostProcessor</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_VG1INT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>PDUStatistics</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0.0</T0>
+                      <T1>0.0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>SY_2_VG1___</File_Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0">
+              </List_of_Breakpoints>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>PUGReportGenerator</Name>
+              <Version>01.00</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/PUG-3.48/bin/PUGReportGenerator</File_Name>
+              <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>LOG</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>LOG</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <File_Type>REPORT</File_Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+            <Pool>
+                <Detached>false</Detached>
+                <Killing_Signal>2</Killing_Signal>
+                <List_of_Tasks count="1">
+                    <!-- ======================================= -->
+                    <!-- L2 Processing of SYN BROWSE             -->
+                    <!-- ======================================= -->
+                    <Task>
+                        <Name>SY2_VGS_BP</Name>
+                        <Version>01.00</Version>
+                        <Critical>false</Critical>
+                        <Criticality_Level>1</Criticality_Level>
+                        <File_Name>/usr/local/components/S3IPF_SY2_BP/bin/SY2_VGS_BP.bin</File_Name>
+                        <List_of_Inputs count="3">
+                            <Input>  
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+              <List_of_Alternatives count="1">
+                                    <!-- SYN L2 VGS 1 day product -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>PROC</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_VG1___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+           <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Processing control parameter  -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_CVSBAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Palette  -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>SY_2_PVSBAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>      
+                       </List_of_Inputs>  
+                        
+                        <List_of_Outputs count="1">
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>Yes</Mandatory>
+                                <Type>SY_2_VG1_BW</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                        </List_of_Outputs>
+                        <List_of_Breakpoints count="0"/>
+                    </Task>
+                </List_of_Tasks>
+            </Pool>
+      <Pool>
+        <Detached>false</Detached>
+        <Killing_Signal>15</Killing_Signal>
+        <List_of_Tasks count="1">
+          <Task>
+            <Name>OLQC_Wrapper</Name>
+            <Version>02.00</Version>
+            <Critical>false</Critical>
+            <Criticality_Level>1</Criticality_Level>
+            <File_Name>/usr/local/components/MPM/bin/OLQC_Wrapper</File_Name>
+            <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>0</Order>
+                      <Origin>PROC</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_VG1___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>            
+            </List_of_Inputs>
+            <List_of_Outputs count="1">
+            <!-- OLQC Report when required -->
+              <Output>
+                <Destination>DBPROC</Destination>
+                <Mandatory>No</Mandatory>
+                <Type>S3__SY_2_VG1</Type>
+                <File_Name_Type>Directory</File_Name_Type>
+              </Output>
+            </List_of_Outputs>
+            <List_of_Breakpoints count="0"/>
+          </Task>
+        </List_of_Tasks>
+      </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>

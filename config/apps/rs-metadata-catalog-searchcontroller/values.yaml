@@ -1,0 +1,44 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  name: rs-core-metadata-catalog-searchcontroller
+  port: 8080
+  
+replicaCount: 1
+logLevel: DEBUG
+logConfig: log/log4j2.yml
+
+processing:
+  namespace: processing
+  
+elasticsearch:
+  host: elasticsearch-processing-es-http.database.svc.cluster.local
+  port: 9200
+  timeout:
+    connection: 2000
+    socket: 10000
+
+image:
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker
+  
+  name: rs-core-metadata-catalog-searchcontroller
+  tag: 1.14.0-rc1
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+  
+update:
+  maxSurge: 100%
+  maxUnavailable: 50%   
+
+resources:
+  cpu:
+    request: "200m"
+    limit: "500m"
+  ram:
+    request: "559Mi"
+    limit: "2234Mi"
+  javaOpts:
+#   xms: "256m"
+    xmx: "1024m"

@@ -1,0 +1,54 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-sm2-li-joborderxslt
+  namespace: processing
+
+data:
+  jobOrder.xslt: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+      
+      <xsl:output version="1.0" method="xml" omit-xml-declaration="no"
+        standalone="yes" indent="yes" />
+      
+      <xsl:template match="List_of_Dynamic_Processing_Parameters">
+        <List_of_Dyn_Processing_Parameters>
+          <xsl:apply-templates select="@*|node()"/>
+        </List_of_Dyn_Processing_Parameters>
+      </xsl:template>
+      
+      <xsl:template match="Dynamic_Processing_Parameter">
+        <Dyn_Processing_Parameter>
+          <xsl:apply-templates select="@*|node()"/>
+        </Dyn_Processing_Parameter>
+      </xsl:template>
+      
+      <xsl:template match="Config_Files">
+        <List_of_Config_Files>
+          <xsl:apply-templates select="@*|node()"/>
+        </List_of_Config_Files>
+      </xsl:template>
+      
+      <xsl:template match="Conf_File_Name">
+        <Config_File>
+          <xsl:apply-templates select="@*|node()"/>
+        </Config_File>
+      </xsl:template>
+
+      <xsl:template match="Input">
+        <xsl:if test="File_Type != ''">
+          <Input>
+            <xsl:apply-templates select="@*|node()" />
+          </Input>
+        </xsl:if>
+      </xsl:template>
+      
+      <!-- Copy Template -->
+      <xsl:template match="@*|node()">
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()" />
+        </xsl:copy>
+      </xsl:template>
+        
+    </xsl:stylesheet>

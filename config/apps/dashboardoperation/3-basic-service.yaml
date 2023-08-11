@@ -1,0 +1,42 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata: 
+  name: basic-service
+  labels:
+    app.kubernetes.io/component: basic-service
+spec:
+  customFolderName: "3. Basic Service"
+  datasources:
+    - inputName: "ELASTIC-AUX-INS"
+      datasourceName: "elasticsearch-aux-ins"
+    - inputName: "ELASTIC-AUX-MPL-MSK"
+      datasourceName: "ES aux,mpl,msk"
+    - inputName: "ELASTIC-AUX"
+      datasourceName: "elasticsearch-aux"
+    - inputName: "ELASTIC-DATALIFE"
+      datasourceName: "elasticsearch-datalifecycle"
+    - inputName: "ELASTIC-L0ACN"
+      datasourceName: "elasticsearch-l0acn"
+    - inputName: "ELASTIC-L0SEG"
+      datasourceName: "elasticsearch-l0segment"
+    - inputName: "ELASTIC-L0SLC"
+      datasourceName: "elasticsearch-l0slice"
+    - inputName: "ELASTIC-PRIP"
+      datasourceName: "elasticsearch-prip"
+    - inputName: "ELASTIC-RAW"
+      datasourceName: "elasticsearch-raw"
+    - inputName: "ELASTIC-S3-AUX"
+      datasourceName: "elasticsearch-s3_aux"
+    - inputName: "ELASTIC-S3-GRANULES"
+      datasourceName: "elasticsearch-s3_granules"
+    - inputName: "ELASTIC-S3-L0"
+      datasourceName: "elasticsearch-s3_l0"
+    - inputName: "ELASTIC-SESSION"
+      datasourceName: "elasticsearch-session"
+    - inputName: "ELASTIC-TRACES"
+      datasourceName: "ES-traces"
+    - inputName: "DS_PROMETHEUS"
+      datasourceName: "Thanos"
+    - inputName: "DS_LOKI"
+      datasourceName: "Loki"
+  url: https://github.com/COPRS/rs-config/tree/ops/apps/dashboardoperation/json/3-basic-service.json

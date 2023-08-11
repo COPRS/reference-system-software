@@ -1,0 +1,12 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDashboard
+metadata: 
+  name: cluster-overview-v2
+  labels:
+    app.kubernetes.io/component: cluster-overview-v2
+spec:
+  customFolderName: "6. Analysis"
+  datasources:
+    - inputName: "DS_PROMETHEUS"
+      datasourceName: "Thanos"
+  url: https://github.com/COPRS/rs-config/tree/ops/apps/dashboardoperation/json/1-cluster-overview-v2.json 

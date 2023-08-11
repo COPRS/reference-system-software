@@ -1,0 +1,32 @@
+apiVersion: apisix.apache.org/v2beta3
+kind: ApisixRoute
+metadata:
+  name: scdf
+spec:
+  http:
+    - name: scdf
+      backends:
+        - serviceName: spring-cloud-dataflow-server
+          servicePort: 8080
+      match:
+        hosts: [ processing.{{ platform_domain_name }} ]
+        paths: [ /* ]
+      websocket: true
+      plugins:
+        - config:
+            regex_uri:
+            - ^/$
+            - /dashboard/
+          enable: true
+          name: proxy-rewrite
+---
+apiVersion: apisix.apache.org/v2beta3
+kind: ApisixTls
+metadata:
+  name: sni-processing
+spec:
+  hosts:
+    - processing.{{ platform_domain_name }}
+  secret:
+    name: ingress-tls
+    namespace:  networking

@@ -1,0 +1,40 @@
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+
+helmCharts:
+- name: spring-cloud-dataflow
+  releaseName: "{{ app_name }}"
+  repo: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+  version: 14.0.2
+  valuesFile: values.yaml
+  namespace: processing
+
+resources:
+  - skipper-rolebinding.yaml
+  - apisixroute.yaml
+
+transformers:
+  - namespaces.yaml
+
+secretGenerator:
+  - name: spring-cloud-dataflow-registry-dockersecret
+    files:
+      - .dockerconfigjson=registry-dockersecret.json
+    options:
+      disableNameSuffixHash: true
+    type: kubernetes.io/dockerconfigjson
+  - name: spring-cloud-dataflow-config
+    files:
+      - SPRING_APPLICATION_JSON=spring-cloud-dataflow-config.json
+    options:
+      disableNameSuffixHash: true
+
+configMapGenerator:
+  - name: spring-cloud-dataflow-skipper
+    files:
+      - application.yaml=skipper-configuration.yaml
+
+  - name: spring-cloud-dataflow-server
+    files:
+      - application.yaml=server-configuration.yaml

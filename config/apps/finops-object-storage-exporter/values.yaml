@@ -1,0 +1,32 @@
+image:
+  registry: artifactory.coprs.esa-copernicus.eu/rs-docker
+  repository: monitoring/finops-object-storage-exporter
+  tag: 1.0.0
+
+metrics:
+  serviceMonitor:
+    interval: 2m
+    additionalLabels.release: prometheus-operator
+
+env:
+  S3_ENDPOINT: {{ finops_object_storage_exporter.s3.endpoint }}
+  S3_REGION: {{ finops_object_storage_exporter.s3.region }}
+  S3_ACCESS_KEY: {{ finops_object_storage_exporter.s3.access_key }}
+  S3_SECRET_KEY: {{ finops_object_storage_exporter.s3.secret_key }}
+
+affinity: 
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: "node-role.kubernetes.io/infra"
+          operator: Exists
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: finops-object-storage-exporter
+            app.kubernetes.io/name: finops-object-storage-exporter
+        topologyKey: kubernetes.io/hostname
+
+  

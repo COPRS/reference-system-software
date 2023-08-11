@@ -1,0 +1,40 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-sl2-ntc-tasktablexslt
+  namespace: processing
+
+data:
+  tasktable.xslt: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+      
+      <xsl:output version="1.0" method="xml" omit-xml-declaration="no"
+        standalone="yes" indent="yes" />
+
+      <xsl:template match="List_of_Dyn_ProcParams">
+        <List_of_Dyn_ProcParam>
+          <xsl:apply-templates select="@*|node()"/>
+        </List_of_Dyn_ProcParam>
+      </xsl:template>
+
+      <xsl:template match="Cfg_File">
+        <Cfg_Files>
+          <xsl:apply-templates select="@*|node()"/>
+        </Cfg_Files>
+      </xsl:template>
+
+      <xsl:template match="Output/File_Type">
+        <Type>
+          <xsl:apply-templates select="@*|node()"/>
+        </Type>
+      </xsl:template>
+
+      <!-- Copy Template -->
+      <xsl:template match="@*|node()">
+        <xsl:copy>
+          <xsl:apply-templates select="@*|node()" />
+        </xsl:copy>
+      </xsl:template>
+
+    </xsl:stylesheet>

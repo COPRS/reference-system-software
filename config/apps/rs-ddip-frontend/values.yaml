@@ -1,0 +1,49 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  name: rs-ddip-frontend
+  port: 8080
+
+replicaCount: 1
+
+logLevel: DEBUG
+logConfig: log/log4j2.yml
+
+processing:
+  namespace: processing
+
+image:
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker
+  
+  name: rs-core-ddip-frontend
+  tag: 1.13.1-rc1
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+
+update:
+  maxSurge: 100%
+  maxUnavailable: 50% 
+
+ddip:
+  dispatch:
+    prip:
+      protocol: http
+      host: rs-prip-frontend-svc.processing.svc.cluster.local
+      port: 8080
+  collections:
+    Sentinel1: startswith(Name,'S1')
+    Sentinel2: startswith(Name,'S2')
+    Sentinel3: startswith(Name,'S3')  
+  
+resources:
+  cpu:
+    request: "100m"
+    limit: "500m"
+  ram:
+    request: "315Mi"
+    limit: "1260Mi"
+  javaOpts:
+#   xms: "256m"
+    xmx: "512m"

@@ -1,0 +1,49 @@
+{
+    "alertRuleTags": {},
+    "conditions": [
+        {
+            "evaluator": {
+                "params": [
+                    90
+                ],
+                "type": "gt"
+            },
+            "operator": {
+                "type": "and"
+            },
+            "query": {
+                "datasourceId": 16,
+                "model": {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "(sum (rate (container_cpu_usage_seconds_total{id=\"/\"}[10m])) by (node) / sum (machine_cpu_cores{}) by (node) *100) ",
+                    "hide": false,
+                    "interval": "",
+                    "intervalFactor": 10,
+                    "legendFormat": "{{node{ '}}' }}",
+                    "refId": "B"
+                },
+                "params": [
+                    "B",
+                    "5m",
+                    "now"
+                ]
+            },
+            "reducer": {
+                "params": [],
+                "type": "avg"
+            },
+            "type": "query"
+        }
+    ],
+    "executionErrorState": "alerting",
+    "for": "5m",
+    "frequency": "1m",
+    "handler": 1,
+    "name": "INFRASTRUCTURE / Node CPU usage",
+    "noDataState": "no_data",
+    "notifications": []
+}

@@ -1,0 +1,27 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  port: 8080
+  
+processing:
+  namespace: processing
+
+image:
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker-private
+  
+  name: rs-core-mock-webdav
+  tag: develop
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+  
+worker:
+  label:
+    key: node-role.kubernetes.io/worker
+    value: infra 
+
+mock:
+  webdav_path: /var/lib/dav/data
+  webdav_mission: S1
+  webdav_station: SGS_ 

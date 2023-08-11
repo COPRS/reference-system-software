@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  router.groovy: |
+    import groovy.json.JsonSlurper
+
+    def jsonSlurper = new JsonSlurper()
+    def object = jsonSlurper.parseText(payload)
+
+    assert object instanceof Map
+
+    print("Routing message '" + object.uid + "' ...")
+
+    def output
+
+    if (object.productFamily == "S2_L2A_DS") {
+        output = "catalog-job"
+    } else {
+        output = "s2-l2-job"
+    }
+
+    println(" to queue: " + output)
+    return output
+metadata:
+  name: s2-l2-router-script
+  namespace: processing

@@ -1,0 +1,1631 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "folderId": 518,
+    "folderName": "6. Analysis",
+    "graphTooltip": 0,
+    "id": null,
+    "links": [
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "INFRASTRUCTURE_ENG"
+            ],
+            "title": "INFRASTRUCTURE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "SERVICE_ENG"
+            ],
+            "title": "SERVICE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PROCESSING_ENG"
+            ],
+            "title": "PROCESSING",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PI_ENG"
+            ],
+            "title": "PERFORMANCE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "ANALYSIS_ENG"
+            ],
+            "targetBlank": false,
+            "title": "ANALYSIS",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "OPS_MANAGER_ENG"
+            ],
+            "title": "OPS MANAGER",
+            "type": "dashboards"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "editable": true,
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 8,
+            "links": [],
+            "options": {
+                "content": " <center>\n       \n      <h1 style=\"font-size:30px; color:#dc832b; margin:10px\">ESA questions</h1>\n</center>",
+                "mode": "html"
+            },
+            "pluginVersion": "8.3.3",
+            "style": {},
+            "transparent": true,
+            "type": "text"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 2
+            },
+            "id": 10,
+            "panels": [],
+            "title": "Chunks & DSIB S1",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "P956D8C2436E71043"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "_id"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 463
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 224
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 477
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 311
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sort"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 271
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 202
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "stopTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 185
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "stopTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 89
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 90
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 17,
+                "x": 0,
+                "y": 3
+            },
+            "id": 12,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": false,
+                        "displayName": "startTime"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "P956D8C2436E71043"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "500"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "missionId:S1",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "DSIB list",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "channelId": true,
+                            "highlight": true,
+                            "insertionTime": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "rawNames": true,
+                            "sessionId": true,
+                            "sort": true,
+                            "stationCode": true,
+                            "url": true
+                        },
+                        "indexByName": {
+                            "_id": 5,
+                            "_index": 6,
+                            "_type": 7,
+                            "channelId": 8,
+                            "highlight": 9,
+                            "insertionTime": 4,
+                            "missionId": 0,
+                            "productFamily": 10,
+                            "productName": 11,
+                            "productType": 12,
+                            "rawNames": 13,
+                            "satelliteId": 1,
+                            "sessionId": 14,
+                            "sort": 15,
+                            "startTime": 2,
+                            "stationCode": 16,
+                            "stopTime": 3,
+                            "url": 17
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PF2C686F2C261DFD0"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "_id"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 463
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 218
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 477
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 311
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sort"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 271
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 272
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 88
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 87
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 17,
+                "x": 0,
+                "y": 8
+            },
+            "id": 14,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "insertionTime"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "10000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "missionId:S1 AND satelliteId:A",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "Chunk list S1A",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "channelId": true,
+                            "highlight": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "sort": true,
+                            "stationCode": true,
+                            "url": true
+                        },
+                        "indexByName": {
+                            "_id": 3,
+                            "_index": 4,
+                            "_type": 5,
+                            "channelId": 6,
+                            "highlight": 7,
+                            "insertionTime": 2,
+                            "missionId": 0,
+                            "productFamily": 8,
+                            "productName": 9,
+                            "productType": 10,
+                            "satelliteId": 1,
+                            "sessionId": 11,
+                            "sort": 12,
+                            "stationCode": 13,
+                            "url": 14
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PF2C686F2C261DFD0"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "_id"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 463
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 224
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 477
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 311
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sort"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 271
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 272
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 82
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 89
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 17,
+                "x": 0,
+                "y": 14
+            },
+            "id": 17,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "insertionTime"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "10000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "missionId:S1 AND satelliteId:B",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "Chunk list S1B",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "channelId": true,
+                            "highlight": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "sort": true,
+                            "stationCode": true,
+                            "url": true
+                        },
+                        "indexByName": {
+                            "_id": 3,
+                            "_index": 4,
+                            "_type": 5,
+                            "channelId": 6,
+                            "highlight": 7,
+                            "insertionTime": 2,
+                            "missionId": 0,
+                            "productFamily": 8,
+                            "productName": 9,
+                            "productType": 10,
+                            "satelliteId": 1,
+                            "sessionId": 11,
+                            "sort": 12,
+                            "stationCode": 13,
+                            "url": 14
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 20
+            },
+            "id": 19,
+            "title": "Chunks & DSIB S3",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "P956D8C2436E71043"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "_id"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 463
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 224
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 477
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 311
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sort"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 271
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 202
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "stopTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 185
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "stopTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 87
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 86
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 4,
+                "w": 17,
+                "x": 0,
+                "y": 21
+            },
+            "id": 20,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": false,
+                        "displayName": "startTime"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "P956D8C2436E71043"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "500"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "missionId:S3",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "DSIB list S3",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "channelId": true,
+                            "highlight": true,
+                            "insertionTime": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "rawNames": true,
+                            "sessionId": true,
+                            "sort": true,
+                            "stationCode": true,
+                            "url": true
+                        },
+                        "indexByName": {
+                            "_id": 5,
+                            "_index": 6,
+                            "_type": 7,
+                            "channelId": 8,
+                            "highlight": 9,
+                            "insertionTime": 4,
+                            "missionId": 0,
+                            "productFamily": 10,
+                            "productName": 11,
+                            "productType": 12,
+                            "rawNames": 13,
+                            "satelliteId": 1,
+                            "sessionId": 14,
+                            "sort": 15,
+                            "startTime": 2,
+                            "stationCode": 16,
+                            "stopTime": 3,
+                            "url": 17
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PF2C686F2C261DFD0"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "_id"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 463
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 218
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 477
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 311
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sort"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 271
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 272
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 88
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 87
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 17,
+                "x": 0,
+                "y": 25
+            },
+            "id": 21,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "insertionTime"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "10000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "missionId:S3 AND satelliteId:A",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "Chunk list S3A",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "channelId": true,
+                            "highlight": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "sort": true,
+                            "stationCode": true,
+                            "url": true
+                        },
+                        "indexByName": {
+                            "_id": 3,
+                            "_index": 4,
+                            "_type": 5,
+                            "channelId": 6,
+                            "highlight": 7,
+                            "insertionTime": 2,
+                            "missionId": 0,
+                            "productFamily": 8,
+                            "productName": 9,
+                            "productType": 10,
+                            "satelliteId": 1,
+                            "sessionId": 11,
+                            "sort": 12,
+                            "stationCode": 13,
+                            "url": 14
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PF2C686F2C261DFD0"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "_id"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 463
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 218
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 477
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sessionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 311
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "sort"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 271
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 272
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "startTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dateTimeAsIso"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 88
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "satelliteId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 87
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 17,
+                "x": 0,
+                "y": 31
+            },
+            "id": 22,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "insertionTime"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "10000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "missionId:S3 AND satelliteId:B",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "Chunk list S3B",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "channelId": true,
+                            "highlight": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "sort": true,
+                            "stationCode": true,
+                            "url": true
+                        },
+                        "indexByName": {
+                            "_id": 3,
+                            "_index": 4,
+                            "_type": 5,
+                            "channelId": 6,
+                            "highlight": 7,
+                            "insertionTime": 2,
+                            "missionId": 0,
+                            "productFamily": 8,
+                            "productName": 9,
+                            "productType": 10,
+                            "satelliteId": 1,
+                            "sessionId": 11,
+                            "sort": 12,
+                            "stationCode": 13,
+                            "url": 14
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "table"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [
+        "ANALYSIS_ENG"
+    ],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "timepicker": {
+        "refresh_intervals": [
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+        ]
+    },
+    "timezone": "utc",
+    "title": "4. ESA questions",
+    "uid": "YrsC1a8nk",
+    "version": 1,
+    "weekStart": ""
+}

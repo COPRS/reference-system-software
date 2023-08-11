@@ -1,0 +1,112 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-pug-ntc-joborderxslt
+  namespace: processing
+
+data:
+  jobOrder.xslt: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <xsl:stylesheet xmlns:xsl="http://www.w3.org/1999/XSL/Transform" version="1.0">
+        
+        <xsl:output version="1.0" method="xml" omit-xml-declaration="no"
+        standalone="yes" indent="yes" />
+        
+        <xsl:template match="List_of_Dynamic_Processing_Parameters">
+        <List_of_Dyn_Processing_Parameters>
+            <xsl:apply-templates select="@*|node()"/>
+        </List_of_Dyn_Processing_Parameters>
+        </xsl:template>
+        
+        <xsl:template match="Dynamic_Processing_Parameter">
+            <xsl:choose>
+                <xsl:when test="Value">
+                    <Dyn_Processing_Parameter>
+                        <xsl:apply-templates select="@*|node()"/>
+                    </Dyn_Processing_Parameter>
+                </xsl:when>
+                <xsl:otherwise>
+                    <Dyn_Processing_Parameter>
+                        <xsl:apply-templates select="@*|node()"/>
+                            <Value/>
+                    </Dyn_Processing_Parameter>
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:template>
+        
+        <xsl:template match="Config_Files">
+        <List_of_Config_Files>
+            <xsl:attribute name="count"><xsl:value-of select="count(Conf_File_Name)"/></xsl:attribute>
+            <xsl:apply-templates select="@*|node()"/>
+        </List_of_Config_Files>
+        </xsl:template>
+        
+        <xsl:template match="Conf_File_Name">
+        <Config_File>
+            <xsl:apply-templates select="@*|node()"/>
+        </Config_File>
+        </xsl:template>
+
+        <xsl:template match="Input">
+        <xsl:if test="File_Type != ''">
+            <Input>
+            <xsl:apply-templates select="@*|node()" />
+            </Input>
+        </xsl:if>
+        </xsl:template>
+
+        <xsl:template match="Time_Interval">
+        <Time_Interval>
+            <Start><xsl:call-template name="formatDateTime"><xsl:with-param name="receivedDateTime"><xsl:value-of select="Start" /></xsl:with-param></xsl:call-template></Start>
+            <Stop><xsl:call-template name="formatDateTime"><xsl:with-param name="receivedDateTime"><xsl:value-of select="Stop" /></xsl:with-param></xsl:call-template></Stop>
+            <File_Name><xsl:value-of select="File_Name" /></File_Name>
+        </Time_Interval>
+        </xsl:template>
+        
+        <!-- Copy Template -->
+        <xsl:template match="@*|node()">
+        <xsl:copy>
+            <xsl:apply-templates select="@*|node()" />
+        </xsl:copy>
+        </xsl:template>
+
+        <!--==================== Format Date Time Template ========================= -->
+        <!-- Desired format: yyyyMMdd'_'HHmmssSSSSSS -->
+        <xsl:template name="formatDateTime">
+            <xsl:param name="receivedDateTime" />
+            <xsl:variable name="dateLength"
+                select="string-length($receivedDateTime)" />
+            <xsl:choose>
+                <xsl:when test="$dateLength='27'">
+                    <xsl:call-template name="normalizeDateTime">
+                        <xsl:with-param name="receivedDateTime"
+                            select="$receivedDateTime" />
+                    </xsl:call-template>
+                </xsl:when>
+                <xsl:otherwise>
+                    <xsl:value-of select="$receivedDateTime" />
+                </xsl:otherwise>
+            </xsl:choose>
+        </xsl:template>
+
+        <xsl:template name="normalizeDateTime">
+            <xsl:param name="receivedDateTime" />
+            <xsl:variable name="year"
+                select="substring($receivedDateTime,1,4)" />
+            <xsl:variable name="month"
+                select="substring($receivedDateTime,6,2)" />
+            <xsl:variable name="day"
+                select="substring($receivedDateTime,9,2)" />
+            <xsl:variable name="hour"
+                select="substring($receivedDateTime,12,2)" />
+            <xsl:variable name="minute"
+                select="substring($receivedDateTime,15,2)" />
+            <xsl:variable name="second"
+                select="substring($receivedDateTime,18,2)" />
+            <xsl:variable name="millisecond"
+                select="substring($receivedDateTime,21,6)" />
+            <xsl:value-of
+                select="concat($year,$month,$day,'_',$hour,$minute,$second,$millisecond)" />
+        </xsl:template>
+        
+    </xsl:stylesheet>

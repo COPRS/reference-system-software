@@ -1,0 +1,114 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  name: rs-prip-frontend
+  port: 8080
+  
+replicaCount: 1
+logLevel: DEBUG
+logConfig: log/log4j2.yml
+
+processing:
+  namespace: processing
+  
+image:
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker
+  
+  name: rs-core-prip-frontend
+  tag: 1.13.1-rc1
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+
+update:
+  maxSurge: 100%
+  maxUnavailable: 50% 
+
+elasticsearch:
+  host: elasticsearch-processing-es-http.database.svc.cluster.local
+  port: 9200
+  timeout:
+    connection: 2000
+    socket: 10000
+
+prip:
+  debug: false
+
+obs:
+  bucket:
+    auxiliary-file: ops-rs-s1-aux
+    edrs-session: ops-rs-session-files
+    plan-and-report: ops-rs-s1-plans-and-reports
+    l0-slice: ops-rs-s1-l0-slices
+    l0-acn: ops-rs-l0-acns
+    l0-segment: ops-rs-s1-l0-segments
+    l0-blank: ops-rs-s1-l0-blanks
+    l1-slice: ops-rs-s1-l1-slices
+    l1-acn: ops-rs-s1-l1-acns
+    l2-slice: ops-rs-s1-l2-slices
+    l2-acn: ops-rs-s1-l2-acns
+    spp-mbu: ops-rs-s1-spp-mbu
+    spp-obs: ops-rs-s1-spp
+    invalid: ops-rs-s1-invalid
+    ghost: ops-rs-s1-ghost
+    debug: ops-rs-debug
+    failed-workdir: ops-rs-failed-workdir
+    session-retransfer: ops-rs-session-retransfer
+    auxiliary-file-zip: ops-rs-s1-aux-zip
+    l0-slice-zip: ops-rs-s1-l0-slices-zip
+    l0-acn-zip: ops-rs-s1-l0-acns-zip
+    l0-segment-zip: ops-rs-s1-l0-segments-zip
+    l0-blank-zip: ops-rs-s1-l0-blanks-zip
+    l1-slice-zip: ops-rs-s1-l1-slices-zip
+    l1-acn-zip: ops-rs-s1-l1-acns-zip
+    l2-slice-zip: ops-rs-s1-l2-slices-zip
+    l2-acn-zip: ops-rs-s1-l2-acns-zip
+    spp-obs-zip: ops-rs-s1-spp-zip
+    plan-and-report-zip: ops-rs-s1-plans-and-reports-zip
+    s2-aux: ops-rs-s2-aux
+    s2-l0-gr: ops-rs-s2-l0-gr
+    s2-l0-ds: ops-rs-s2-l0-ds
+    s2-hktm: ops-rs-s2-hktm
+    s2-aux-zip: ops-rs-s2-aux-zip
+    s2-l0-gr-zip: ops-rs-s2-l0-gr-zip
+    s2-l0-ds-zip: ops-rs-s2-l0-ds-zip
+    s2-hktm-zip: ops-rs-s2-hktm-zip
+    s3-granules: ops-rs-s3-granules
+    s3-aux: ops-rs-s3-aux
+    s3-l0: ops-rs-s3-l0
+    s3-l1-nrt: ops-rs-s3-l1-nrt
+    s3-l1-stc: ops-rs-s3-l1-stc
+    s3-l1-ntc: ops-rs-s3-l1-ntc
+    s3-l2-nrt: ops-rs-s3-l2-nrt 
+    s3-l2-stc: ops-rs-s3-l2-stc
+    s3-l2-ntc: ops-rs-s3-l2-ntc
+    s3-cal: ops-rs-s3-cal
+    s3-pug: ops-rs-s3-pug
+    s3-granules-zip: ops-rs-s3-granules-zip
+    s3-aux-zip: ops-rs-s3-aux-zip
+    s3-l0-zip: ops-rs-s3-l0-zip
+    s3-l1-nrt-zip: ops-rs-s3-l1-nrt-zip
+    s3-l1-stc-zip: ops-rs-s3-l1-stc-zip
+    s3-l1-ntc-zip: ops-rs-s3-l1-ntc-zip
+    s3-l2-nrt-zip: ops-rs-s3-l2-nrt-zip
+    s3-l2-stc-zip: ops-rs-s3-l2-stc-zip
+    s3-l2-ntc-zip: ops-rs-s3-l2-ntc-zip
+    s3-cal-zip: ops-rs-s3-cal-zip
+    s3-pug-zip: ops-rs-s3-pug-zip
+  user-secret: ${OBS_PASSWORD}
+  disable-chunked-encoding: 'false'
+  endpoint-region: eu-west-0
+  user-id: ${OBS_USERNAME}
+  endpoint: oss.eu-west-0.prod-cloud-ocb.orange-business.com
+
+resources:
+  cpu:
+    request: "100m"
+    limit: "500m"
+  ram:
+    request: "315Mi"
+    limit: "1260Mi"
+  javaOpts:
+#   xms: "256m"
+    xmx: "512m"
