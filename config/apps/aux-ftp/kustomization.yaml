@@ -1,0 +1,35 @@
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+namespace: processing
+
+resources:
+ - Secret.yaml
+
+
+helmCharts:
+- name: rs-mock-webdav
+  repo: http://artifactory.coprs.esa-copernicus.eu/artifactory/api/helm/rs-helm
+  version: 1.8.0
+  valuesFile: values.yaml
+  releaseName: "{{ app_name }}"
+  namespace: processing
+
+
+
+
+   #secretGenerator:
+   #- name: repository
+   # files: 
+   #   - .dockerconfigjson=repository.json
+   # type: kubernetes.io/dockerconfigjson
+   # options:
+   #   disableNameSuffixHash: true
+   #- name: mariadb
+   # literals:
+   #  - database={{ mariadb_f1.database }}
+   #  - password={{ mariadb_f1.password }}
+   #  - root-password={{ mariadb_f1.root_password }}
+   #  - user={{ mariadb_f1.user }}
+   # options:
+   #   disableNameSuffixHash: true

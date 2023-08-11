@@ -1,0 +1,7 @@
+namespace: processing
+
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+resources:
+  - apisixroutes.yaml

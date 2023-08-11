@@ -1,0 +1,26 @@
+apiVersion: v1
+kind: ConfigMap
+data:
+  router-ew.groovy: |
+    import groovy.json.JsonSlurper
+
+    def jsonSlurper = new JsonSlurper()
+    def object = jsonSlurper.parseText(payload)
+
+    assert object instanceof Map
+
+    print("Routing message '" + object.uid + "' ...")
+
+    def output
+
+    if (object.productFamily == "S2_AUX" || object.productFamily == "S2_SAD" || object.productFamily == "S2_HKTM") {
+        output = "catalog-job"
+    } else {
+        output = "s2-l0c-job"
+    }
+
+    println(" to queue: " + output)
+    return output
+metadata:
+  name: s2-l0u-router-ew-script
+  namespace: processing

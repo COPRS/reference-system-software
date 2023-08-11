@@ -1,0 +1,46 @@
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+namespace: networking
+
+helmCharts:
+- name: apisix
+  releaseName: "{{ app_name }}"
+  repo: https://charts.apiseven.com
+  version: 0.10.0
+  valuesFile: values.yaml
+  namespace: networking
+- name: etcd
+  releaseName: "{{ app_name }}"
+  repo: https://raw.githubusercontent.com/bitnami/charts/archive-full-index/bitnami
+  version: 8.3.3
+  valuesFile: values-etcd.yaml
+  namespace: networking
+
+resources:
+  - apisixroute.yaml
+  - podmonitor-ingress-controller.yaml
+  - tls.yaml
+
+patches:
+  # ingress controller deployment does not include the possibility to add any annotation
+  # init container must be allowed to outbound to admin without mesh
+  - patch: |-
+      - op: add
+        path: /spec/template/metadata/annotations
+        value:
+          config.linkerd.io/skip-outbound-ports: "9180"
+    target:
+      group: apps
+      version: v1
+      kind: Deployment
+      labelSelector: app.kubernetes.io/name=ingress-controller
+  # disabled injection with pod test-connection
+  - patch: |-
+      - op: add
+        path: /metadata/annotations
+        value:
+          linkerd.io/inject: disabled
+    target:
+      kind: Pod
+      name: apisix-dashboard-test-connection

@@ -1,0 +1,1067 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-ol1-ntc-tasktables
+  namespace: processing
+
+data:
+  TaskTable_S3A_OL1_06_17.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Processor_Name>S3A_OL1</Processor_Name>
+        <Version>06.17</Version>
+        <Test>No</Test>
+        <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+        <Max_Time units="sec">1800</Max_Time>
+        <List_of_Cfg_Files count="1">
+            <Cfg_File>
+                <File_Name>/usr/local/conf/S3IPF_OL1_06.17/S3A/S3IPF_OL1_Configuration.xml</File_Name>
+            </Cfg_File>
+        </List_of_Cfg_Files>
+        <List_of_Dyn_ProcParams count="4">
+            <Dyn_ProcParam>
+                <Param_Name>facilityName</Param_Name>        <!-- Generation Centre -->
+                <Param_Type>String</Param_Type>
+                <Param_Default>MAR</Param_Default>
+            </Dyn_ProcParam>
+            <Dyn_ProcParam>
+                <Param_Name>orderType</Param_Name> <!-- Timeliness of the product -->
+                <Param_Type>String</Param_Type>
+                <Param_Default>NRT</Param_Default>
+            </Dyn_ProcParam>
+            <Dyn_ProcParam>
+                <Param_Name>hardwareName</Param_Name>          <!-- Platform (OPE,DEV...)-->
+                <Param_Type>String</Param_Type>
+                <Param_Default>D</Param_Default>
+            </Dyn_ProcParam>
+            <Dyn_ProcParam>
+                <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+                <Param_Type>String</Param_Type>
+                <Param_Default>003</Param_Default>
+            </Dyn_ProcParam>
+        </List_of_Dyn_ProcParams>  
+        <Sensing_Time_flag>true</Sensing_Time_flag>
+        <List_of_Pools count="1">
+            <Pool>
+                <Detached>false</Detached>
+                <Killing_Signal>2</Killing_Signal>
+                <List_of_Tasks count="1">
+                    <!-- ================================ -->
+                    <!-- L1 Processing of OLCI in EO mode -->
+                    <!-- ================================ -->
+                    <Task>
+                        <Name>OL1</Name>
+                        <Version>06.17</Version>
+                        <Critical>true</Critical>
+                        <Criticality_Level>1</Criticality_Level>
+                        <File_Name>/usr/local/components/S3IPF_OL1_06.17/bin/OL1.bin</File_Name>
+                        <List_of_Inputs count="16">
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI L0 EFR product -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>OL_0_EFR___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+    
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>No</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI L1 RAC product -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ClosestStopValidity</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_RAC___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+    
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>No</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Navigation: NAVATT (> FRO > FPO > OSF) -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>TM_0_NAT___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <!-- resolution of SPR 1603
+                                    <Alternative>
+                                        <Order>2</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FRO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>3</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FPO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>4</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___OSF_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    -->
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="4">
+                                    <!-- Time initialization: FRO > FPO > OSF > BB2 -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FRO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>2</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FPO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>3</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___OSF_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>4</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___BB2_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___OSF_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>NRT</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Meteorological Data file from ECMWF (forecast for NRT processing) -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersectWithoutDuplicates</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>10800</T1>
+                                        <minResults>2</minResults>
+                                        <maxResults>3</maxResults>
+                                        <File_Type>AX___MF1_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            <Input>
+                                <Mode>NTC</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Meteorological Data file from ECMWF (analysis for NTC processing) -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersectWithoutDuplicates</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>10800</T1>
+                                        <minResults>2</minResults>
+                                        <maxResults>3</maxResults>
+                                        <File_Type>AX___MA1_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                              
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Characterisation & Models Data file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_INS_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Calibration Data file-->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_CAL_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Programmation Data file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_PRG_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Classification Thresholds LUTs Data file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_CLUTAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Digital elevation model -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___DEM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Land/Saline Water mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___LWM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Open ocean mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___OOM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Coastline mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___CLM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Tidal regions mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___TRM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Processing Control Parameters file for EO mode -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_EO__AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                        </List_of_Inputs>
+                        
+                        <List_of_Outputs count="2">
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>No</Mandatory>
+                                <Type>OL_1_EFR___</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                            
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>No</Mandatory>
+                                <Type>OL_1_ERR___</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                        </List_of_Outputs>
+                        <List_of_Breakpoints count="0"/>
+                        <!--<List_of_Breakpoints count="26">
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-3.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-4.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_4-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_1-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_4-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_5-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_6-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_6-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_1_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_1_3-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_2_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_2_1-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_2_1-3.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_4-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_5-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_2_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_3_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_3_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                        </List_of_Breakpoints>-->
+                    </Task>
+                </List_of_Tasks>
+            </Pool>
+        </List_of_Pools>
+    </Ipf_Task_Table>
+  TaskTable_S3B_OL1_06_17.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+        <Processor_Name>S3B_OL1</Processor_Name>
+        <Version>06.17</Version>
+        <Test>No</Test>
+        <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+        <Max_Time units="sec">1800</Max_Time>
+        <List_of_Cfg_Files count="1">
+            <Cfg_File>
+                <File_Name>/usr/local/conf/S3IPF_OL1_06.17/S3B/S3IPF_OL1_Configuration.xml</File_Name>
+            </Cfg_File>
+        </List_of_Cfg_Files>
+        <List_of_Dyn_ProcParams count="4">
+            <Dyn_ProcParam>
+                <Param_Name>facilityName</Param_Name>        <!-- Generation Centre -->
+                <Param_Type>String</Param_Type>
+                <Param_Default>MAR</Param_Default>
+            </Dyn_ProcParam>
+            <Dyn_ProcParam>
+                <Param_Name>orderType</Param_Name> <!-- Timeliness of the product -->
+                <Param_Type>String</Param_Type>
+                <Param_Default>NRT</Param_Default>
+            </Dyn_ProcParam>
+            <Dyn_ProcParam>
+                <Param_Name>hardwareName</Param_Name>          <!-- Platform (OPE,DEV...)-->
+                <Param_Type>String</Param_Type>
+                <Param_Default>D</Param_Default>
+            </Dyn_ProcParam>
+            <Dyn_ProcParam>
+                <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+                <Param_Type>String</Param_Type>
+                <Param_Default>003</Param_Default>
+            </Dyn_ProcParam>
+        </List_of_Dyn_ProcParams>  
+        <Sensing_Time_flag>true</Sensing_Time_flag>
+        <List_of_Pools count="1">
+            <Pool>
+                <Detached>false</Detached>
+                <Killing_Signal>2</Killing_Signal>
+                <List_of_Tasks count="1">
+                    <!-- ================================ -->
+                    <!-- L1 Processing of OLCI in EO mode -->
+                    <!-- ================================ -->
+                    <Task>
+                        <Name>OL1</Name>
+                        <Version>06.17</Version>
+                        <Critical>true</Critical>
+                        <Criticality_Level>1</Criticality_Level>
+                        <File_Name>/usr/local/components/S3IPF_OL1_06.17/bin/OL1.bin</File_Name>
+                        <List_of_Inputs count="16">
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI L0 EFR product -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>OL_0_EFR___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+    
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>No</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI L1 RAC product -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ClosestStopValidity</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_RAC___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+    
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>No</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Navigation: NAVATT (> FRO > FPO > OSF) -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>TM_0_NAT___</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <!-- resolution of SPR 1603
+                                    <Alternative>
+                                        <Order>2</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FRO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>3</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FPO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>4</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___OSF_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    -->
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="4">
+                                    <!-- Time initialization: FRO > FPO > OSF > BB2 -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FRO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>2</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___FPO_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>3</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___OSF_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                    <Alternative>
+                                        <Order>4</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___BB2_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                                        <T0>8.8</T0>
+                                        <T1>8.8</T1>
+                                        <File_Type>AX___OSF_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>NRT</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Meteorological Data file from ECMWF (forecast for NRT processing) -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersectWithoutDuplicates</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>10800</T1>
+                                        <minResults>2</minResults>
+                                        <maxResults>3</maxResults>
+                                        <File_Type>AX___MF1_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            <Input>
+                                <Mode>NTC</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Meteorological Data file from ECMWF (analysis for NTC processing) -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>ValIntersectWithoutDuplicates</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>10800</T1>
+                                        <minResults>2</minResults>
+                                        <maxResults>3</maxResults>
+                                        <File_Type>AX___MA1_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                              
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Characterisation & Models Data file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_INS_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Calibration Data file-->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_CAL_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Programmation Data file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_PRG_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- OLCI Classification Thresholds LUTs Data file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_CLUTAX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Digital elevation model -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___DEM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Land/Saline Water mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___LWM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Open ocean mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___OOM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Coastline mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___CLM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Tidal regions mask file -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>AX___TRM_AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                            
+                            <Input>
+                                <Mode>ALWAYS</Mode>
+                                <Mandatory>Yes</Mandatory>
+                                <List_of_Alternatives count="1">
+                                    <!-- Processing Control Parameters file for EO mode -->
+                                    <Alternative>
+                                        <Order>1</Order>
+                                        <Origin>DB</Origin>
+                                        <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                                        <T0>0</T0>
+                                        <T1>0</T1>
+                                        <File_Type>OL_1_EO__AX</File_Type>
+                                        <File_Name_Type>Physical</File_Name_Type>
+                                    </Alternative>
+                                </List_of_Alternatives>
+                            </Input>
+                        </List_of_Inputs>
+                        
+                        <List_of_Outputs count="2">
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>No</Mandatory>
+                                <Type>OL_1_EFR___</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                            
+                            <Output>
+                                <Destination>DBPROC</Destination>
+                                <Mandatory>No</Mandatory>
+                                <Type>OL_1_ERR___</Type>
+                                <File_Name_Type>Directory</File_Name_Type>
+                            </Output>
+                        </List_of_Outputs>
+                        <List_of_Breakpoints count="0"/>
+                        <!--<List_of_Breakpoints count="26">
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-3.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_3-4.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-DE_4-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_1-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_4-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_5-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_6-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-RS_6-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_1_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_1_3-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_2_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_2_1-2.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SLC_2_1-3.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_3-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_4-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-GR_5-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_2_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_3_1-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                            <Breakpoint>
+                                <File_Name>BP_O1-SRS_3_2-1.nc</File_Name>
+                                <File_Name_Type>Physical</File_Name_Type>
+                            </Breakpoint>
+                        </List_of_Breakpoints>-->
+                    </Task>
+                </List_of_Tasks>
+            </Pool>
+        </List_of_Pools>
+    </Ipf_Task_Table>

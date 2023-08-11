@@ -1,0 +1,1938 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: metadata-xslts
+  namespace: processing
+
+data:
+  XSLT_AUX_MANIFEST.xslt: |
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output omit-xml-declaration="yes" method="xml" encoding="utf-8" indent="yes" />
+
+        <xsl:template match="/">
+        
+          <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'generation']/text() != ''">
+            <creationTime>
+            <xsl:value-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'generation']/text()"/>
+          </creationTime>
+        </xsl:if>
+          <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'validity']/text() != ''">
+            <validityStartTime>
+            <xsl:value-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'validity']/text()"/>
+          </validityStartTime>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'instrumentConfigurationId']/text() != ''">
+          <instrumentConfigurationId>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'instrumentConfigurationId']/text()"/>
+          </instrumentConfigurationId>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site) != ''">
+          <site>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site)"/>
+          </site>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/@start) != ''">
+          <processingDate>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/@start)"/>
+          </processingDate>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@name) != ''">
+          <processorName>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@name)"/>
+          </processorName>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@version) != ''">
+          <processorVersion>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@version)"/>
+          </processorVersion>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text() != ''">
+          <platformShortName>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text()"/>
+          </platformShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'number']/text() != ''">
+          <platformSerialIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'number']/text()"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation) != ''">
+          <instrumentShortName>
+            <xsl:copy-of select="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation)"/>
+          </instrumentShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'generation']/text() != ''">
+          <productGeneration>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'generation']/text()"/>
+          </productGeneration>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'auxProductType']/text() != ''">
+          <productType>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'auxProductType']/text()"/>
+          </productType>
+        </xsl:if>
+      </xsl:template>
+
+    </xsl:stylesheet>
+  XSLT_AUX_XML.xslt: |
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output omit-xml-declaration="yes" method="xml" encoding="utf-8" indent="yes" />
+
+        <xsl:template match="/">
+          <xsl:choose>
+            <xsl:when test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'Creation_Date']/text() != ''">
+              <creationTime>
+              <xsl:value-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'Creation_Date']/text()"/>
+            </creationTime>
+          </xsl:when>
+          <xsl:otherwise>
+            <creationTime>
+                  <xsl:copy-of select="//*[local-name() = 'Creation_Time']/text()"/>
+              </creationTime>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Validity_Period']/*[local-name() = 'Validity_Start']/text() != ''">
+              <validityStartTime>
+              <xsl:value-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Validity_Period']/*[local-name() = 'Validity_Start']/text()"/>
+            </validityStartTime>
+          </xsl:when>
+          <xsl:otherwise>
+            <validityStartTime>
+                  <xsl:copy-of select="//*[local-name() = 'Validity_Start']/text()"/>
+            </validityStartTime>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:choose>
+            <xsl:when test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Validity_Period']/*[local-name() = 'Validity_Stop']/text() != ''">
+              <validityStopTime>
+              <xsl:value-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Validity_Period']/*[local-name() = 'Validity_Stop']/text()"/>
+            </validityStopTime>
+          </xsl:when>
+          <xsl:otherwise>
+              <validityStopTime>
+                  <xsl:copy-of select="//*[local-name() = 'Validity_Stop']/text()"/>
+              </validityStopTime>
+          </xsl:otherwise>
+        </xsl:choose>
+        <xsl:if test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'System']/text() != ''">
+          <site>
+            <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'System']/text()"/>
+          </site>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'Creator_Version']/text() != ''">
+          <processorVersion>
+            <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'Creator_Version']/text()"/>
+          </processorVersion>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'File_Type']/text() != ''">
+          <productType>
+            <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'File_Type']/text()"/>
+          </productType>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Mission']/text() != ''">
+          <platformShortName>
+            <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Mission']/text()"/>
+          </platformShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Mission']/text() != ''">
+          <platformSerialIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Mission']/text()"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+      </xsl:template>
+
+    </xsl:stylesheet>
+  XSLT_L0_MANIFEST.xslt: |
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output omit-xml-declaration="yes" method="xml" encoding="utf-8" indent="yes" />
+        <xsl:template match="/">
+          <productConsolidation>
+          <xsl:copy-of select="//*[local-name() = 'productConsolidation']/text()"/>
+        </productConsolidation>
+        <instrumentConfigurationId>
+          <xsl:copy-of select="//*[local-name() = 'instrumentConfigurationID']/text()"/>
+        </instrumentConfigurationId>
+        <missionDataTakeId>
+          <xsl:copy-of select="//*[local-name() = 'missionDataTakeID']/text()"/>
+        </missionDataTakeId>
+        <circulationFlag>
+          <xsl:copy-of select="//*[local-name() = 'circulationFlag']/text()"/>
+        </circulationFlag>
+        <pass>
+          <xsl:copy-of select="//*[local-name() = 'pass']/text()"/>
+        </pass>
+        <absoluteStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </absoluteStartOrbit>
+        <absoluteStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </absoluteStopOrbit>
+        <relativeStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </relativeStartOrbit>
+        <relativeStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </relativeStopOrbit>
+        <sliceNumber>
+          <xsl:copy-of select="//*[local-name() = 'sliceNumber']/text()"/>
+        </sliceNumber>
+        <sliceOverlap>
+          <xsl:copy-of select="//*[local-name() = 'sliceOverlap']/text()"/>
+        </sliceOverlap>
+        <theoreticalSliceLength>
+          <xsl:copy-of select="//*[local-name() = 'theoreticalSliceLength']/text()"/>
+        </theoreticalSliceLength>
+        <startTime>
+          <xsl:copy-of select="//*[local-name() = 'startTime']/text()"/>
+        </startTime>
+        <stopTime>
+          <xsl:copy-of select="//*[local-name() = 'stopTime']/text()"/>
+        </stopTime>
+        <startTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'startTimeANX']/text()"/>
+        </startTimeANX>
+        <stopTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'stopTimeANX']/text()"/>
+        </stopTimeANX>
+        <sliceCoordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </sliceCoordinates>
+        <coordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </coordinates>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text() != ''">
+          <platformShortName>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text()"/>
+          </platformShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'number']/text() != ''">
+          <platformSerialIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'number']/text()"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation) != ''">
+          <instrumentShortName>
+            <xsl:copy-of select="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation)"/>
+          </instrumentShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[name() = 's1sar:instrumentMode']/*[name() = 's1sar:mode']/text() != ''">
+          <operationalMode>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[name() = 's1sar:instrumentMode']/*[name() = 's1sar:mode']/text()"/>
+          </operationalMode>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[name() = 's1sar:instrumentMode']/*[name() = 's1sar:swathNumber']/text() != ''">
+          <swathIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[name() = 's1sar:instrumentMode']/*[name() = 's1sar:swathNumber']/text()"/>
+          </swathIdentifier>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productClass']/text() != ''">
+          <productClass>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productClass']/text()"/>
+          </productClass>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'sliceProductFlag']/text() != ''">
+          <sliceProductFlag>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'sliceProductFlag']/text()"/>
+          </sliceProductFlag>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'totalNumberOfSlices']/text() != ''">
+          <totalNumberOfSlice>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'totalNumberOfSlices']/text()"/>		
+          </totalNumberOfSlice>
+        </xsl:if>
+        <polarisationChannels>
+          <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'transmitterReceiverPolarisation'][1]/text()"/>
+        </polarisationChannels>		
+        <polarisationChannels>
+          <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'transmitterReceiverPolarisation'][2]/text()"/>
+        </polarisationChannels>
+        <xsl:if test="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text() != ''">
+          <cycleNumber>
+            <xsl:copy-of select="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text()"/>
+          </cycleNumber>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/@start) != ''">
+          <creationTime>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/@start)"/>
+          </creationTime>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site) != ''">
+          <site>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site)"/>
+          </site>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@name) != ''">
+          <processorName>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@name)"/>
+          </processorName>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@version) != ''">
+          <processorVersion>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@version)"/>
+          </processorVersion>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:dataObjectID']/text() != ''">
+          <qualityDataObjectID>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:dataObjectID']/text()"/>
+          </qualityDataObjectID>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfElements']/text() != ''">
+          <qualityNumOfElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfElements']/text()"/>
+          </qualityNumOfElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfMissingElements']/text() != ''">
+          <qualityNumOfMissingElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfMissingElements']/text()"/>
+          </qualityNumOfMissingElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfCorruptedElements']/text() != ''">
+          <qualityNumOfCorruptedElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfCorruptedElements']/text()"/>
+          </qualityNumOfCorruptedElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfRSIncorrigibleElements']/text() != ''">	
+          <qualityNumOfRSIncorrigibleElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfRSIncorrigibleElements']/text()"/>
+          </qualityNumOfRSIncorrigibleElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfRSCorrectedElements']/text() != ''">	
+          <qualityNumOfRSCorrectedElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfRSCorrectedElements']/text()"/>
+          </qualityNumOfRSCorrectedElements>
+        </xsl:if>		
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfRSCorrectedSymbols']/text() != ''">
+          <qualityNumOfRSCorrectedSymbols>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfRSCorrectedSymbols']/text()"/>
+          </qualityNumOfRSCorrectedSymbols>
+        </xsl:if>
+      </xsl:template>
+    </xsl:stylesheet>
+  XSLT_L0_SEGMENT.xslt: |
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output omit-xml-declaration="yes" method="xml" encoding="utf-8" indent="yes" />
+
+      <xsl:template match="@*|node()">
+            <xsl:apply-templates select="@*|node()"/>
+      </xsl:template>
+      
+      <xsl:template match="/">
+          <productConsolidation>
+          <xsl:copy-of select="//*[local-name() = 'productConsolidation']/text()"/>
+        </productConsolidation>
+        <productSensingConsolidation>
+          <xsl:copy-of select="//*[local-name() = 'productSensingConsolidation']/text()" />
+        </productSensingConsolidation>
+        <instrumentConfigurationId>
+          <xsl:copy-of select="//*[local-name() = 'instrumentConfigurationID']/text()"/>
+        </instrumentConfigurationId>
+        <missionDataTakeId>
+          <xsl:copy-of select="//*[local-name() = 'missionDataTakeID']/text()"/>
+        </missionDataTakeId>
+        <circulationFlag>
+          <xsl:copy-of select="//*[local-name() = 'circulationFlag']/text()"/>
+        </circulationFlag>
+        <pass>
+          <xsl:copy-of select="//*[local-name() = 'pass']/text()"/>
+        </pass>
+        <absoluteStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </absoluteStartOrbit>
+        <absoluteStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </absoluteStopOrbit>
+        <relativeStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </relativeStartOrbit>
+        <relativeStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </relativeStopOrbit>
+        <startTime>
+          <xsl:copy-of select="//*[local-name() = 'startTime']/text()"/>
+        </startTime>
+        <stopTime>
+          <xsl:copy-of select="//*[local-name() = 'stopTime']/text()"/>
+        </stopTime>
+        <startTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'startTimeANX']/text()"/>
+        </startTimeANX>
+        <stopTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'stopTimeANX']/text()"/>
+        </stopTimeANX>
+        <segmentCoordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </segmentCoordinates>
+        <xsl:if test="string(//*[local-name() = 'processing']/@start) != ''">
+          <creationTime>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/@start)"/>
+          </creationTime>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfMissingElements']/text() != ''">
+          <qualityNumOfMissingElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfMissingElements']/text()"/>
+          </qualityNumOfMissingElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfCorruptedElements']/text() != ''">
+          <qualityNumOfCorruptedElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[name() = 's1:qualityProperties']/*[name() = 's1:numOfCorruptedElements']/text()"/>
+          </qualityNumOfCorruptedElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text() != ''">
+          <platformShortName>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text()"/>
+          </platformShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'number']/text() != ''">
+          <platformSerialIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'number']/text()"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text() != ''">
+          <cycleNumber>
+            <xsl:copy-of select="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text()"/>
+          </cycleNumber>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site) != ''">
+          <site>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site)"/>
+          </site>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@name) != ''">
+          <processorName>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@name)"/>
+          </processorName>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@version) != ''">
+          <processorVersion>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'software']/@version)"/>
+          </processorVersion>
+        </xsl:if>
+        <xsl:apply-templates select="node()"/>
+      </xsl:template>
+
+        <xsl:template match="//*[local-name() = 'packetStoreID']">
+        <packetStoreID><xsl:value-of select="text()"/></packetStoreID>
+      </xsl:template>
+
+    </xsl:stylesheet>
+  XSLT_L1_MANIFEST.xslt: |
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output omit-xml-declaration="yes" method="xml" encoding="utf-8" indent="yes" />
+        <xsl:template match="/">
+          <instrumentConfigurationId>
+          <xsl:copy-of select="//*[local-name() = 'instrumentConfigurationID']/text()"/>
+        </instrumentConfigurationId>
+        <missionDataTakeId>
+          <xsl:copy-of select="//*[local-name() = 'missionDataTakeID']/text()"/>
+        </missionDataTakeId>
+        <pass>
+          <xsl:copy-of select="//*[local-name() = 'pass']/text()"/>
+        </pass>
+        <absoluteStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </absoluteStartOrbit>
+        <absoluteStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </absoluteStopOrbit>
+        <relativeStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </relativeStartOrbit>
+        <relativeStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </relativeStopOrbit>
+        <sliceNumber>
+          <xsl:copy-of select="//*[local-name() = 'sliceNumber']/text()"/>
+        </sliceNumber>
+        <startTime>
+          <xsl:copy-of select="//*[local-name() = 'startTime']/text()"/>
+        </startTime>
+        <stopTime>
+          <xsl:copy-of select="//*[local-name() = 'stopTime']/text()"/>
+        </stopTime>
+        <startTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'startTimeANX']/text()"/>
+        </startTimeANX>
+        <stopTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'stopTimeANX']/text()"/>
+        </stopTimeANX>
+        <sliceCoordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </sliceCoordinates>
+        <coordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </coordinates>
+        <xsl:if test="string(//*[local-name() = 'processing']/@start) != ''">
+          <creationTime>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/@start)"/>
+          </creationTime>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site) != ''">
+          <site>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site)"/>
+          </site>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@name) != ''">
+          <processorName>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@name)"/>
+          </processorName>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@version) != ''">
+          <processorVersion>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@version)"/>
+          </processorVersion>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text() != ''">
+          <platformShortName>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text()"/>
+          </platformShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'number']/text() != ''">
+          <platformSerialIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'number']/text()"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation) != ''">
+          <instrumentShortName>
+            <xsl:copy-of select="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation)"/>
+          </instrumentShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'swath']/text() != ''">
+          <swathIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'swath']/text()"/>
+          </swathIdentifier>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text() != ''">
+          <cycleNumber>
+            <xsl:copy-of select="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text()"/>
+          </cycleNumber>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productComposition']/text() != ''">
+          <productComposition>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productComposition']/text()"/>		
+          </productComposition>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productTimelinessCategory']/text() != ''">
+          <safeTimeliness>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productTimelinessCategory']/text()"/>
+          </safeTimeliness>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'sliceProductFlag']/text() != ''">
+          <sliceProductFlag>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'sliceProductFlag']/text()"/>
+          </sliceProductFlag>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'segmentStartTime']/text() != ''">
+          <segmentStartTime>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'segmentStartTime']/text()"/>
+          </segmentStartTime>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'totalSlices']/text() != ''">
+          <totalNumberOfSlice>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'totalSlices']/text()"/>
+          </totalNumberOfSlice>
+        </xsl:if>
+        <polarisationChannels>
+          <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'transmitterReceiverPolarisation'][1]/text()"/>
+        </polarisationChannels>		
+        <polarisationChannels>
+          <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'transmitterReceiverPolarisation'][2]/text()"/>
+        </polarisationChannels>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productClass']/text() != ''">
+          <productClass>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productClass']/text()"/>
+          </productClass>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'mode']/text() != ''">
+          <operationalMode>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'mode']/text()"/>
+          </operationalMode>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfMissingElements']/text() != ''">
+          <qualityNumOfMissingElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfMissingElements']/text()"/>
+          </qualityNumOfMissingElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfCorruptedElements']/text() != ''">
+          <qualityNumOfCorruptedElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfCorruptedElements']/text()"/>
+          </qualityNumOfCorruptedElements>
+        </xsl:if>
+      </xsl:template>
+    </xsl:stylesheet>
+  XSLT_L2_MANIFEST.xslt: |
+    <xsl:stylesheet version="1.0" xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+        <xsl:output omit-xml-declaration="yes" method="xml" encoding="utf-8" indent="yes" />
+        <xsl:template match="/">
+          <instrumentConfigurationId>
+          <xsl:copy-of select="//*[local-name() = 'instrumentConfigurationID']/text()"/>
+        </instrumentConfigurationId>
+        <missionDataTakeId>
+          <xsl:copy-of select="//*[local-name() = 'missionDataTakeID']/text()"/>
+        </missionDataTakeId>
+        <pass>
+          <xsl:copy-of select="//*[local-name() = 'pass']/text()"/>
+        </pass>
+        <absoluteStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </absoluteStartOrbit>
+        <absoluteStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </absoluteStopOrbit>
+        <relativeStartOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </relativeStartOrbit>
+        <relativeStopOrbit>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </relativeStopOrbit>
+        <sliceNumber>
+          <xsl:copy-of select="//*[local-name() = 'sliceNumber']/text()"/>
+        </sliceNumber>
+        <startTime>
+          <xsl:copy-of select="//*[local-name() = 'startTime']/text()"/>
+        </startTime>
+        <stopTime>
+          <xsl:copy-of select="//*[local-name() = 'stopTime']/text()"/>
+        </stopTime>
+        <startTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'startTimeANX']/text()"/>
+        </startTimeANX>
+        <stopTimeANX>
+          <xsl:copy-of select="//*[local-name() = 'stopTimeANX']/text()"/>
+        </stopTimeANX>
+        <sliceCoordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </sliceCoordinates>
+        <coordinates>
+          <xsl:copy-of select="//*[local-name() = 'coordinates']/text()"/>
+        </coordinates>
+        <xsl:if test="string(//*[local-name() = 'processing']/@start) != ''">
+          <creationTime>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/@start)"/>
+          </creationTime>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site) != ''">
+          <site>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site)"/>
+          </site>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@name) != ''">
+          <processorName>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@name)"/>
+          </processorName>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@version) != ''">
+          <processorVersion>
+            <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/*[local-name() = 'software']/@version)"/>
+          </processorVersion>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text() != ''">
+          <platformShortName>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text()"/>
+          </platformShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'number']/text() != ''">
+          <platformSerialIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'number']/text()"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+        <xsl:if test="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation) != ''">
+          <instrumentShortName>
+            <xsl:copy-of select="string(//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'familyName']/@abbreviation)"/>
+          </instrumentShortName>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'swath']/text() != ''">
+          <swathIdentifier>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'swath']/text()"/>
+          </swathIdentifier>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text() != ''">
+          <cycleNumber>
+            <xsl:copy-of select="//*[local-name() = 'orbitReference']/*[local-name() = 'cycleNumber']/text()"/>
+          </cycleNumber>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productComposition']/text() != ''">
+          <productComposition>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productComposition']/text()"/>		
+          </productComposition>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productTimelinessCategory']/text() != ''">
+          <safeTimeliness>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productTimelinessCategory']/text()"/>
+          </safeTimeliness>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'sliceProductFlag']/text() != ''">
+          <sliceProductFlag>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'sliceProductFlag']/text()"/>
+          </sliceProductFlag>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'segmentStartTime']/text() != ''">
+          <segmentStartTime>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'segmentStartTime']/text()"/>
+          </segmentStartTime>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'totalSlices']/text() != ''">
+          <totalNumberOfSlice>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'totalSlices']/text()"/>
+          </totalNumberOfSlice>
+        </xsl:if>
+        <polarisationChannels>
+          <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'transmitterReceiverPolarisation'][1]/text()"/>
+        </polarisationChannels>		
+        <polarisationChannels>
+          <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'transmitterReceiverPolarisation'][2]/text()"/>
+        </polarisationChannels>
+        <xsl:if test="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productClass']/text() != ''">
+          <productClass>
+            <xsl:copy-of select="//*[local-name() = 'standAloneProductInformation']/*[local-name() = 'productClass']/text()"/>
+          </productClass>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'mode']/text() != ''">
+          <operationalMode>
+            <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'instrument']/*[local-name() = 'extension']/*[local-name() = 'instrumentMode']/*[local-name() = 'mode']/text()"/>
+          </operationalMode>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfMissingElements']/text() != ''">
+          <qualityNumOfMissingElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfMissingElements']/text()"/>
+          </qualityNumOfMissingElements>
+        </xsl:if>
+        <xsl:if test="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfCorruptedElements']/text() != ''">
+          <qualityNumOfCorruptedElements>
+            <xsl:copy-of select="//*[local-name() = 'qualityInformation'][1]/*[local-name() = 'extension']/*[local-name() = 'qualityProperties']/*[local-name() = 'numOfCorruptedElements']/text()"/>
+          </qualityNumOfCorruptedElements>
+        </xsl:if>
+      </xsl:template>
+    </xsl:stylesheet>
+  XSLT_MPL_EOF.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+
+      <xsl:variable name="POLARISATION" select="//*[local-name() = 'Polarisation']/text()" />
+      <xsl:variable name="ABSOLUT_ORBIT" select="//OSV[position() = 2]/*[local-name() = 'Absolute_Orbit']/text()" />
+        <xsl:variable name="PRODUCT_TYPE" select= "//*[local-name() = 'File_Type']/text()" />
+
+      <xsl:template match="/">
+      
+        <xsl:variable name="CREATION_TIME" select= "//*[local-name() = 'Creation_Date']/text()"/>
+          <xsl:if test="$CREATION_TIME != ''">
+            <creationTime>
+            <xsl:value-of select="$CREATION_TIME"/>
+          </creationTime>
+        </xsl:if>
+        
+        <xsl:variable name="VALIDITY_START" select= "//*[local-name() = 'Validity_Start']/text()"/>
+          <xsl:if test="$VALIDITY_START != ''">
+            <validityStartTime>
+            <xsl:value-of select="$VALIDITY_START"/>
+          </validityStartTime>
+        </xsl:if>
+        
+        <xsl:variable name="VALIDITY_STOP" select= "//*[local-name() = 'Validity_Stop']/text()"/>
+          <xsl:if test="$VALIDITY_STOP != ''">
+            <validityStopTime>
+            <xsl:value-of select="$VALIDITY_STOP"/>
+          </validityStopTime>
+        </xsl:if>
+        
+        <version>
+          <xsl:copy-of select="//*[local-name() = 'File_Version']/text()" />
+        </version>
+        <site>
+          <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'System']/text()"/>
+        </site>
+        <processorVersion>
+          <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Source']/*[local-name() = 'Creator_Version']/text()"/>
+        </processorVersion>
+        
+        <xsl:choose>
+          <xsl:when test="contains(//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'File_Type']/text(), 'ERRMAT')">
+            <productType>AUX_ECE</productType>					
+          </xsl:when>
+          <xsl:otherwise>
+            <productType>
+              <xsl:copy-of select="//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'File_Type']/text()"/>
+            </productType>
+          </xsl:otherwise>			
+        </xsl:choose>
+        
+        <xsl:if test="$POLARISATION != ''">
+          <polarisation>
+            <xsl:copy-of select="//*[local-name() = 'Polarisation']/text()" />
+          </polarisation>
+        </xsl:if>
+
+        <absolutOrbit>
+          <xsl:choose>
+            <xsl:when test="starts-with($ABSOLUT_ORBIT, '+')">
+              <xsl:copy-of
+                select="substring($ABSOLUT_ORBIT,2)" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:copy-of select="$ABSOLUT_ORBIT" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </absolutOrbit>
+        
+          <xsl:if test="$PRODUCT_TYPE = 'AUX_RESORB'">
+          <selectedOrbitFirstAzimuthTimeUtc>
+          <xsl:copy-of select="//OSV[position() = 2]/*[local-name() = 'UTC']/text()" />
+        </selectedOrbitFirstAzimuthTimeUtc>
+        </xsl:if>
+        
+        <xsl:variable name="MISSION" select= "//*[local-name() = 'Earth_Explorer_Header']/*[local-name() = 'Fixed_Header']/*[local-name() = 'Mission']/text()"/>
+          <xsl:if test="$MISSION != ''">
+            <xsl:variable name="SAT_NUMBER" select= "substring($MISSION, string-length($MISSION))"/>
+            <xsl:variable name="SAT_FAMILY" select= "substring-before($MISSION, $SAT_NUMBER)"/>
+            <platformShortName>
+            <xsl:value-of select="$SAT_FAMILY"/>
+          </platformShortName>
+          <platformSerialIdentifier>
+            <xsl:value-of select="$SAT_NUMBER"/>
+          </platformSerialIdentifier>
+        </xsl:if>
+        
+    </xsl:template>
+    </xsl:stylesheet>
+  XSLT_S2_MANIFEST.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+        
+      <xsl:template match="/">
+        <validityStartTime>
+          <xsl:copy-of select="//*[local-name() = 'acquisitionPeriod']/*[local-name() = 'startTime']/text()"/>
+        </validityStartTime>
+        <validityStopTime>
+          <xsl:copy-of select="//*[local-name() = 'acquisitionPeriod']/*[local-name() = 'stopTime']/text()"/>
+        </validityStopTime>
+        <platfomShortName>
+          <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'familyName']/text()"/>
+        </platfomShortName>
+        <platformSerialIdentifier>
+          <xsl:copy-of select="//*[local-name() = 'platform']/*[local-name() = 'number']/text()"/>
+        </platformSerialIdentifier>
+        <orbitNumber>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </orbitNumber>
+        <lastOrbitNumber>
+          <xsl:copy-of select="//*[local-name() = 'orbitNumber'][@*[local-name()='type' and .='stop']]/text()"/>
+        </lastOrbitNumber>
+        <relativeOrbitNumber>
+          <xsl:copy-of select="//*[local-name() = 'relativeOrbitNumber'][@*[local-name()='type' and .='start']]/text()"/>
+        </relativeOrbitNumber>
+        <creationTime>
+          <xsl:copy-of select="string(//*[local-name() = 'processing']/@start)"/>
+        </creationTime>
+        <site>
+          <xsl:copy-of select="string(//*[local-name() = 'processing']/*[local-name() = 'facility']/@site)"/>
+        </site>
+
+        <instrumentShortName>HKTM</instrumentShortName>
+
+        <productType>PRD_HKTM__</productType>
+      </xsl:template>
+    </xsl:stylesheet>
+  XSLT_S2_SAD_INVENTORY.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+        
+      <xsl:template match="/">
+        <validityStartTime>
+          <xsl:copy-of select="//*[local-name() = 'Validity_Start']/text()"/>
+        </validityStartTime>
+        <validityStopTime>
+          <xsl:copy-of select="//*[local-name() = 'Validity_Stop']/text()"/>
+        </validityStopTime>
+        <creationTime>
+          <xsl:copy-of select="//*[local-name() = 'Generation_Time']/text()"/>
+        </creationTime>
+        <orbitNumber>
+          <xsl:copy-of select="//*[local-name() = 'Start_Orbit_Number']/text()"/>
+        </orbitNumber>
+        <lastOrbitNumber>
+          <xsl:copy-of select="//*[local-name() = 'Stop_Orbit_Number']/text()"/>
+        </lastOrbitNumber>
+
+        <xsl:variable name="IMqualityInfo" select="//*[local-name() = 'Quality_Info']"/>
+        <qualityStatus>
+          <xsl:choose>
+            <xsl:when test="$IMqualityInfo = 100.0">NOMINAL</xsl:when>
+            <xsl:otherwise>DEGRADED</xsl:otherwise>
+          </xsl:choose>
+        </qualityStatus>
+        <qualityInfo>
+          <xsl:value-of
+            select="//*[local-name() = 'Quality_Info']" />
+        </qualityInfo>
+
+        <productType>
+          <xsl:copy-of select="//*[local-name() = 'File_Type']/text()"/>
+        </productType>
+        <instrumentShortName>SAD</instrumentShortName>
+        <site>
+          <xsl:copy-of select="//*[local-name() = 'Processing_Station']/text()"/>
+        </site>
+
+        <xsl:variable name="IMsatelliteCode" select="//*[local-name() = 'Satellite_Code']" />
+        <platformSerialIdentifier>
+          <xsl:value-of select="substring($IMsatelliteCode, 3, 1)" />
+        </platformSerialIdentifier>
+
+        <platfomShortName>SENTINEL-2</platfomShortName>
+      </xsl:template>
+    </xsl:stylesheet>
+  XSLT_S2_XMLS.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+        <xsl:template match="/">
+            <!-- Inventory_Metadata.xml -->
+            <xsl:if test="string(//*[local-name() = 'Inventory_Metadata']) != ''">
+                <datastripId>
+                    <xsl:value-of select="//*[local-name() = 'Parent_ID']" />
+                </datastripId>
+
+                <productGroupId>
+                    <xsl:value-of select="//*[local-name() = 'Group_ID']" />
+                </productGroupId>
+
+                <processorVersion>
+                    <xsl:value-of
+                        select="//*[local-name() = 'File_Version']" />
+                </processorVersion>
+
+                <creationTime>
+                    <xsl:value-of
+                        select="//*[local-name() = 'Generation_Time']" />
+                </creationTime>
+
+                <startTime>
+                    <xsl:value-of
+                        select="//*[local-name() = 'Validity_Start']" />
+                </startTime>
+
+                <stopTime>
+                    <xsl:value-of
+                        select="//*[local-name() = 'Validity_Stop']" />
+                </stopTime>
+
+                <orbitNumber>
+                    <xsl:value-of
+                        select="//*[local-name() = 'Start_Orbit_Number']" />
+                </orbitNumber>
+
+                <coordinates>
+                    <xsl:for-each select="//*[local-name() = 'Geo_Pnt']">
+                        <xsl:value-of
+                            select="./*[local-name() = 'LATITUDE']/text()" />
+                        <xsl:value-of select="' '" />
+                        <xsl:value-of
+                            select="./*[local-name() = 'LONGITUDE']/text()" />
+                        <xsl:value-of select="' '" />
+                    </xsl:for-each>
+                </coordinates>
+
+                <xsl:variable name="IMqualityInfo" select="//*[local-name() = 'Quality_Info']"/>
+
+                <qualityStatus>
+                    <xsl:choose>
+                        <xsl:when test="$IMqualityInfo = 100.0">NOMINAL</xsl:when>
+                        <xsl:otherwise>DEGRADED</xsl:otherwise>
+                    </xsl:choose>
+                </qualityStatus>
+
+                <qualityInfo>
+                    <xsl:value-of
+                        select="//*[local-name() = 'Quality_Info']" />
+                </qualityInfo>
+
+                <productType>
+                    <xsl:value-of
+                        select="//*[local-name() = 'File_Type']" />
+                </productType>
+
+                <instrumentShortName>
+                    <xsl:value-of select="//*[local-name() = 'Sensor_Code']" />
+                </instrumentShortName>
+
+                <processingCenter>
+                    <xsl:value-of
+                        select="//*[local-name() = 'Processing_Station']" />
+                </processingCenter>
+
+                <xsl:variable name="IMsatelliteCode" select="//*[local-name() = 'Satellite_Code']" />
+
+                <platformSerialIdentifier>
+                    <xsl:value-of select="substring($IMsatelliteCode, 3, 1)" />
+                </platformSerialIdentifier>
+
+                <cloudCover>
+                    <xsl:value-of
+                        select="//*[local-name() = 'CloudPercentage']" />
+                </cloudCover>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-0_DataStrip_ID']) != ''">
+                <xsl:variable name="L0DSdatatakeIdentifier" select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/@datatakeIdentifier"/>
+
+                <xsl:variable name="L0DSqualityInfo" select="//*[local-name() = 'Image_Data_Info']/*[local-name() = 'Sensor_Configuration']/*[local-name() = 'Source_Packet_Description']/*[local-name() = 'Degradation_Summary']/*[local-name() = 'NUMBER_OF_LOST_PACKETS']"/>
+
+
+                <startTime>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datastrip_Time_Info']/*[local-name() = 'DATASTRIP_SENSING_START']"/>
+                </startTime>
+
+                <stopTime>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datastrip_Time_Info']/*[local-name() = 'DATASTRIP_SENSING_STOP']"/>
+                </stopTime>
+
+                <processorVersion></processorVersion>
+
+                <processingCenter>RS</processingCenter>
+
+                <orbitNumber>
+                    <xsl:value-of select="substring($L0DSdatatakeIdentifier, 22, 6)"/>
+                </orbitNumber>
+
+                <productGroupId>
+                    <xsl:value-of select="$L0DSdatatakeIdentifier"/>
+                </productGroupId>
+
+                <qualityInfo>
+                    <xsl:value-of select="$L0DSqualityInfo"/>
+                </qualityInfo>
+
+                <qualityStatus>
+                    <xsl:choose>
+                        <xsl:when test="$L0DSqualityInfo = 0">NOMINAL</xsl:when>
+                        <xsl:otherwise>DEGRADED</xsl:otherwise>
+                    </xsl:choose>
+                </qualityStatus>
+
+                <coordinates>
+                    <xsl:value-of select="//*[local-name() = 'Quality_Indicators_Info']/*[local-name() = 'Quicklook_Info']/*[local-name() = 'Footprint']/*[local-name() = 'EXT_POS_LIST']"/>
+                </coordinates>
+
+                <platformShortName>SENTINEL-2</platformShortName>
+
+                <operationalMode>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'DATATAKE_TYPE']"/>
+                </operationalMode>
+
+                <relativeOrbitNumber>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'SENSING_ORBIT_NUMBER']"/>
+                </relativeOrbitNumber>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-0_Granule_ID']) != ''">
+                <xsl:variable name="L0GRqualityInfo" select="//*[local-name() = 'Quality_Indicators_Info']/*[local-name() = 'Image_Content_QI']/*[local-name() = 'Common_IMG_QI']/*[local-name() = 'DEGRADED_MSI_DATA_PERCENTAGE']"/>
+
+                <startTime>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'SENSING_TIME']"/>
+                </startTime>
+
+                <stopTime>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'SENSING_TIME']"/>
+                </stopTime>
+
+                <processorVersion></processorVersion>
+
+                <processingCenter>RS</processingCenter>
+
+                <orbitNumber></orbitNumber>
+
+                <productGroupId>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'DATASTRIP_ID']"/>
+                </productGroupId>
+
+                <qualityInfo>
+                    <xsl:value-of select="$L0GRqualityInfo"/>
+                </qualityInfo>
+
+                <qualityStatus>
+                    <xsl:choose>
+                        <xsl:when test="$L0GRqualityInfo = 0">NOMINAL</xsl:when>
+                        <xsl:otherwise>DEGRADED</xsl:otherwise>
+                    </xsl:choose>
+                </qualityStatus>
+
+                <coordinates>
+                    <xsl:value-of select="//*[local-name() = 'Geometric_Info']/*[local-name() = 'Granule_Footprint']/*[local-name() = 'Granule_Footprint']/*[local-name() = 'Footprint']/*[local-name() = 'EXT_POS_LIST']"/>
+                </coordinates>
+
+                <operationalMode></operationalMode>
+
+                <relativeOrbitNumber></relativeOrbitNumber>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-1A_DataStrip_ID']) != ''">
+                <operationalMode>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'DATATAKE_TYPE']"/>
+                </operationalMode>
+
+                <relativeOrbitNumber>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'SENSING_ORBIT_NUMBER']"/>
+                </relativeOrbitNumber>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-1A_Granule_ID']) != ''">
+                <illuminationZenithAngle>
+                    <xsl:value-of select="//*[local-name() = 'Solar_Angles']/*[local-name() = 'ZENITH_ANGLE']"/>
+                </illuminationZenithAngle>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-1B_DataStrip_ID']) != ''">
+                <operationalMode>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'DATATAKE_TYPE']"/>
+                </operationalMode>
+
+                <relativeOrbitNumber>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'SENSING_ORBIT_NUMBER']"/>
+                </relativeOrbitNumber>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-1B_Granule_ID']) != ''">
+                <illuminationZenithAngle>
+                    <xsl:value-of select="//*[local-name() = 'Solar_Angles']/*[local-name() = 'ZENITH_ANGLE']"/>
+                </illuminationZenithAngle>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-1C_DataStrip_ID']) != ''">
+                <operationalMode>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'DATATAKE_TYPE']"/>
+                </operationalMode>
+
+                <relativeOrbitNumber>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'SENSING_ORBIT_NUMBER']"/>
+                </relativeOrbitNumber>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-1C_Tile_ID']) != ''">
+                <illuminationZenithAngle>
+                    <xsl:value-of select="//*[local-name() = 'Geometric_Info']/*[local-name() = 'Tile_Angles']/*[local-name() = 'Mean_Sun_Angle']/*[local-name() = 'ZENITH_ANGLE']"/>
+                </illuminationZenithAngle>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-2A_DataStrip_ID']) != ''">
+                <operationalMode>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'DATATAKE_TYPE']"/>
+                </operationalMode>
+
+                <relativeOrbitNumber>
+                    <xsl:value-of select="//*[local-name() = 'General_Info']/*[local-name() = 'Datatake_Info']/*[local-name() = 'SENSING_ORBIT_NUMBER']"/>
+                </relativeOrbitNumber>
+            </xsl:if>
+
+            <xsl:if test="string(//*[local-name() = 'Level-2A_Tile_ID']) != ''">
+                <illuminationZenithAngle>
+                    <xsl:value-of select="//*[local-name() = 'Geometric_Info']/*[local-name() = 'Tile_Angles']/*[local-name() = 'Mean_Sun_Angle']/*[local-name() = 'ZENITH_ANGLE']"/>
+                </illuminationZenithAngle>
+            </xsl:if>
+
+            <platformShortName>SENTINEL-2</platformShortName>
+
+        </xsl:template>
+    </xsl:stylesheet>
+  XSLT_S3_AUX_XFDU_XML.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+
+      <!--======= Create a flat XML structure with the necessary information ======= -->
+      <xsl:template match="/">
+        <validityStartTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:value-of
+                select="//*[local-name()='generalProductInformation']/*[local-name()='validityStartTime']" />
+            </xsl:with-param>
+          </xsl:call-template>
+        </validityStartTime>
+        <validityStopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:value-of
+                select="//*[local-name()='generalProductInformation']/*[local-name()='validityStopTime']" />
+            </xsl:with-param>
+          </xsl:call-template>
+        </validityStopTime>
+        <startTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:value-of
+                select="//*[local-name()='generalProductInformation']/*[local-name()='validityStartTime']" />
+            </xsl:with-param>
+          </xsl:call-template>
+        </startTime>
+        <stopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:value-of
+                select="//*[local-name()='generalProductInformation']/*[local-name()='validityStopTime']" />
+            </xsl:with-param>
+          </xsl:call-template>
+        </stopTime>
+        <creationTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:value-of
+                select="//*[local-name()='generalProductInformation']/*[local-name()='creationTime']" />
+            </xsl:with-param>
+          </xsl:call-template>
+        </creationTime>
+        <adfQualityCheck>
+          <xsl:value-of
+            select="//*[local-name()='adfQuality']/*[local-name()='adfQualityCheck']" />
+        </adfQualityCheck>
+        <baselineCollection>
+          <xsl:value-of
+            select="//*[local-name()='generalProductInformation']/*[local-name()='baselineCollection']" />
+        </baselineCollection>
+        <site>
+          <xsl:value-of
+            select="//*[local-name()='processing']/*[local-name()='facility']/@site" />
+        </site>
+        <platformShortName>
+          <xsl:value-of
+            select="//*[local-name()='platform']/*[local-name()='familyName']/text()" />
+        </platformShortName>
+        <platformSerialIdentifier>
+          <xsl:value-of
+            select="//*[local-name()='platform']/*[local-name()='number']/text()" />
+        </platformSerialIdentifier>
+        <procVersion>
+          <xsl:value-of
+            select="//*[local-name()='processing']//*[local-name()='software']/@version" />
+        </procVersion>
+        <procName>
+          <xsl:value-of
+            select="//*[local-name()='processing']//*[local-name()='software']/@name" />
+        </procName>
+        <xsl:call-template name="setTimeliness">
+          <xsl:with-param name="timeliness">
+            <xsl:value-of
+              select="//*[local-name()='generalProductInformation']/*[local-name()='timeliness']" />
+          </xsl:with-param>
+        </xsl:call-template>
+      </xsl:template>
+
+
+      <!--=================== Getting Timeliness Fields Template =================== -->
+      <xsl:template name="setTimeliness">
+        <xsl:param name="timeliness" />
+        <xsl:variable name="NRT">
+          <xsl:choose>
+            <xsl:when
+              test="$timeliness = 'NR' or $timeliness = 'NN' or $timeliness = 'NS' or $timeliness = 'AL' or $timeliness = '__'">
+              <xsl:value-of select="'true'" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'false'" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="NTC">
+          <xsl:choose>
+            <xsl:when
+              test="$timeliness = 'NT' or $timeliness = 'SN' or $timeliness = 'NN' or $timeliness = 'AL' or $timeliness = '__'">
+              <xsl:value-of select="'true'" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'false'" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="STC">
+          <xsl:choose>
+            <xsl:when
+              test="$timeliness = 'ST' or $timeliness = 'SN' or $timeliness = 'NS' or $timeliness = 'AL' or $timeliness = '__'">
+              <xsl:value-of select="'true'" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'false'" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <NRT>
+          <xsl:value-of select="$NRT" />
+        </NRT>
+        <STC>
+          <xsl:value-of select="$STC" />
+        </STC>
+        <NTC>
+          <xsl:value-of select="$NTC" />
+        </NTC>
+      </xsl:template>
+
+      <!--==================== Format Date Time Template ========================= -->
+      <!-- Desired format: yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z' -->
+      <xsl:template name="formatDateTime">
+        <xsl:param name="receivedDateTime" />
+        <xsl:variable name="dateLength"
+          select="string-length($receivedDateTime)" />
+        <xsl:choose>
+          <xsl:when test="$dateLength='15'">
+            <xsl:call-template name="normalizeDateTime">
+              <xsl:with-param name="receivedDateTime"
+                select="$receivedDateTime" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$receivedDateTime" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>
+
+      <xsl:template name="normalizeDateTime">
+        <xsl:param name="receivedDateTime" />
+        <xsl:variable name="year"
+          select="substring($receivedDateTime,1,4)" />
+        <xsl:variable name="month"
+          select="substring($receivedDateTime,5,2)" />
+        <xsl:variable name="day"
+          select="substring($receivedDateTime,7,2)" />
+        <xsl:variable name="hour"
+          select="substring($receivedDateTime,10,2)" />
+        <xsl:variable name="minute"
+          select="substring($receivedDateTime,12,2)" />
+        <xsl:variable name="second"
+          select="substring($receivedDateTime,14,2)" />
+        <xsl:value-of
+          select="concat($year,'-',$month,'-',$day,'T',$hour,':',$minute,':',$second,'.','000000Z')" />
+      </xsl:template>
+
+    </xsl:stylesheet>
+  XSLT_S3_IIF_XML.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+
+      <!--================================== local variables ========================================= -->
+      <xsl:variable name="PRODUCT_NAME"
+        select="//*[local-name()='keys']/feature[@key='originalName']" />
+      <xsl:variable name="PRODUCT_TYPE"
+        select="substring($PRODUCT_NAME, 5, 11)" />
+
+      <!--======= Create a flat XML structure with the necessary information ======= -->
+      <xsl:template match="/">
+        <startTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='temporalCoverage']/startTime" />
+          </xsl:call-template>
+        </startTime>
+
+        <stopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='temporalCoverage']/stopTime" />
+          </xsl:call-template>
+        </stopTime>
+
+        <!-- currently the aux search is used to search for granules, and the aux 
+          search needs the field validityStartTime -->
+        <validityStartTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='temporalCoverage']/startTime" />
+          </xsl:call-template>
+        </validityStartTime>
+
+        <!-- currently the aux search is used to search for granules, and the aux 
+          search needs the field validityStopTime -->
+        <validityStopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='temporalCoverage']/stopTime" />
+          </xsl:call-template>
+        </validityStopTime>
+
+        <creationTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="substring($PRODUCT_NAME, 49, 15)" />
+          </xsl:call-template>
+        </creationTime>
+
+        <ISIPProvider>
+          <xsl:value-of
+            select="//*[local-name()='specificParameters']/feature[@key='ISIPProvider']" />
+        </ISIPProvider>
+
+        <dumpStart>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='specificParameters']/feature[@key='dumpStart']" />
+          </xsl:call-template>
+        </dumpStart>
+
+        <receivingStartTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='specificParameters']/feature[@key='receivingStartTime']" />
+          </xsl:call-template>
+        </receivingStartTime>
+
+        <receivingStopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='specificParameters']/feature[@key='receivingStopTime']" />
+          </xsl:call-template>
+        </receivingStopTime>
+
+        <receivingGroundStation>
+          <xsl:value-of
+            select="//*[local-name()='specificParameters']/feature[@key='receivingGroundStation']" />
+        </receivingGroundStation>
+
+        <granuleNumber>
+          <xsl:value-of
+            select="//*[local-name()='specificParameters']/feature[@key='granuleNumber']" />
+        </granuleNumber>
+
+        <granulePosition>
+          <xsl:value-of
+            select="//*[local-name()='specificParameters']/feature[@key='granulePosition']" />
+        </granulePosition>
+
+        <qualityIndicator>
+          <xsl:value-of select="//*[local-name()='quality']" />
+        </qualityIndicator>
+
+        <xsl:call-template name="setTimeliness" />
+      </xsl:template>
+
+      <!--=================== Getting Timeliness Fields Template =================== -->
+      <!-- L0 products should always use NRT -->
+      <xsl:template name="setTimeliness">
+        <NRT>
+          <xsl:value-of select="'true'" />
+        </NRT>
+        <STC>
+          <xsl:value-of select="'false'" />
+        </STC>
+        <NTC>
+          <xsl:value-of select="'false'" />
+        </NTC>
+      </xsl:template>
+
+      <!--==================== Format Date Time Template ========================= -->
+      <!-- Desired format: yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z' -->
+      <xsl:template name="formatDateTime">
+        <xsl:param name="receivedDateTime" />
+        <xsl:variable name="dateLength"
+          select="string-length($receivedDateTime)" />
+        <xsl:choose>
+          <xsl:when test="$dateLength='15'">
+            <xsl:call-template name="normalizeDateTime">
+              <xsl:with-param name="receivedDateTime"
+                select="$receivedDateTime" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$receivedDateTime" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>
+
+      <xsl:template name="normalizeDateTime">
+        <xsl:param name="receivedDateTime" />
+        <xsl:variable name="year"
+          select="substring($receivedDateTime,1,4)" />
+        <xsl:variable name="month"
+          select="substring($receivedDateTime,5,2)" />
+        <xsl:variable name="day"
+          select="substring($receivedDateTime,7,2)" />
+        <xsl:variable name="hour"
+          select="substring($receivedDateTime,10,2)" />
+        <xsl:variable name="minute"
+          select="substring($receivedDateTime,12,2)" />
+        <xsl:variable name="second"
+          select="substring($receivedDateTime,14,2)" />
+        <xsl:value-of
+          select="concat($year,'-',$month,'-',$day,'T',$hour,':',$minute,':',$second,'.','000000Z')" />
+      </xsl:template>
+
+    </xsl:stylesheet>
+  XSLT_S3_XFDU_XML.xslt: |
+    <xsl:stylesheet version="1.0"
+      xmlns:xsl="http://www.w3.org/1999/XSL/Transform">
+      <xsl:output omit-xml-declaration="yes" method="xml"
+        encoding="utf-8" indent="yes" />
+
+      <!--================================== local variables ========================================= -->
+      <xsl:variable name="PRODUCT_NAME"
+        select="//*[local-name()='generalProductInformation']//*[local-name()='productName']/text()" />
+      <xsl:variable name="PRODUCT_TYPE"
+        select="substring($PRODUCT_NAME, 5, 11)" />
+      <xsl:variable name="PRODUCT_GROUP"
+          select="substring($PRODUCT_TYPE, 1, 2)" />
+
+      <!--======= Create a flat XML structure with the necessary information ======= -->
+      <xsl:template match="/">
+        <startTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='acquisitionPeriod']/*[local-name()='startTime']" />
+          </xsl:call-template>
+        </startTime>
+
+        <stopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='acquisitionPeriod']/*[local-name()='stopTime']" />
+          </xsl:call-template>
+        </stopTime>
+
+        <!-- currently the aux search is used to search for level products, and the aux 
+          search needs the field validityStartTime -->
+        <validityStartTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='acquisitionPeriod']/*[local-name()='startTime']" />
+          </xsl:call-template>
+        </validityStartTime>
+
+        <!-- currently the aux search is used to search for level products, and the aux 
+          search needs the field validityStopTime -->
+        <validityStopTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='acquisitionPeriod']/*[local-name()='stopTime']" />
+          </xsl:call-template>
+        </validityStopTime>
+
+        <creationTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='creationTime']/text()" />
+          </xsl:call-template>
+        </creationTime>
+
+        <baselineCollection>
+          <xsl:value-of
+            select="//*[local-name()='generalProductInformation']/*[local-name()='baselineCollection']" />
+        </baselineCollection>
+
+        <sliceCoordinates>
+          <xsl:value-of select="normalize-space(//*[local-name()='frameSet']/*[local-name()='footPrint']/*[local-name()='posList']/text())"/>
+        </sliceCoordinates>
+
+        <site>
+          <xsl:value-of
+            select="//*[local-name()='processing']/*[local-name()='facility']/@site" />
+        </site>
+
+        <xsl:call-template name="getOrbits">
+          <xsl:with-param name="xfduOrbitName"
+            select="'orbitNumber'" />
+          <xsl:with-param name="startOrbitName"
+            select="'absoluteStartOrbit'" />
+          <xsl:with-param name="stopOrbitName"
+            select="'absoluteStopOrbit'" />
+        </xsl:call-template>
+
+        <orbitDirection>
+          <xsl:value-of
+            select="//*[local-name()='orbitNumber'][@type='start']/@groundTrackDirection" />
+        </orbitDirection>
+
+        <stopOrbitDirection>
+          <xsl:value-of
+            select="//*[local-name()='orbitNumber'][@type='stop']/@groundTrackDirection" />
+        </stopOrbitDirection>
+
+        <xsl:call-template name="getOrbits">
+          <xsl:with-param name="xfduOrbitName"
+            select="'relativeOrbitNumber'" />
+          <xsl:with-param name="startOrbitName"
+            select="'relativeStartOrbit'" />
+          <xsl:with-param name="stopOrbitName"
+            select="'relativeStopOrbit'" />
+        </xsl:call-template>
+        
+        <cycleNumber>
+          <xsl:value-of
+            select="//*[local-name()='orbitReference']/*[local-name()='cycleNumber']/text()" />
+        </cycleNumber>
+
+        <receivingGroundStation>
+          <xsl:value-of
+            select="//*[local-name()='receivingGroundStation']" />
+        </receivingGroundStation>
+
+        <!-- for OLCI calibration products we need the L1Triggering value -->
+        <xsl:if
+          test="$PRODUCT_TYPE = 'OL_0_CR0___' or  $PRODUCT_TYPE = 'OL_0_CR1___' ">
+          <L1Triggering>
+            <xsl:value-of
+              select="//*[local-name()='L1Triggering']/@triggers" />
+          </L1Triggering>
+        </xsl:if>
+        
+        <platformShortName>
+          <xsl:value-of
+            select="//*[local-name()='platform']/*[local-name()='familyName']/text()" />
+        </platformShortName>
+        
+        <platformSerialIdentifier>
+          <xsl:value-of
+            select="//*[local-name()='platform']/*[local-name()='number']/text()" />
+        </platformSerialIdentifier>
+
+        <instrumentName>
+          <xsl:value-of
+            select="//*[local-name()='platform']//*[local-name()='familyName']/@abbreviation" />
+        </instrumentName>
+
+        <procTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='processing']/@start" />
+          </xsl:call-template>
+        </procTime>
+
+        <granuleNumber>
+          <xsl:call-template name="setValueOrDefault">
+            <xsl:with-param name="nodeName"
+              select="'granuleNumber'" />
+            <xsl:with-param name="defaultValue" select="'1'" />
+          </xsl:call-template>
+        </granuleNumber>
+
+        <granulePosition>
+          <xsl:call-template name="setValueOrDefault">
+            <xsl:with-param name="nodeName"
+              select="'granulePosition'" />
+            <xsl:with-param name="defaultValue" select="'NONE'" />
+          </xsl:call-template>
+        </granulePosition>
+
+        <dumpStart>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime"
+              select="//*[local-name()='dumpInformation']/*[local-name()='dumpStart']" />
+          </xsl:call-template>
+        </dumpStart>
+
+        <utcTime>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:call-template name="extractUTCTime">
+                <xsl:with-param name="elementSet"
+                  select="//*[local-name()='metadataObject'][@ID='measurementOrbitReference']" />
+                <xsl:with-param name="position" select="'1'" />
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </utcTime>
+
+        <utc1Time>
+          <xsl:call-template name="formatDateTime">
+            <xsl:with-param name="receivedDateTime">
+              <xsl:call-template name="extractUTCTime">
+                <xsl:with-param name="elementSet"
+                  select="//*[local-name()='metadataObject'][@ID='measurementOrbitReference']" />
+                <xsl:with-param name="position" select="'2'" />
+              </xsl:call-template>
+            </xsl:with-param>
+          </xsl:call-template>
+        </utc1Time>
+
+        <processingLevel>
+          <xsl:value-of select="substring($PRODUCT_NAME, 8, 1)" />
+        </processingLevel>
+
+        <procVersion>
+          <xsl:value-of
+            select="//*[local-name()='processing']//*[local-name()='software']/@version" />
+        </procVersion>
+
+        <procName>
+          <xsl:value-of
+            select="//*[local-name()='processing']//*[local-name()='software']/@name" />
+        </procName>
+
+        <qualityIndicator>
+          <xsl:value-of
+            select="//*[local-name()='onlineQualityCheck']" />
+        </qualityIndicator>
+
+        <xsl:call-template name="setTimeliness">
+          <xsl:with-param name="timeliness">
+            <xsl:value-of
+              select="//*[local-name()='generalProductInformation']/*[local-name()='timeliness']" />
+          </xsl:with-param>
+        </xsl:call-template>
+
+        <operationalMode>
+          <xsl:value-of
+            select="//*[local-name()='instrument']//*[local-name()='mode']" />
+        </operationalMode>
+          
+        <brightPercentage>
+          <xsl:value-of
+            select="//*[local-name()='classificationSummary']//*[local-name()='brightPixels']/@percentage" />
+        </brightPercentage>
+
+        <snowOrIcePercentage>
+          <xsl:value-of
+            select="//*[local-name()='classificationSummary']//*[local-name()='snowOrIcePixels']/@percentage" />
+        </snowOrIcePercentage>
+
+        <salineWaterPercentage>
+          <xsl:choose>
+            <xsl:when test="$PRODUCT_GROUP = 'SL'">
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary'][@grid='1 km']//*[local-name()='salineWaterPixels']/@percentage" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary']//*[local-name()='salineWaterPixels']/@percentage" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </salineWaterPercentage>
+
+        <coastalPercentage>
+          <xsl:choose>
+            <xsl:when test="$PRODUCT_GROUP = 'SL'">
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary'][@grid='1 km']//*[local-name()='coastalPixels']/@percentage" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary']//*[local-name()='coastalPixels']/@percentage" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </coastalPercentage>
+
+        <freshInlandWaterPercentage>
+          <xsl:choose>
+            <xsl:when test="$PRODUCT_GROUP = 'SL'">
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary'][@grid='1 km']//*[local-name()='freshInlandWaterPixels']/@percentage" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary']//*[local-name()='freshInlandWaterPixels']/@percentage" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </freshInlandWaterPercentage>
+
+        <tidalRegionPercentage>
+          <xsl:choose>
+            <xsl:when test="$PRODUCT_GROUP = 'SL'">
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary'][@grid='1 km']//*[local-name()='tidalRegionPixels']/@percentage" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary']//*[local-name()='tidalRegionPixels']/@percentage" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </tidalRegionPercentage>
+
+        <landPercentage>
+          <xsl:choose>
+            <xsl:when test="$PRODUCT_GROUP = 'SL'">
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary'][@grid='1 km']//*[local-name()='landPixels']/@percentage" />
+            </xsl:when>
+            <xsl:when test="$PRODUCT_GROUP = 'SR'">
+              <xsl:value-of
+                select="//*[local-name()='sralProductInformation']//*[local-name()='landPercentage']" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary']//*[local-name()='landPixels']/@percentage" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </landPercentage>
+
+        <closedSeaPercentage>
+          <xsl:value-of
+            select="//*[local-name()='sralProductInformation']//*[local-name()='closedSeaPercentage']" />
+        </closedSeaPercentage>
+
+        <continentalIcePercentage>
+          <xsl:value-of
+            select="//*[local-name()='sralProductInformation']//*[local-name()='continentalIcePercentage']" />
+        </continentalIcePercentage>
+
+        <openOceanPercentage>
+          <xsl:value-of
+            select="//*[local-name()='sralProductInformation']//*[local-name()='openOceanPercentage']" />
+        </openOceanPercentage>
+
+        <cloudPercentage>
+          <xsl:choose>
+            <xsl:when test="$PRODUCT_GROUP = 'SL'">
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary'][@grid='1 km']//*[local-name()='cloudyPixels']/@percentage" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of
+                select="//*[local-name()='classificationSummary']//*[local-name()='cloudyPixels']/@percentage" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </cloudPercentage>
+        
+        <s3timeliness>
+          <xsl:value-of
+            select="//*[local-name()='generalProductInformation']//*[local-name()='timeliness']" />
+        </s3timeliness>
+
+      </xsl:template>
+
+      <!--=================== Getting Timeliness Fields Template =================== -->
+      <xsl:template name="setTimeliness">
+        <xsl:param name="timeliness" />
+        <xsl:variable name="NRT">
+          <xsl:choose>
+            <xsl:when
+              test="$timeliness = 'NR' or $timeliness = 'NN' or $timeliness = 'NS' or $timeliness = 'AL' or $timeliness = '__'">
+              <xsl:value-of select="'true'" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'false'" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="NTC">
+          <xsl:choose>
+            <xsl:when
+              test="$timeliness = 'NT' or $timeliness = 'SN' or $timeliness = 'NN' or $timeliness = 'AL' or $timeliness = '__'">
+              <xsl:value-of select="'true'" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'false'" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <xsl:variable name="STC">
+          <xsl:choose>
+            <xsl:when
+              test="$timeliness = 'ST' or $timeliness = 'SN' or $timeliness = 'NS' or $timeliness = 'AL' or $timeliness = '__'">
+              <xsl:value-of select="'true'" />
+            </xsl:when>
+            <xsl:otherwise>
+              <xsl:value-of select="'false'" />
+            </xsl:otherwise>
+          </xsl:choose>
+        </xsl:variable>
+        <NRT>
+          <xsl:value-of select="$NRT" />
+        </NRT>
+        <STC>
+          <xsl:value-of select="$STC" />
+        </STC>
+        <NTC>
+          <xsl:value-of select="$NTC" />
+        </NTC>
+        
+      </xsl:template>
+
+      <!--==================== Format Date Time Template ========================= -->
+      <!-- Desired format: yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z' -->
+      <xsl:template name="formatDateTime">
+        <xsl:param name="receivedDateTime" />
+        <xsl:variable name="dateLength"
+          select="string-length($receivedDateTime)" />
+        <xsl:choose>
+          <xsl:when test="$dateLength='15'">
+            <xsl:call-template name="normalizeDateTime">
+              <xsl:with-param name="receivedDateTime"
+                select="$receivedDateTime" />
+            </xsl:call-template>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="$receivedDateTime" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>
+
+      <xsl:template name="normalizeDateTime">
+        <xsl:param name="receivedDateTime" />
+        <xsl:variable name="year"
+          select="substring($receivedDateTime,1,4)" />
+        <xsl:variable name="month"
+          select="substring($receivedDateTime,5,2)" />
+        <xsl:variable name="day"
+          select="substring($receivedDateTime,7,2)" />
+        <xsl:variable name="hour"
+          select="substring($receivedDateTime,10,2)" />
+        <xsl:variable name="minute"
+          select="substring($receivedDateTime,12,2)" />
+        <xsl:variable name="second"
+          select="substring($receivedDateTime,14,2)" />
+        <xsl:value-of
+          select="concat($year,'-',$month,'-',$day,'T',$hour,':',$minute,':',$second,'.','000000Z')" />
+      </xsl:template>
+
+      <!--============================== Getting Orbits Template =================================== -->
+      <!-- template to extract absolute and relative orbitNumbers (start and stop) -->
+      <xsl:template name="getOrbits">
+        <xsl:param name="xfduOrbitName" />
+        <xsl:param name="startOrbitName" select="absoluteStartOrbit" />
+        <xsl:param name="stopOrbitName" select="absoluteStopOrbit" />
+        <xsl:variable name="startOrbitNumber"
+          select="//metadataObject//*[local-name()=$xfduOrbitName][@type='start']" />
+        <xsl:element name="{$startOrbitName}">
+          <xsl:value-of select="$startOrbitNumber" />
+        </xsl:element>
+        <xsl:choose>
+          <xsl:when
+            test="//metadataObject//*[local-name()=$xfduOrbitName]/@type='stop'">
+            <xsl:element name="{$stopOrbitName}">
+              <xsl:value-of
+                select="//metadataObject//*[local-name()=$xfduOrbitName][@type='stop']" />
+            </xsl:element>
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:element name="{$stopOrbitName}">
+              <xsl:value-of select="$startOrbitNumber" />
+            </xsl:element>
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>
+
+      <!--================================ Extract UTC Time Template ================================= -->
+      <!-- extracts the utc time from the given element set and position -->
+      <xsl:template name="extractUTCTime">
+        <xsl:param name="elementSet" />
+        <xsl:param name="position" />
+        <xsl:value-of
+          select="$elementSet/metadataWrap/xmlData//*[local-name()='ephemeris'][position()=$position]//*[local-name()='epoch'][@type='UTC']" />
+      </xsl:template>
+
+      <!-- ================================ Set Value or default Template ==================================== -->
+      <!-- takes a name of a node, checks whether it exists, and if not sets the 
+        default -->
+      <xsl:template name="setValueOrDefault">
+        <xsl:param name="nodeName" />
+        <xsl:param name="defaultValue" />
+
+        <xsl:choose>
+          <xsl:when test="count(//*[local-name()=$nodeName])=0">
+            <xsl:value-of select="$defaultValue" />
+          </xsl:when>
+          <xsl:when test="//*[local-name()=$nodeName]= ''">
+            <xsl:value-of select="$defaultValue" />
+          </xsl:when>
+          <xsl:otherwise>
+            <xsl:value-of select="//*[local-name()=$nodeName]" />
+          </xsl:otherwise>
+        </xsl:choose>
+      </xsl:template>
+
+
+    </xsl:stylesheet>

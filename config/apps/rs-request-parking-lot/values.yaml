@@ -1,0 +1,44 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  name: rs-request-parking-lot
+  port: 8080
+
+replicaCount: 1
+logLevel: DEBUG
+logConfig: log/log4j2.yml
+
+processing:
+  namespace: processing
+
+image:
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker
+
+  name: rs-core-request-parking-lot
+  tag: 1.11.0-rc1
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+  
+mongodb:
+  host: mongodb-0.mongodb-headless.database.svc.cluster.local
+  port: 27017
+  database: coprs
+
+kafka:
+  bootstrapServers: kafka-cluster-kafka-bootstrap.infra.svc.cluster.local:9092
+  errorTopic: error-warning
+  clientId: request-parking-lot
+  maxRetries: 10
+
+resources:
+  cpu:
+    request: "100m"
+    limit: "500m"
+  ram:
+    request: "528Mi"
+    limit: "2113Mi"
+  javaOpts:
+#   xms: "256m"
+    xmx: "512m"

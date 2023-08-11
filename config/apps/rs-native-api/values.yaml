@@ -1,0 +1,1007 @@
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+
+service:
+  name: rs-native-api
+  port: 8080
+
+logLevel: DEBUG
+logConfig: log/log4j2.yml
+
+image:
+  registry: artifactory.coprs.esa-copernicus.eu
+  repository: rs-docker
+  
+  name: rs-core-native-api
+  tag: stac-nativeapi
+  
+  imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
+  
+update:
+  maxSurge: 100%
+  maxUnavailable: 50% 
+
+processing:
+  namespace: processing
+  
+nativeapi:
+    prip:
+        protocol: http
+        host: rs-prip-frontend-svc.processing.svc.cluster.local
+        port: 8080
+    external:
+        protocol: http
+        host: processing.platform.ops-csc.com/prip/odata/v1/
+        port: 80
+    defaultLimit: 100
+    rootCatalog:
+        id: catalogs
+        title: COPRS STAC
+        description: STAC interface for the Copernicus Reference System
+    hostname: https://referencesystem.copernicus.eu
+    collections:
+        S1_RAW__0S:
+            title: Collection of S1_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_RAW__0S
+            license: proprietary
+            catalog: S1
+        S2_RAW__0S:
+            title: Collection of S2_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_RAW__0S
+            license: proprietary
+            catalog: S1
+        S3_RAW__0S:
+            title: Collection of S3_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_RAW__0S
+            license: proprietary
+            catalog: S1
+        S4_RAW__0S:
+            title: Collection of S4_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_RAW__0S
+            license: proprietary
+            catalog: S1
+        S5_RAW__0S:
+            title: Collection of S5_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_RAW__0S
+            license: proprietary
+            catalog: S1
+        S6_RAW__0S:
+            title: Collection of S6_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_RAW__0S
+            license: proprietary
+            catalog: S1
+        S1_RAW__0C:
+            title: Collection of S1_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_RAW__0C
+            license: proprietary
+            catalog: S1
+        S2_RAW__0C:
+            title: Collection of S2_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_RAW__0C
+            license: proprietary
+            catalog: S1
+        S3_RAW__0C:
+            title: Collection of S3_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_RAW__0C
+            license: proprietary
+            catalog: S1
+        S4_RAW__0C:
+            title: Collection of S4_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_RAW__0C
+            license: proprietary
+            catalog: S1
+        S5_RAW__0C:
+            title: Collection of S5_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_RAW__0C
+            license: proprietary
+            catalog: S1
+        S6_RAW__0C:
+            title: Collection of S6_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_RAW__0C
+            license: proprietary
+            catalog: S1
+        S1_RAW__0N:
+            title: Collection of S1_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_RAW__0N
+            license: proprietary
+            catalog: S1
+        S2_RAW__0N:
+            title: Collection of S2_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_RAW__0N
+            license: proprietary
+            catalog: S1
+        S3_RAW__0N:
+            title: Collection of S3_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_RAW__0N
+            license: proprietary
+            catalog: S1
+        S4_RAW__0N:
+            title: Collection of S4_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_RAW__0N
+            license: proprietary
+            catalog: S1
+        S5_RAW__0N:
+            title: Collection of S5_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_RAW__0N
+            license: proprietary
+            catalog: S1
+        S6_RAW__0N:
+            title: Collection of S6_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_RAW__0N
+            license: proprietary
+            catalog: S1
+        S1_RAW__0A:
+            title: Collection of S1_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_RAW__0A
+            license: proprietary
+            catalog: S1
+        S2_RAW__0A:
+            title: Collection of S2_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_RAW__0A
+            license: proprietary
+            catalog: S1
+        S3_RAW__0A:
+            title: Collection of S3_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_RAW__0A
+            license: proprietary
+            catalog: S1
+        S4_RAW__0A:
+            title: Collection of S4_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_RAW__0A
+            license: proprietary
+            catalog: S1
+        S5_RAW__0A:
+            title: Collection of S5_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_RAW__0A
+            license: proprietary
+            catalog: S1
+        S6_RAW__0A:
+            title: Collection of S6_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_RAW__0A
+            license: proprietary
+            catalog: S1
+        S1_SLC__1S:
+            title: Collection of S1_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_SLC__1S
+            license: proprietary
+            catalog: S1
+        S2_SLC__1S:
+            title: Collection of S2_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_SLC__1S
+            license: proprietary
+            catalog: S1
+        S3_SLC__1S:
+            title: Collection of S3_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_SLC__1S
+            license: proprietary
+            catalog: S1
+        S4_SLC__1S:
+            title: Collection of S4_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_SLC__1S
+            license: proprietary
+            catalog: S1
+        S5_SLC__1S:
+            title: Collection of S5_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_SLC__1S
+            license: proprietary
+            catalog: S1
+        S6_SLC__1S:
+            title: Collection of S6_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_SLC__1S
+            license: proprietary
+            catalog: S1
+        S1_SLC__1A:
+            title: Collection of S1_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_SLC__1A
+            license: proprietary
+            catalog: S1
+        S2_SLC__1A:
+            title: Collection of S2_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_SLC__1A
+            license: proprietary
+            catalog: S1
+        S3_SLC__1A:
+            title: Collection of S3_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_SLC__1A
+            license: proprietary
+            catalog: S1
+        S4_SLC__1A:
+            title: Collection of S4_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_SLC__1A
+            license: proprietary
+            catalog: S1
+        S5_SLC__1A:
+            title: Collection of S5_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_SLC__1A
+            license: proprietary
+            catalog: S1
+        S6_SLC__1A:
+            title: Collection of S6_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_SLC__1A
+            license: proprietary
+            catalog: S1
+        S1_GRDF_1S:
+            title: Collection of S1_GRDF_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_GRDF_1S
+            license: proprietary
+            catalog: S1
+        S2_GRDF_1S:
+            title: Collection of S2_GRDF_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_GRDF_1S
+            license: proprietary
+            catalog: S1
+        S3_GRDF_1S:
+            title: Collection of S3_GRDF_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_GRDF_1S
+            license: proprietary
+            catalog: S1
+        S4_GRDF_1S:
+            title: Collection of S4_GRDF_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_GRDF_1S
+            license: proprietary
+            catalog: S1
+        S5_GRDF_1S:
+            title: Collection of S5_GRDF_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_GRDF_1S
+            license: proprietary
+            catalog: S1
+        S6_GRDF_1S:
+            title: Collection of S6_GRDF_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_GRDF_1S
+            license: proprietary
+            catalog: S1
+        S1_GRDF_1A:
+            title: Collection of S1_GRDF_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_GRDF_1A
+            license: proprietary
+            catalog: S1
+        S2_GRDF_1A:
+            title: Collection of S2_GRDF_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_GRDF_1A
+            license: proprietary
+            catalog: S1
+        S3_GRDF_1A:
+            title: Collection of S3_GRDF_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_GRDF_1A
+            license: proprietary
+            catalog: S1
+        S4_GRDF_1A:
+            title: Collection of S4_GRDF_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_GRDF_1A
+            license: proprietary
+            catalog: S1
+        S5_GRDF_1A:
+            title: Collection of S5_GRDF_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_GRDF_1A
+            license: proprietary
+            catalog: S1
+        S6_GRDF_1A:
+            title: Collection of S6_GRDF_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_GRDF_1A
+            license: proprietary
+            catalog: S1
+        S1_GRDH_1S:
+            title: Collection of S1_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_GRDH_1S
+            license: proprietary
+            catalog: S1
+        S2_GRDH_1S:
+            title: Collection of S2_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_GRDH_1S
+            license: proprietary
+            catalog: S1
+        S3_GRDH_1S:
+            title: Collection of S3_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_GRDH_1S
+            license: proprietary
+            catalog: S1
+        S4_GRDH_1S:
+            title: Collection of S4_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_GRDH_1S
+            license: proprietary
+            catalog: S1
+        S5_GRDH_1S:
+            title: Collection of S5_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_GRDH_1S
+            license: proprietary
+            catalog: S1
+        S6_GRDH_1S:
+            title: Collection of S6_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_GRDH_1S
+            license: proprietary
+            catalog: S1
+        S1_GRDH_1A:
+            title: Collection of S1_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_GRDH_1A
+            license: proprietary
+            catalog: S1
+        S2_GRDH_1A:
+            title: Collection of S2_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_GRDH_1A
+            license: proprietary
+            catalog: S1
+        S3_GRDH_1A:
+            title: Collection of S3_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_GRDH_1A
+            license: proprietary
+            catalog: S1
+        S4_GRDH_1A:
+            title: Collection of S4_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_GRDH_1A
+            license: proprietary
+            catalog: S1
+        S5_GRDH_1A:
+            title: Collection of S5_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_GRDH_1A
+            license: proprietary
+            catalog: S1
+        S6_GRDH_1A:
+            title: Collection of S6_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_GRDH_1A
+            license: proprietary
+            catalog: S1
+        S1_GRDM_1S:
+            title: Collection of S1_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_GRDM_1S
+            license: proprietary
+            catalog: S1
+        S2_GRDM_1S:
+            title: Collection of S2_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_GRDM_1S
+            license: proprietary
+            catalog: S1
+        S3_GRDM_1S:
+            title: Collection of S3_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_GRDM_1S
+            license: proprietary
+            catalog: S1
+        S4_GRDM_1S:
+            title: Collection of S4_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_GRDM_1S
+            license: proprietary
+            catalog: S1
+        S5_GRDM_1S:
+            title: Collection of S5_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_GRDM_1S
+            license: proprietary
+            catalog: S1
+        S6_GRDM_1S:
+            title: Collection of S6_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_GRDM_1S
+            license: proprietary
+            catalog: S1
+        S1_GRDM_1A:
+            title: Collection of S1_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_GRDM_1A
+            license: proprietary
+            catalog: S1
+        S2_GRDM_1A:
+            title: Collection of S2_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_GRDM_1A
+            license: proprietary
+            catalog: S1
+        S3_GRDM_1A:
+            title: Collection of S3_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_GRDM_1A
+            license: proprietary
+            catalog: S1
+        S4_GRDM_1A:
+            title: Collection of S4_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_GRDM_1A
+            license: proprietary
+            catalog: S1
+        S5_GRDM_1A:
+            title: Collection of S5_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_GRDM_1A
+            license: proprietary
+            catalog: S1
+        S6_GRDM_1A:
+            title: Collection of S6_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_GRDM_1A
+            license: proprietary
+            catalog: S1
+        S1_RTC__1S:
+            title: Collection of S1_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_RTC__1S
+            license: proprietary
+            catalog: S1
+        S2_RTC__1S:
+            title: Collection of S2_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_RTC__1S
+            license: proprietary
+            catalog: S1
+        S3_RTC__1S:
+            title: Collection of S3_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_RTC__1S
+            license: proprietary
+            catalog: S1
+        S4_RTC__1S:
+            title: Collection of S4_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_RTC__1S
+            license: proprietary
+            catalog: S1
+        S5_RTC__1S:
+            title: Collection of S5_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_RTC__1S
+            license: proprietary
+            catalog: S1
+        S6_RTC__1S:
+            title: Collection of S6_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_RTC__1S
+            license: proprietary
+            catalog: S1
+        S1_OCN__2S:
+            title: Collection of S1_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_OCN__2S
+            license: proprietary
+            catalog: S1
+        S2_OCN__2S:
+            title: Collection of S2_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_OCN__2S
+            license: proprietary
+            catalog: S1
+        S3_OCN__2S:
+            title: Collection of S3_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_OCN__2S
+            license: proprietary
+            catalog: S1
+        S4_OCN__2S:
+            title: Collection of S4_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_OCN__2S
+            license: proprietary
+            catalog: S1
+        S5_OCN__2S:
+            title: Collection of S5_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_OCN__2S
+            license: proprietary
+            catalog: S1
+        S6_OCN__2S:
+            title: Collection of S6_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_OCN__2S
+            license: proprietary
+            catalog: S1
+        S1_OCN__2A:
+            title: Collection of S1_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S1_OCN__2A
+            license: proprietary
+            catalog: S1
+        S2_OCN__2A:
+            title: Collection of S2_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S2_OCN__2A
+            license: proprietary
+            catalog: S1
+        S3_OCN__2A:
+            title: Collection of S3_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S3_OCN__2A
+            license: proprietary
+            catalog: S1
+        S4_OCN__2A:
+            title: Collection of S4_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S4_OCN__2A
+            license: proprietary
+            catalog: S1
+        S5_OCN__2A:
+            title: Collection of S5_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S5_OCN__2A
+            license: proprietary
+            catalog: S1
+        S6_OCN__2A:
+            title: Collection of S6_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type S6_OCN__2A
+            license: proprietary
+            catalog: S1
+        IW_RAW__0S:
+            title: Collection of IW_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_RAW__0S
+            license: proprietary
+            catalog: S1
+        IW_RAW__0C:
+            title: Collection of IW_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_RAW__0C
+            license: proprietary
+            catalog: S1
+        IW_RAW__0N:
+            title: Collection of IW_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_RAW__0N
+            license: proprietary
+            catalog: S1
+        IW_RAW__0A:
+            title: Collection of IW_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_RAW__0A
+            license: proprietary
+            catalog: S1
+        IW_SLC__1S:
+            title: Collection of IW_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_SLC__1S
+            license: proprietary
+            catalog: S1
+        IW_SLC__1A:
+            title: Collection of IW_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_SLC__1A
+            license: proprietary
+            catalog: S1
+        IW_GRDH_1S:
+            title: Collection of IW_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_GRDH_1S
+            license: proprietary
+            catalog: S1
+        IW_GRDH_1A:
+            title: Collection of IW_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_GRDH_1A
+            license: proprietary
+            catalog: S1
+        IW_GRDM_1S:
+            title: Collection of IW_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_GRDM_1S
+            license: proprietary
+            catalog: S1
+        IW_GRDM_1A:
+            title: Collection of IW_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_GRDM_1A
+            license: proprietary
+            catalog: S1
+        IW_RTC__1S:
+            title: Collection of IW_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_RTC__1S
+            license: proprietary
+            catalog: S1
+        IW_OCN__2S:
+            title: Collection of IW_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_OCN__2S
+            license: proprietary
+            catalog: S1
+        IW_OCN__2A:
+            title: Collection of IW_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type IW_OCN__2A
+            license: proprietary
+            catalog: S1
+        EW_RAW__0S:
+            title: Collection of EW_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_RAW__0S
+            license: proprietary
+            catalog: S1
+        EW_RAW__0C:
+            title: Collection of EW_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_RAW__0C
+            license: proprietary
+            catalog: S1
+        EW_RAW__0N:
+            title: Collection of EW_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_RAW__0N
+            license: proprietary
+            catalog: S1
+        EW_RAW__0A:
+            title: Collection of EW_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_RAW__0A
+            license: proprietary
+            catalog: S1
+        EW_SLC__1S:
+            title: Collection of EW_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_SLC__1S
+            license: proprietary
+            catalog: S1
+        EW_SLC__1A:
+            title: Collection of EW_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_SLC__1A
+            license: proprietary
+            catalog: S1
+        EW_GRDH_1S:
+            title: Collection of EW_GRDH_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_GRDH_1S
+            license: proprietary
+            catalog: S1
+        EW_GRDH_1A:
+            title: Collection of EW_GRDH_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_GRDH_1A
+            license: proprietary
+            catalog: S1
+        EW_GRDM_1S:
+            title: Collection of EW_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_GRDM_1S
+            license: proprietary
+            catalog: S1
+        EW_GRDM_1A:
+            title: Collection of EW_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_GRDM_1A
+            license: proprietary
+            catalog: S1
+        EW_RTC__1S:
+            title: Collection of EW_RTC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_RTC__1S
+            license: proprietary
+            catalog: S1
+        EW_OCN__2S:
+            title: Collection of EW_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_OCN__2S
+            license: proprietary
+            catalog: S1
+        EW_OCN__2A:
+            title: Collection of EW_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EW_OCN__2A
+            license: proprietary
+            catalog: S1
+        WV_RAW__0S:
+            title: Collection of WV_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_RAW__0S
+            license: proprietary
+            catalog: S1
+        WV_RAW__0A:
+            title: Collection of WV_RAW__0A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_RAW__0A
+            license: proprietary
+            catalog: S1
+        WV_RAW__0C:
+            title: Collection of WV_RAW__0C products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_RAW__0C
+            license: proprietary
+            catalog: S1
+        WV_RAW__0N:
+            title: Collection of WV_RAW__0N products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_RAW__0N
+            license: proprietary
+            catalog: S1
+        WV_SLC__1S:
+            title: Collection of WV_SLC__1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_SLC__1S
+            license: proprietary
+            catalog: S1
+        WV_SLC__1A:
+            title: Collection of WV_SLC__1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_SLC__1A
+            license: proprietary
+            catalog: S1
+        WV_GRDM_1S:
+            title: Collection of WV_GRDM_1S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_GRDM_1S
+            license: proprietary
+            catalog: S1
+        WV_GRDM_1A:
+            title: Collection of WV_GRDM_1A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_GRDM_1A
+            license: proprietary
+            catalog: S1
+        WV_OCN__2S:
+            title: Collection of WV_OCN__2S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_OCN__2S
+            license: proprietary
+            catalog: S1
+        WV_OCN__2A:
+            title: Collection of WV_OCN__2A products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type WV_OCN__2A
+            license: proprietary
+            catalog: S1
+        RF_RAW__0S:
+            title: Collection of RF_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type RF_RAW__0S
+            license: proprietary
+            catalog: S1
+        EN_RAW__0S:
+            title: Collection of EN_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type EN_RAW__0S
+            license: proprietary
+            catalog: S1
+        N1_RAW__0S:
+            title: Collection of N1_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type N1_RAW__0S
+            license: proprietary
+            catalog: S1
+        N2_RAW__0S:
+            title: Collection of N2_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type N2_RAW__0S
+            license: proprietary
+            catalog: S1
+        N3_RAW__0S:
+            title: Collection of N3_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type N3_RAW__0S
+            license: proprietary
+            catalog: S1
+        N4_RAW__0S:
+            title: Collection of N4_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type N4_RAW__0S
+            license: proprietary
+            catalog: S1
+        N5_RAW__0S:
+            title: Collection of N5_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type N5_RAW__0S
+            license: proprietary
+            catalog: S1
+        N6_RAW__0S:
+            title: Collection of N6_RAW__0S products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type N6_RAW__0S
+            license: proprietary
+            catalog: S1
+        GP_RAW__0_:
+            title: Collection of GP_RAW__0_ products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type GP_RAW__0_
+            license: proprietary
+            catalog: S1
+        HK_RAW__0_:
+            title: Collection of HK_RAW__0_ products
+            description: This collection holds all published Sentinel-1 products of the Copernicus Reference System of the product type HK_RAW__0_
+            license: proprietary
+            catalog: S1
+        MSI_L0__DS:
+            title: Collection of MSI_L0__DS products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L0__DS
+            license: proprietary
+            catalog: S2
+        MSI_L0__GR:
+            title: Collection of MSI_L0__GR products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L0__GR
+            license: proprietary
+            catalog: S2
+        MSI_L1A_DS:
+            title: Collection of MSI_L1A_DS products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1A_DS
+            license: proprietary
+            catalog: S2
+        MSI_L1A_GR:
+            title: Collection of MSI_L1A_GR products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1A_GR
+            license: proprietary
+            catalog: S2
+        MSI_L1B_DS:
+            title: Collection of MSI_L1B_DS products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1B_DS
+            license: proprietary
+            catalog: S2
+        MSI_L1B_GR:
+            title: Collection of MSI_L1B_GR products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1B_GR
+            license: proprietary
+            catalog: S2
+        MSI_L1C_DS:
+            title: Collection of MSI_L1C_DS products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1C_DS
+            license: proprietary
+            catalog: S2
+        MSI_L1C_TL:
+            title: Collection of MSI_L1C_TL products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1C_TL
+            license: proprietary
+            catalog: S2
+        MSI_L1C_TC:
+            title: Collection of MSI_L1C_TC products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L1C_TC
+            license: proprietary
+            catalog: S2
+        MSI_L2A_DS:
+            title: Collection of MSI_L2A_DS products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L2A_DS
+            license: proprietary
+            catalog: S2
+        MSI_L2A_TL:
+            title: Collection of MSI_L2A_TL products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L2A_TL
+            license: proprietary
+            catalog: S2
+        MSI_L2A_TC:
+            title: Collection of MSI_L2A_TC products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type MSI_L2A_TC
+            license: proprietary
+            catalog: S2
+        PRD_HKTM__:
+            title: Collection of PRD_HKTM__ products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type PRD_HKTM__
+            license: proprietary
+            catalog: S2
+        AUX_SADATA:
+            title: Collection of AUX_SADATA products
+            description: This collection holds all published Sentinel-2 products of the Copernicus Reference System of the product type AUX_SADATA
+            license: proprietary
+            catalog: S2
+        DO_0_DOP___:
+            title: Collection of DO_0_DOP___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type DO_0_DOP___
+            license: proprietary
+            catalog: S3
+        DO_0_NAV___:
+            title: Collection of DO_0_NAV___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type DO_0_NAV___
+            license: proprietary
+            catalog: S3
+        GN_0_GNS___:
+            title: Collection of GN_0_GNS___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type GN_0_GNS___
+            license: proprietary
+            catalog: S3
+        MW_0_MWR___:
+            title: Collection of MW_0_MWR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type MW_0_MWR___
+            license: proprietary
+            catalog: S3
+        MW_1_CAL___:
+            title: Collection of MW_1_CAL___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type MW_1_CAL___
+            license: proprietary
+            catalog: S3
+        MW_1_MWR___:
+            title: Collection of MW_1_MWR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type MW_1_MWR___
+            license: proprietary
+            catalog: S3
+        OL_0_CR0___:
+            title: Collection of OL_0_CR0___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_0_CR0___
+            license: proprietary
+            catalog: S3
+        OL_0_CR1___:
+            title: Collection of OL_0_CR1___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_0_CR1___
+            license: proprietary
+            catalog: S3
+        OL_0_EFR___:
+            title: Collection of OL_0_EFR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_0_EFR___
+            license: proprietary
+            catalog: S3
+        OL_1_EFR___:
+            title: Collection of OL_1_EFR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_1_EFR___
+            license: proprietary
+            catalog: S3
+        OL_1_ERR___:
+            title: Collection of OL_1_ERR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_1_ERR___
+            license: proprietary
+            catalog: S3
+        OL_1_RAC___:
+            title: Collection of OL_1_RAC___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_1_RAC___
+            license: proprietary
+            catalog: S3
+        OL_1_SPC___:
+            title: Collection of OL_1_SPC___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_1_SPC___
+            license: proprietary
+            catalog: S3
+        OL_2_LFR___:
+            title: Collection of OL_2_LFR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_2_LFR___
+            license: proprietary
+            catalog: S3
+        OL_2_LRR___:
+            title: Collection of OL_2_LRR___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type OL_2_LRR___
+            license: proprietary
+            catalog: S3
+        SL_0_SLT___:
+            title: Collection of SL_0_SLT___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SL_0_SLT___
+            license: proprietary
+            catalog: S3
+        SL_1_RBT___:
+            title: Collection of SL_1_RBT___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SL_1_RBT___
+            license: proprietary
+            catalog: S3
+        SL_2_LST___:
+            title: Collection of SL_2_LST___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SL_2_LST___
+            license: proprietary
+            catalog: S3
+        SL_2_FRP___:
+            title: Collection of SL_2_FRP___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SL_2_FRP___
+            license: proprietary
+            catalog: S3
+        SR_0_SRA___:
+            title: Collection of SR_0_SRA___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_0_SRA___
+            license: proprietary
+            catalog: S3
+        SR_0_CAL___:
+            title: Collection of SR_0_CAL___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_0_CAL___
+            license: proprietary
+            catalog: S3
+        SR_1_CAL___:
+            title: Collection of SR_1_CAL___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_1_CAL___
+            license: proprietary
+            catalog: S3
+        SR_1_SRA___:
+            title: Collection of SR_1_SRA___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_1_SRA___
+            license: proprietary
+            catalog: S3
+        SR_1_SRA_A_:
+            title: Collection of SR_1_SRA_A_ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_1_SRA_A_
+            license: proprietary
+            catalog: S3
+        SR_1_SRA_BS:
+            title: Collection of SR_1_SRA_BS products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_1_SRA_BS
+            license: proprietary
+            catalog: S3
+        SR_2_LAN___:
+            title: Collection of SR_2_LAN___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SR_2_LAN___
+            license: proprietary
+            catalog: S3
+        SY_1_MISR__:
+            title: Collection of SY_1_MISR__ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_1_MISR__
+            license: proprietary
+            catalog: S3
+        SY_2_SYN___:
+            title: Collection of SY_2_SYN___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_2_SYN___
+            license: proprietary
+            catalog: S3
+        SY_2_V10___:
+            title: Collection of SY_2_V10___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_2_V10___
+            license: proprietary
+            catalog: S3
+        SY_2_VG1___:
+            title: Collection of SY_2_VG1___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_2_VG1___
+            license: proprietary
+            catalog: S3
+        SY_2_VGP___:
+            title: Collection of SY_2_VGP___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_2_VGP___
+            license: proprietary
+            catalog: S3
+        SY_2_VGK___:
+            title: Collection of SY_2_VGK___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_2_VGK___
+            license: proprietary
+            catalog: S3
+        SY_2_AOD___:
+            title: Collection of SY_2_AOD___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type SY_2_AOD___
+            license: proprietary
+            catalog: S3
+        TM_0_HKM___:
+            title: Collection of TM_0_HKM___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type TM_0_HKM___
+            license: proprietary
+            catalog: S3
+        TM_0_HKM2__:
+            title: Collection of TM_0_HKM2__ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type TM_0_HKM2__
+            license: proprietary
+            catalog: S3
+        TM_0_NAT___:
+            title: Collection of TM_0_NAT___ products
+            description: This collection holds all published Sentinel-3 products of the Copernicus Reference System of the product type TM_0_NAT___
+            license: proprietary
+            catalog: S3
+    lutConfigs:
+      "[ids={value}]":
+        - "Id eq {value}"
+      "[bbox={value}]":
+        - "OData.CSC.Intersects(area=geography'SRID=4326;POLYGON(({value}))')"
+      "[point={value}]": 
+        - "OData.CSC.Intersects(area=geography'SRID=4326;POINT({value})')"
+      "[line={value}]":
+        - "OData.CSC.Intersects(area=geography'SRID=4326;LINESTRING({value})')"
+      "[productname={value}]": 
+        - "contains(Name,'{value}')"
+      "[collections={producttype}]":
+        - "Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'productType' and att/OData.CSC.StringAttribute/Value eq '{producttype}')"
+      "[cloudcover={min}/{max}]":
+        - "Attributes/OData.CSC.DoubleAttribute/any(att:att/Name eq 'cloudCover' and att/OData.CSC.DoubleAttribute/Value gt {min})"
+        - "Attributes/OData.CSC.DoubleAttribute/any(att:att/Name eq 'cloudCover' and att/OData.CSC.DoubleAttribute/Value lt {max})"
+      "[datetime={start}/{stop}]": 
+        - "ContentDate/Start gt {start}"
+        - "ContentDate/End lt {stop}"
+      "[publicationdate={start}/{stop}]":
+        - "PublicationDate gt {start}"
+        - "PublicationDate lt {stop}"  
+      "[polarisation={value}]":
+        - "Attributes/OData.CSC.StringAttribute/any(att:att/Name eq 'polarisationChannels' and att/OData.CSC.StringAttribute/Value eq '{value}')"
+      
+resources:
+  cpu:
+    request: "100m"
+    limit: "500m"
+  ram:
+    request: "315Mi"
+    limit: "1260Mi"
+  javaOpts:
+#   xms: "256m"
+    xmx: "512m" 

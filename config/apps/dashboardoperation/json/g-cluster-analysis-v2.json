@@ -1,0 +1,1647 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "graphTooltip": 0,
+    "id": 38191,
+    "iteration": 1655452484637,
+    "links": [
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "INFRASTRUCTURE_ENG"
+            ],
+            "title": "INFRASTRUCTURE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "SERVICE_ENG"
+            ],
+            "title": "SERVICE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PROCESSING_ENG"
+            ],
+            "title": "PROCESSING",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PI_ENG"
+            ],
+            "title": "PERFORMANCE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "ANALYSIS_ENG"
+            ],
+            "targetBlank": false,
+            "title": "ANALYSIS",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "OPS_MANAGER_ENG"
+            ],
+            "title": "OPS MANAGER",
+            "type": "dashboards"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "editable": true,
+            "gridPos": {
+                "h": 2,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 8,
+            "links": [],
+            "options": {
+                "content": "<div class=\"dashboard-header\">\n  <span>POD ressources consumption analysis</span>\n</div>",
+                "mode": "html"
+            },
+            "pluginVersion": "8.3.3",
+            "style": {},
+            "transparent": true,
+            "type": "text"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 2
+            },
+            "id": 16,
+            "panels": [],
+            "title": "CPU raw data",
+            "type": "row"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto",
+                        "filterable": false
+                    },
+                    "decimals": 5,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "container"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 305
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Value #A"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 100
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "pod"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 298
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "CPU request"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 103
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "CPU limit"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 115
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "CPU Request"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 76
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 3
+            },
+            "id": 25,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "frameIndex": 1,
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": false,
+                        "displayName": "container"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_requests{ pod=~\"$Pod\",container!=\"\", resource=\"cpu\"}) by (container, pod)",
+                    "format": "table",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "cpu request",
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_limits{pod=~\"$Pod\", container!=\"\", resource=\"cpu\"}) by (container, pod)",
+                    "format": "table",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "cpu limit",
+                    "refId": "B"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$Pod\", container!=\"\"}[10m])) by (container, pod)",
+                    "format": "table",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "cpu values",
+                    "refId": "C"
+                }
+            ],
+            "title": "CPU",
+            "transformations": [
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Value #A": {
+                                "aggregations": [
+                                    "lastNotNull"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Value #B": {
+                                "aggregations": [
+                                    "lastNotNull"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Value #C": {
+                                "aggregations": [
+                                    "min",
+                                    "max",
+                                    "mean"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "container": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "pod": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "merge",
+                    "options": {}
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {
+                            "Value #A (lastNotNull)": 2,
+                            "Value #B (lastNotNull)": 3,
+                            "Value #C (max)": 5,
+                            "Value #C (mean)": 6,
+                            "Value #C (min)": 4,
+                            "container": 1,
+                            "pod": 0
+                        },
+                        "renameByName": {
+                            "Value #A (lastNotNull)": "request",
+                            "Value #B (lastNotNull)": "limit",
+                            "Value #C (max)": "max",
+                            "Value #C (mean)": "mean",
+                            "Value #C (min)": "min"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 12
+            },
+            "id": 18,
+            "panels": [],
+            "title": "CPU graph",
+            "type": "row"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 62,
+                        "gradientMode": "opacity",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "decimals": 2,
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "none"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "requests"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "#F2495C",
+                                    "mode": "fixed"
+                                }
+                            },
+                            {
+                                "id": "custom.fillOpacity",
+                                "value": 0
+                            },
+                            {
+                                "id": "custom.lineWidth",
+                                "value": 2
+                            },
+                            {
+                                "id": "custom.stacking",
+                                "value": {
+                                    "group": false,
+                                    "mode": "normal"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "limits"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "#FF9830",
+                                    "mode": "fixed"
+                                }
+                            },
+                            {
+                                "id": "custom.fillOpacity",
+                                "value": 0
+                            },
+                            {
+                                "id": "custom.lineWidth",
+                                "value": 2
+                            },
+                            {
+                                "id": "custom.stacking",
+                                "value": {
+                                    "group": false,
+                                    "mode": "normal"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byRegexp",
+                            "options": "request.*"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-yellow",
+                                    "mode": "fixed"
+                                }
+                            },
+                            {
+                                "id": "custom.lineStyle",
+                                "value": {
+                                    "dash": [
+                                        10,
+                                        10
+                                    ],
+                                    "fill": "dash"
+                                }
+                            },
+                            {
+                                "id": "custom.fillOpacity",
+                                "value": 0
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byRegexp",
+                            "options": "limit.*"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.lineStyle",
+                                "value": {
+                                    "dash": [
+                                        10,
+                                        10
+                                    ],
+                                    "fill": "dash"
+                                }
+                            },
+                            {
+                                "id": "custom.fillOpacity",
+                                "value": 0
+                            },
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-red",
+                                    "mode": "fixed"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "__systemRef": "hideSeriesFrom",
+                        "matcher": {
+                            "id": "byNames",
+                            "options": {
+                                "mode": "exclude",
+                                "names": [
+                                    "limits s1pro-ingestion-xbip-worker",
+                                    "s1pro-ingestion-xbip-worker-0 / s1pro-ingestion-xbip-worker"
+                                ],
+                                "prefix": "All except:",
+                                "readOnly": true
+                            }
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.hideFrom",
+                                "value": {
+                                    "legend": false,
+                                    "tooltip": false,
+                                    "viz": true
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 24,
+                "x": 0,
+                "y": 13
+            },
+            "id": 10,
+            "links": [],
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "lastNotNull",
+                        "max"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "sortBy": "Max",
+                    "sortDesc": true
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(rate(container_cpu_usage_seconds_total{pod=~\"$Pod\", container!=\"\"}[10m])) by (container, pod)",
+                    "format": "time_series",
+                    "hide": false,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{pod}} / {{container}}",
+                    "refId": "A",
+                    "step": 10
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_requests{ pod=~\"$Pod\",container!=\"\", resource=\"cpu\"}) by (container, pod)\n",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "requests {{container}}",
+                    "refId": "B",
+                    "step": 10
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_limits{pod=~\"$Pod\", container!=\"\", resource=\"cpu\"}) by (container, pod)\n",
+                    "format": "time_series",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "limits {{container}}",
+                    "refId": "C",
+                    "step": 10
+                }
+            ],
+            "title": "CPU Usage",
+            "type": "timeseries"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 20
+            },
+            "id": 20,
+            "panels": [],
+            "title": "Memory raw data",
+            "type": "row"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto",
+                        "filterable": false
+                    },
+                    "decimals": 1,
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "bytes"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "container"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 305
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Value #A"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 100
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "pod"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 298
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "CPU request"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 103
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "CPU limit"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 115
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "CPU Request"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 76
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 9,
+                "w": 24,
+                "x": 0,
+                "y": 21
+            },
+            "id": 28,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "frameIndex": 1,
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "max"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_requests{ pod=~\"$Pod\",container!=\"\", resource=\"memory\"}) by (container, pod)",
+                    "format": "table",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "memory request",
+                    "refId": "A"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_limits{pod=~\"$Pod\", container!=\"\", resource=\"memory\"}) by (container, pod)",
+                    "format": "table",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "memory limit",
+                    "refId": "B"
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(container_memory_usage_bytes{pod=~\"$Pod\", container!=\"\", container!=\"\", image!=\"\"}) by (pod,container)",
+                    "format": "table",
+                    "hide": false,
+                    "instant": false,
+                    "interval": "",
+                    "legendFormat": "memory values",
+                    "refId": "C"
+                }
+            ],
+            "title": "Memory",
+            "transformations": [
+                {
+                    "id": "groupBy",
+                    "options": {
+                        "fields": {
+                            "Value #A": {
+                                "aggregations": [
+                                    "lastNotNull"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Value #B": {
+                                "aggregations": [
+                                    "lastNotNull"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "Value #C": {
+                                "aggregations": [
+                                    "min",
+                                    "max",
+                                    "mean"
+                                ],
+                                "operation": "aggregate"
+                            },
+                            "container": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            },
+                            "pod": {
+                                "aggregations": [],
+                                "operation": "groupby"
+                            }
+                        }
+                    }
+                },
+                {
+                    "id": "merge",
+                    "options": {}
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {
+                            "Value #A (lastNotNull)": 2,
+                            "Value #B (lastNotNull)": 3,
+                            "Value #C (max)": 5,
+                            "Value #C (mean)": 6,
+                            "Value #C (min)": 4,
+                            "container": 1,
+                            "pod": 0
+                        },
+                        "renameByName": {
+                            "Value #A (lastNotNull)": "request",
+                            "Value #B (lastNotNull)": "limit",
+                            "Value #C (max)": "max",
+                            "Value #C (mean)": "mean",
+                            "Value #C (min)": "min"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 30
+            },
+            "id": 22,
+            "panels": [],
+            "title": "Memory graph",
+            "type": "row"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 100,
+                        "gradientMode": "opacity",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "linear",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "bytes"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byRegexp",
+                            "options": "request.*"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "dark-red",
+                                    "mode": "fixed"
+                                }
+                            },
+                            {
+                                "id": "custom.fillOpacity",
+                                "value": 0
+                            },
+                            {
+                                "id": "custom.lineWidth",
+                                "value": 1
+                            },
+                            {
+                                "id": "custom.stacking",
+                                "value": {
+                                    "group": "false",
+                                    "mode": "normal"
+                                }
+                            },
+                            {
+                                "id": "custom.lineStyle",
+                                "value": {
+                                    "dash": [
+                                        10,
+                                        10
+                                    ],
+                                    "fill": "dash"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byRegexp",
+                            "options": "limit.*"
+                        },
+                        "properties": [
+                            {
+                                "id": "color",
+                                "value": {
+                                    "fixedColor": "semi-dark-yellow",
+                                    "mode": "fixed"
+                                }
+                            },
+                            {
+                                "id": "custom.fillOpacity",
+                                "value": 0
+                            },
+                            {
+                                "id": "custom.lineWidth",
+                                "value": 1
+                            },
+                            {
+                                "id": "custom.stacking",
+                                "value": {
+                                    "group": "false",
+                                    "mode": "normal"
+                                }
+                            },
+                            {
+                                "id": "custom.lineStyle",
+                                "value": {
+                                    "dash": [
+                                        10,
+                                        10
+                                    ],
+                                    "fill": "dash"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 7,
+                "w": 24,
+                "x": 0,
+                "y": 31
+            },
+            "id": 12,
+            "links": [],
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "lastNotNull",
+                        "max"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "sortBy": "Max",
+                    "sortDesc": true
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(container_memory_usage_bytes{pod=~\"$Pod\", container!=\"POD\", container!=\"\", image!=\"\"}) by (pod,container)",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{pod}} / {{container}}",
+                    "refId": "A",
+                    "step": 10
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_requests{ pod=~\"$Pod\",container!=\"\", resource=\"memory\"}) by (container, pod)\n",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{pod}} / {{container}} / requests ",
+                    "refId": "B",
+                    "step": 10
+                },
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kube_pod_container_resource_limits{pod=~\"$Pod\", container!=\"\", resource=\"memory\"}) by (container, pod)\n",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{pod}} / {{container}} / limits",
+                    "refId": "C",
+                    "step": 10
+                }
+            ],
+            "title": "Memory Usage",
+            "type": "timeseries"
+        },
+        {
+            "collapsed": true,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 38
+            },
+            "id": 27,
+            "panels": [
+                {
+                    "fieldConfig": {
+                        "defaults": {
+                            "custom": {
+                                "align": "center",
+                                "displayMode": "auto",
+                                "filterable": false
+                            },
+                            "decimals": 5,
+                            "mappings": [],
+                            "thresholds": {
+                                "mode": "absolute",
+                                "steps": [
+                                    {
+                                        "color": "green"
+                                    },
+                                    {
+                                        "color": "red",
+                                        "value": 80
+                                    }
+                                ]
+                            }
+                        },
+                        "overrides": [
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "container"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 305
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "Value #A"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 100
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "pod"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 298
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU request"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 103
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU limit"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 115
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU Request"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 76
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "MEMORY Request "
+                                },
+                                "properties": [
+                                    {
+                                        "id": "decimals",
+                                        "value": 0
+                                    },
+                                    {
+                                        "id": "custom.width",
+                                        "value": 132
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "MEMORY Limit"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "decimals",
+                                        "value": 0
+                                    },
+                                    {
+                                        "id": "custom.width",
+                                        "value": 131
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU REQUEST"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 108
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU LIMIT"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 91
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU min"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 83
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU avg"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 73
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "CPU max "
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 70
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "MEMORY  min"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "custom.width",
+                                        "value": 132
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "MEMORY  min"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "decimals",
+                                        "value": 0
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "MEMORY  avg"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "decimals",
+                                        "value": 0
+                                    },
+                                    {
+                                        "id": "custom.width",
+                                        "value": 128
+                                    }
+                                ]
+                            },
+                            {
+                                "matcher": {
+                                    "id": "byName",
+                                    "options": "MEMORY  max"
+                                },
+                                "properties": [
+                                    {
+                                        "id": "decimals",
+                                        "value": 0
+                                    },
+                                    {
+                                        "id": "custom.width",
+                                        "value": 166
+                                    }
+                                ]
+                            }
+                        ]
+                    },
+                    "gridPos": {
+                        "h": 13,
+                        "w": 24,
+                        "x": 0,
+                        "y": 30
+                    },
+                    "id": 23,
+                    "options": {
+                        "footer": {
+                            "fields": "",
+                            "reducer": [
+                                "sum"
+                            ],
+                            "show": false
+                        },
+                        "frameIndex": 1,
+                        "showHeader": true,
+                        "sortBy": [
+                            {
+                                "desc": false,
+                                "displayName": "container"
+                            }
+                        ]
+                    },
+                    "pluginVersion": "8.3.3",
+                    "targets": [
+                        {
+                            "expr": "sum(kube_pod_container_resource_requests_cpu_cores{ pod=~\"$Pod\",container!=\"POD\", pod!~\"elasticsearch-trace-snapshot-cleaner.*\", pod !~\"stash-backup-elasticsearch-.*\", pod!~\"elasticsearch-log-curator-.*\"}) by (container, pod)",
+                            "format": "table",
+                            "hide": false,
+                            "instant": false,
+                            "interval": "",
+                            "legendFormat": "cpu request",
+                            "refId": "A"
+                        },
+                        {
+                            "expr": "sum(kube_pod_container_resource_limits_cpu_cores{pod=~\"$Pod\", container!=\"POD\", pod!~\"elasticsearch-trace-snapshot-cleaner.*\", pod !~\"stash-backup-elasticsearch-.*\", pod!~\"elasticsearch-log-curator-.*\"}) by (container, pod)",
+                            "format": "table",
+                            "hide": false,
+                            "instant": false,
+                            "interval": "",
+                            "legendFormat": "cpu limit",
+                            "refId": "B"
+                        },
+                        {
+                            "expr": "sum(node_namespace_pod_container:container_cpu_usage_seconds_total:sum_rate{pod=~\"$Pod\", container!=\"POD\", pod!~\"elasticsearch-trace-snapshot-cleaner.*\", pod !~\"stash-backup-elasticsearch-.*\", pod!~\"elasticsearch-log-curator-.*\"}) by (pod, container)",
+                            "format": "table",
+                            "hide": false,
+                            "instant": false,
+                            "interval": "",
+                            "legendFormat": "cpu values",
+                            "refId": "C"
+                        },
+                        {
+                            "expr": "sum(kube_pod_container_resource_requests_memory_bytes{pod=~\"$Pod\", pod!~\"elasticsearch-trace-snapshot-cleaner.*\", pod !~\"stash-backup-elasticsearch-.*\", pod!~\"elasticsearch-log-curator-.*\"}) by (container,pod)",
+                            "format": "table",
+                            "hide": false,
+                            "instant": false,
+                            "interval": "",
+                            "legendFormat": "Memory request",
+                            "refId": "D"
+                        },
+                        {
+                            "expr": "sum(kube_pod_container_resource_limits_memory_bytes{pod=~\"$Pod\", container!=\"\", pod!~\"elasticsearch-trace-snapshot-cleaner.*\", pod !~\"stash-backup-elasticsearch-.*\", pod!~\"elasticsearch-log-curator-.*\"}) by (container,pod)",
+                            "format": "table",
+                            "hide": false,
+                            "instant": false,
+                            "interval": "",
+                            "legendFormat": "Memory limit",
+                            "refId": "E"
+                        },
+                        {
+                            "expr": "sum(container_memory_usage_bytes{pod=~\"$Pod\", container!=\"POD\", container!=\"\", image!=\"\", pod!~\"elasticsearch-trace-snapshot-cleaner.*\", pod !~\"stash-backup-elasticsearch-.*\", pod!~\"elasticsearch-log-curator-.*\"}) by (pod,container)",
+                            "format": "table",
+                            "hide": false,
+                            "instant": false,
+                            "interval": "",
+                            "legendFormat": "memory values",
+                            "refId": "F"
+                        }
+                    ],
+                    "title": "CPU & Memory",
+                    "transformations": [
+                        {
+                            "id": "groupBy",
+                            "options": {
+                                "fields": {
+                                    "CPU Request": {
+                                        "aggregations": [
+                                            "lastNotNull"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "Value #A": {
+                                        "aggregations": [
+                                            "lastNotNull"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "Value #B": {
+                                        "aggregations": [
+                                            "lastNotNull"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "Value #C": {
+                                        "aggregations": [
+                                            "min",
+                                            "mean",
+                                            "max"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "Value #D": {
+                                        "aggregations": [
+                                            "lastNotNull"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "Value #E": {
+                                        "aggregations": [
+                                            "lastNotNull"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "Value #F": {
+                                        "aggregations": [
+                                            "min",
+                                            "mean",
+                                            "max"
+                                        ],
+                                        "operation": "aggregate"
+                                    },
+                                    "container": {
+                                        "aggregations": [],
+                                        "operation": "groupby"
+                                    },
+                                    "pod": {
+                                        "aggregations": [],
+                                        "operation": "groupby"
+                                    }
+                                }
+                            }
+                        },
+                        {
+                            "id": "merge",
+                            "options": {}
+                        },
+                        {
+                            "id": "organize",
+                            "options": {
+                                "excludeByName": {},
+                                "indexByName": {
+                                    "Value #A (lastNotNull)": 2,
+                                    "Value #B (lastNotNull)": 3,
+                                    "Value #C (max)": 6,
+                                    "Value #C (mean)": 5,
+                                    "Value #C (min)": 4,
+                                    "container": 1,
+                                    "pod": 0
+                                },
+                                "renameByName": {
+                                    "Value #A (lastNotNull)": "CPU REQUEST",
+                                    "Value #B (lastNotNull)": "CPU LIMIT",
+                                    "Value #C (max)": "CPU max ",
+                                    "Value #C (mean)": "CPU avg",
+                                    "Value #C (min)": "CPU min",
+                                    "Value #D (lastNotNull)": "MEMORY Request ",
+                                    "Value #E (lastNotNull)": "MEMORY Limit",
+                                    "Value #F (max)": "MEMORY  max",
+                                    "Value #F (mean)": "MEMORY  avg",
+                                    "Value #F (min)": "MEMORY  min"
+                                }
+                            }
+                        }
+                    ],
+                    "type": "table"
+                }
+            ],
+            "title": "Export",
+            "type": "row"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [
+        "ANALYSIS_ENG"
+    ],
+    "templating": {
+        "list": [
+            {
+                "allValue": ".*",
+                "current": {
+                    "selected": true,
+                    "text": [
+                        "kube-system"
+                    ],
+                    "value": [
+                        "kube-system"
+                    ]
+                },
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "P5DCFC7561CCDE821"
+                },
+                "definition": "label_values(kube_pod_info{}, namespace)",
+                "hide": 0,
+                "includeAll": true,
+                "label": "Namespace",
+                "multi": true,
+                "name": "Namespace",
+                "options": [],
+                "query": {
+                    "query": "label_values(kube_pod_info{}, namespace)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 2,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "allValue": ".*",
+                "current": {
+                    "selected": true,
+                    "text": [
+                        "All"
+                    ],
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "datasource": {
+                    "type": "prometheus",
+                    "uid": "P5DCFC7561CCDE821"
+                },
+                "definition": "label_values(kube_pod_info{namespace=\"${Namespace}\"}, pod)",
+                "hide": 0,
+                "includeAll": true,
+                "label": "Pod",
+                "multi": true,
+                "name": "Pod",
+                "options": [],
+                "query": {
+                    "query": "label_values(kube_pod_info{namespace=\"${Namespace}\"}, pod)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 2,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            }
+        ]
+    },
+    "time": {
+        "from": "2022-03-18T00:00:00.000Z",
+        "to": "2022-04-30T23:59:58.000Z"
+    },
+    "timepicker": {
+        "refresh_intervals": [
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+        ]
+    },
+    "timezone": "utc",
+    "title": "G. Cluster analysis (v2)",
+    "uid": "gN9Bhtrnk",
+    "version": 14,
+    "weekStart": ""
+}

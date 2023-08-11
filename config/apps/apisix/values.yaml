@@ -1,0 +1,287 @@
+
+apisix:
+  # Enable or disable Apache APISIX itself
+  # Set it to false and ingress-controller.enabled=true will deploy only ingress-controller
+  enabled: true
+
+  replicaCount: 3
+
+  podAnnotations:
+    config.linkerd.io/skip-outbound-ports: "2379"
+
+  resources:
+    # We usually recommend not to specify default resources and to leave this as a conscious
+    # choice for the user. This also increases chances charts run on environments with little
+    # resources, such as Minikube. If you do want to specify resources, uncomment the following
+    # lines, adjust them as necessary, and remove the curly braces after 'resources:'.
+    requests:
+      cpu: 10m
+      memory: 128Mi
+    limits:
+      cpu: 100m
+      memory: 512Mi
+
+  nodeSelector: {}
+  tolerations: []
+  affinity:
+    nodeAffinity:
+      requiredDuringSchedulingIgnoredDuringExecution:
+        nodeSelectorTerms:
+          - matchExpressions:
+            - key: "node-role.kubernetes.io/infra"
+              operator: Exists
+  # If true, it will sets the anti-affinity of the Pod.
+  podAntiAffinity:
+    enabled: true
+
+nameOverride: ""
+fullnameOverride: ""
+
+gateway:
+  type: NodePort
+  # If you want to keep the client source IP, you can set this to Local.
+  # ref: https://kubernetes.io/docs/tasks/access-application-cluster/create-external-load-balancer/#preserving-the-client-source-ip
+  externalTrafficPolicy: Cluster
+  # type: LoadBalancer
+  # annotations:
+  #   service.beta.kubernetes.io/aws-load-balancer-type: nlb
+  externalIPs: []
+  http:
+    enabled: true
+    servicePort: 80
+    containerPort: 80
+    nodePort: 32080
+  tls:
+    enabled: true
+    servicePort: 443
+    containerPort: 443
+    nodePort: 32443
+    existingCASecret: ""
+    certCAFilename: ""
+    http2:
+      enabled: true
+  stream:  # L4 proxy (TCP/UDP)
+    enabled: false
+  ingress:
+    enabled: false
+admin:
+  # Enable Admin API
+  enabled: true
+  # admin service type
+  type: ClusterIP
+  port: 9180
+  servicePort: 9180
+  # Admin API support CORS response headers
+  cors: true
+  # Admin API credentials
+  credentials:
+    admin: {{ apisix.api_credentials.admin }}
+    viewer: {{ apisix.api_credentials.viewer }}
+
+  allow:
+    # The ip range for allowing access to Apache APISIX
+    ipList:
+      - 127.0.0.1/24
+
+# APISIX plugins to be enabled
+plugins:
+  - api-breaker
+  - authz-keycloak
+  - basic-auth
+  - batch-requests
+  - consumer-restriction
+  - cors
+  - echo
+  - fault-injection
+  - grpc-transcode
+  - hmac-auth
+  - http-logger
+  - ip-restriction
+  - ua-restriction
+  - jwt-auth
+  - kafka-logger
+  - key-auth
+  - limit-conn
+  - limit-count
+  - limit-req
+  - node-status
+  - openid-connect
+  - authz-casbin
+  - prometheus
+  - proxy-cache
+  - proxy-mirror
+  - proxy-rewrite
+  - redirect
+  - referer-restriction
+  - request-id
+  - request-validation
+  - response-rewrite
+  - serverless-post-function
+  - serverless-pre-function
+  - sls-logger
+  - syslog
+  - tcp-logger
+  - udp-logger
+  - uri-blocker
+  - wolf-rbac
+  - zipkin
+  - traffic-split
+  - gzip
+  - real-ip
+stream_plugins:
+  - mqtt-proxy
+  - ip-restriction
+  - limit-conn
+
+pluginAttrs: {}
+
+# customPlugins allows you to mount your own HTTP plugins.
+customPlugins:
+  enabled: false
+
+discovery:
+  enabled: false
+
+# access log and error log configuration
+logs:
+  enableAccessLog: true
+  accessLog: "/dev/stdout"
+  accessLogFormat: '$remote_addr - $remote_user [$time_local] $http_host \"$request\" $status $body_bytes_sent $request_time \"$http_referer\" \"$http_user_agent\" $upstream_addr $upstream_status $upstream_response_time \"$upstream_scheme://$upstream_host$upstream_uri\"'
+  accessLogFormatEscape: default
+  errorLog: "/dev/stderr"
+  errorLogLevel: "warn"
+
+dns:
+  resolvers:
+    - 127.0.0.1
+    - 172.20.0.10
+    - 114.114.114.114
+    - 223.5.5.5
+    - 1.1.1.1
+    - 8.8.8.8
+  validity: 30
+  timeout: 5
+
+autoscaling:
+  enabled: false
+
+# service selectors do not match kustomize configuration
+# we define the serviceMonitor with kustomization
+# Observability configuration.
+# ref: https://apisix.apache.org/docs/apisix/plugins/prometheus/
+serviceMonitor:
+  enabled: true
+  # namespace where the serviceMonitor is deployed, by default, it is the same as the namespace of the apisix
+  namespace: ""
+  # interval at which metrics should be scraped
+  interval: 2m
+  # path of the metrics endpoint
+  path: /apisix/prometheus/metrics
+  # container port where the metrics are exposed
+  containerPort: 9091
+  # @param serviceMonitor.labels ServiceMonitor extra labels
+  labels: {}
+  # @param serviceMonitor.annotations ServiceMonitor annotations
+  annotations: {}
+
+# etcd configuration
+# use the FQDN address or the IP of the etcd
+etcd:
+  # install etcd(v3) by default, set false if do not want to install etcd(v3) together
+  enabled: false
+  host:
+    - http://apisix-etcd.networking.svc.cluster.local:2379
+  prefix: "/apisix"
+
+dashboard:
+  enabled: true
+  # default values available at: https://github.com/apache/apisix-helm-chart/blob/master/charts/apisix-dashboard/values.yaml
+  replicaCount: 1
+
+  authentication:
+    secert: secert
+    expireTime: 3600
+    users:
+      - username: admin
+        password: admin
+
+ingress-controller:
+  enabled: true
+  # default values available at https://github.com/apache/apisix-helm-chart/blob/master/charts/apisix-ingress-controller/values.yaml
+  replicaCount: 2
+
+  image:
+    repository: apache/apisix-ingress-controller
+    tag: "1.4.1"
+
+  service:
+    port: 80
+
+  config:
+    # the error log level, default is info, optional values are:
+    # debug
+    # info
+    # warn
+    # error
+    # panic
+    # fatal
+    logLevel: "warn"
+    # the output file path of error log, default is stderr, when
+    # the file path is "stderr" or "stdout", logs are marshalled
+    # plainly, which is more readable for human; otherwise logs
+    # are marshalled in JSON format, which can be parsed by
+    # programs easily.
+    logOutput: "stderr"
+    # the HTTP Server listen address, default is ":8080"
+    httpListen: ":8080"
+    # enable profiling via web interfaces host:port/debug/pprof, default is true.
+    enableProfiling: false
+    # Kubernetes related configurations.
+    kubernetes:
+      # the Kubernetes configuration file path, default is "", so the in-cluster
+      # configuration will be used.
+      kubeconfig: ""
+      # how long should apisix-ingress-controller re-synchronizes with Kubernetes,
+      # default is 6h,
+      resyncInterval: "6h"
+      # namespace list that controller will watch for resources,
+      # by default all namespaces (represented by "*") are watched.
+      appNamespaces: ["*"]
+      # the election id for the controller leader campaign,
+      # only the leader will watch and delivery resource changes,
+      # other instances (as candidates) stand by.
+      electionId: "ingress-apisix-leader"
+      # The class of an Ingress object is set using the field IngressClassName in
+      # Kubernetes clusters version v1.18.0 or higher or the annotation
+      # "kubernetes.io/ingress.class" (deprecated).
+      ingressClass: "apisix"
+      # the supported ingress api group version, can be "networking/v1beta1",
+      # "networking/v1" (for Kubernetes version v1.19.0 or higher), and
+      # "extensions/v1beta1", default is "networking/v1".
+      ingressVersion: "networking/v1"
+      # the supported apisixroute api group version, can be "apisix.apache.org/v2beta3"
+      # "apisix.apache.org/v2alpha1" or "apisix.apache.org/v2beta1"
+      apisixRouteVersion: "apisix.apache.org/v2beta3"
+    # APISIX related configurations.
+    apisix:
+      serviceName: apisix-admin
+      serviceNamespace: networking
+      servicePort: 9180
+      adminKey: {{ apisix.api_credentials.admin }}
+
+  resources:
+    requests:
+      cpu: 20m
+      memory: 64Mi
+    limits:
+      memory: 128Mi
+
+  initContainer:
+    image: busybox
+    tag: 1.28
+
+  autoscaling:
+    enabled: false
+
+  nodeSelector: {}
+  tolerations: []

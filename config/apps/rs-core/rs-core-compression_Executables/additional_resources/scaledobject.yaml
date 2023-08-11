@@ -1,0 +1,144 @@
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  finalizers:
+  - finalizer.keda.sh
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: compression-high
+    scaledobject.keda.sh/name: compression-high
+  name: compression-high
+  namespace: processing
+spec:
+  scaleTargetRef:
+    apiVersion:    apps/v1
+    kind:          deployment
+    name:          compression-part1-compression-worker-high-v48
+    envSourceContainerName: compression-part1-compression-worker-high-v48
+  pollingInterval:  30
+  cooldownPeriod:   3600
+  minReplicaCount:  0
+  maxReplicaCount:  5
+  advanced:
+    restoreToOriginalReplicaCount: true
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 3600
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 60
+        scaleUp:
+          stabilizationWindowSeconds: 0
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 30
+  triggers:
+    - type: prometheus
+      metadata:
+        # Required fields:
+        serverAddress: http://thanos-query.monitoring.svc.cluster.local:9090
+        metricName: "kafka_consumergroup_lag" 
+        query: sum(kafka_consumergroup_lag{consumergroup=~"compression-part.*",topic=~".*priority-filter-high.*" }>=0)
+        threshold: '1'
+        activationThreshold: '0' 
+
+---
+
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  finalizers:
+  - finalizer.keda.sh
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: compression-medium
+    scaledobject.keda.sh/name: compression-medium
+  name: compression-medium
+  namespace: processing
+spec:
+  scaleTargetRef:
+    apiVersion:    apps/v1
+    kind:          deployment
+    name:          compression-part2-compression-worker-medium-v46
+    envSourceContainerName: compression-part2-compression-worker-medium-v46
+  pollingInterval:  30
+  cooldownPeriod:   3600
+  minReplicaCount:  0
+  maxReplicaCount:  5
+  advanced:
+    restoreToOriginalReplicaCount: true
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 3600
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 60
+        scaleUp:
+          stabilizationWindowSeconds: 0
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 30
+  triggers:
+    - type: prometheus
+      metadata:
+        # Required fields:
+        serverAddress: http://thanos-query.monitoring.svc.cluster.local:9090
+        metricName: "kafka_consumergroup_lag" 
+        query: sum(kafka_consumergroup_lag{consumergroup=~"compression-part.*",topic=~".*priority-filter-medium.*" }>=0)
+        threshold: '1'
+        activationThreshold: '0'
+
+---
+
+apiVersion: keda.sh/v1alpha1
+kind: ScaledObject
+metadata:
+  finalizers:
+  - finalizer.keda.sh
+  generation: 2
+  labels:
+    app.kubernetes.io/instance: compression-low
+    scaledobject.keda.sh/name: compression-low
+  name: compression-low
+  namespace: processing
+spec:
+  scaleTargetRef:
+    apiVersion:    apps/v1
+    kind:          deployment
+    name:          compression-part3-compression-worker-low-v46
+    envSourceContainerName: compression-part3-compression-worker-low-v46
+  pollingInterval:  30
+  cooldownPeriod:   3600
+  minReplicaCount:  0
+  maxReplicaCount:  5
+  advanced:
+    restoreToOriginalReplicaCount: true
+    horizontalPodAutoscalerConfig:
+      behavior:
+        scaleDown:
+          stabilizationWindowSeconds: 3600
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 60
+        scaleUp:
+          stabilizationWindowSeconds: 0
+          policies:
+            - type: Pods
+              value: 1
+              periodSeconds: 30
+  triggers:
+    - type: prometheus
+      metadata:
+        # Required fields:
+        serverAddress: http://thanos-query.monitoring.svc.cluster.local:9090
+        metricName: "kafka_consumergroup_lag" 
+        query: sum(kafka_consumergroup_lag{consumergroup=~"compression-part.*",topic=~".*priority-filter-low.*" }>=0)
+        threshold: '1'
+        activationThreshold: '0' 

@@ -1,0 +1,194 @@
+commonLabels:
+  app.kubernetes.io/instance: "{{ app_name }}"
+
+namespace: database
+
+resources:
+  - apisixroute-kibana.yaml
+  - elasticsearch.yaml
+  - kibana.yaml
+  - filerealm-secret.yaml
+  - repository-config-job.yaml
+  - grafanadatasource.yaml
+  - priorityclass.yaml
+  - podmonitor.yaml
+  - elastic-datasource-aux-ins.yaml
+  - elastic-datasource-aux.yaml
+  - elastic-datasource-datalifecyle.yaml
+  - elastic-datasource-l0acn.yaml
+  - elastic-datasource-l0segment.yaml
+  - elastic-datasource-l0slice.yaml
+  - elastic-datasource-prip.yaml
+  - elastic-datasource-raw.yaml
+  - elastic-datasource-session.yaml
+  - elasticsearch-processing-index-aux_mpl_msk.yaml
+  - elasticsearch-processing-index-s3_aux.yaml
+  - elasticsearch-processing-index-s3_granules.yaml
+  - elasticsearch-processing-index-s3_l0.yaml
+  - elasticsearch-processing-traces.yaml
+
+
+configMapGenerator:
+  - name: "{{ app_name }}-repository-config"
+    files:
+      - s3-repository.json
+
+secretGenerator:
+  - name: "{{ app_name }}-s3-credentials"
+    literals:
+      - S3_ACCESS_KEY={{ elasticsearch_processing.repository.s3.access_key }}
+      - S3_SECRET_KEY={{ elasticsearch_processing.repository.s3.secret_key }}
+    options:
+      disableNameSuffixHash: true
+  - name: kibana-processing-exporter-credentials
+    literals:
+      - username=operator
+      - password={{ elasticsearch_processing.operator_password_hash }}
+    options:
+      disableNameSuffixHash: true
+
+helmCharts:
+- name: prometheus-elasticsearch-exporter
+  releaseName: "{{ app_name }}-exporter"
+  repo: https://prometheus-community.github.io/helm-charts
+  version: 4.11.0
+  valuesFile: exporter-values.yaml
+  namespace: database
+
+# Put grafana datasource in the right namespace
+patchesJson6902:
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-aux-ins
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-aux
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-datalifecycle
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-l0acn
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-l0segment
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-l0slice
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-prip
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-raw
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-session
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-processing-aux_mpl_msk
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s3_aux
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s3_granules
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-s3_l0
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-processing
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring
+  - target:
+      group: integreatly.org
+      version: v1alpha1
+      kind: GrafanaDataSource
+      name: elasticsearch-processing-traces
+    patch: |-
+      - op: replace
+        path: /metadata/namespace
+        value: monitoring

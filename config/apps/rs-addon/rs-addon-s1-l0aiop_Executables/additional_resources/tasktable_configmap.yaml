@@ -1,0 +1,802 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s1-l0aiop-tasktables
+  namespace: processing
+
+data:
+  TaskTable.AIOP.xml: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance">
+      <Processor_Name>AIO_PROCESSOR</Processor_Name>
+      <Version>5.1.0</Version>
+      <Test>No</Test>
+      <!--Ten gigabytes minimum size required in the working dir-->
+      <Min_Disk_Space units="MB">10240</Min_Disk_Space>
+      <Max_Time units="sec">0</Max_Time>
+      <List_of_Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/Sentinel1AIOProcessor.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/Sentinel1AIODPAssembler.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/Sentinel1CCSDSTelemetry.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/DISSlotConf.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/Sentinel1L0ProductDescriptor.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/Sentinel1ProductFileName.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/SafeProduct.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/ISIPFormat.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.0</Version>
+          <File_Name>/usr/local/conf/AIOP/ExplorerWrapper.xml</File_Name>
+        </Cfg_Files>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParam count="10">
+        <Dyn_ProcParam>
+          <Param_Name>Processing_Mode</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>FAST24</Param_Default>
+          <!-- values: NRT|FAST24 -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>PT_Assembly</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>yes</Param_Default>
+          <!-- values: yes|no -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>Timeout</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>300</Param_Default>
+          <!-- values in seconds -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>Mission_Id</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>S1A</Param_Default>
+          <!-- values: S1A|S1B -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>Processing_Station</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>WILE</Param_Default>
+          <!-- values: WILE -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>DownlinkTime</Param_Name>
+          <Param_Type>String</Param_Type>
+          <!-- format yyyymmddThhnnss -->
+          <Param_Default />
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>NRTOutputPath</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>/data_PWA/edrs_nrt_inbox</Param_Default>
+          <!-- values: NRT output path -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>PTOutputPath</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>/data_PWA/edrs_pt_inbox</Param_Default>
+          <!-- values: PT output path -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>Descramble</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>yes</Param_Default>
+          <!-- values: yes|no -->
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>RSEncode</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>yes</Param_Default>
+          <!-- values: yes|no -->
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParam>
+      <List_of_Pools count="3">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>AIOP_MKDIR_APP</Name>
+              <Version>5.1.0</Version>
+              <Critical>false</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/AIOP/bin/makeFolder.sh</File_Name>
+              <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AUX_OBMEMC</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="16">
+                <!--Stripmap Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--RF Characterisation Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>RF_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Azimuth Notch Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>AN_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Elevation Notch Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EN_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Noise Char. Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZS_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZE_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZI_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZW_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!-- GPS -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>GP_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- HKTM -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>HK_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- ACQ REPORTS -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_ACQNR</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_L0PSA_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_EFEP_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0" />
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="3">
+            <Task>
+              <Name>AIOP_PROC_APP</Name>
+              <Version>5.1.0</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/AIOP/bin/S1AIOProcessor</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>345600</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBPRE</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBSCT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AUX_OBMEMC</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="16">
+                <!--Stripmap Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--RF Characterisation Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>RF_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Azimuth Notch Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>AN_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Elevation Notch Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EN_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Noise Char. Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZS_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZE_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZI_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZW_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!-- GPS -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>GP_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- HKTM -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>HK_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- ACQ REPORTS -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_ACQNR</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_L0PSA_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_EFEP_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0" />
+            </Task>
+            <Task>
+              <Name>AIOP_PROC_APP</Name>
+              <Version>5.1.0</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/AIOP/bin/S1AIOProcessor</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>345600</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBPRE</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBSCT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AUX_OBMEMC</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="16">
+                <!--Stripmap Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--RF Characterisation Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>RF_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Azimuth Notch Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>AN_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Elevation Notch Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EN_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Noise Char. Mode : SAR -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZS_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZE_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZI_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZW_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!-- GPS -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>GP_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- HKTM -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>HK_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- ACQ REPORT -->
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_ACQNR</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_L0PSA_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_EFEP_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0" />
+            </Task>
+            <Task>
+              <Name>AIOP_DPASSEMBLER_APP</Name>
+              <Version>5.1.0</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/AIOP/bin/S1AIODPAssembler</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>345600</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBPRE</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBSCT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AUX_OBMEMC</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_L0PSA_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0" />
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>AIOP_LIST_APP</Name>
+              <Version>5.1.0</Version>
+              <Critical>false</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/AIOP/bin/makeListFile.sh</File_Name>
+              <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AUX_OBMEMC</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="17">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>ProcessorConfiguration</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <!--Stripmap Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--RF Characterisation Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>RF_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Azimuth Notch Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>AN_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Elevation Notch Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EN_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Noise Char. Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZS_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZE_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZI_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>ZW_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!-- GPS -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>GP_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- HKTM -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>HK_RAW__0_</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- ACQ REPORTS -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_ACQNR</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_L0PSA_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>REP_EFEP_</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0" />
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>

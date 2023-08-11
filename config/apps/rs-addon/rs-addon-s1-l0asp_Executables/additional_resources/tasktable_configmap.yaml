@@ -1,0 +1,398 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s1-l0asp-tasktables
+  namespace: processing
+
+data:
+  TaskTable.L0ASP.xml: |
+    <?xml version="1.0" encoding="UTF-8"?>
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2000/10/XMLSchema-instance">
+      <Processor_Name>L0_ASSEMBLY_SLICING_PROC</Processor_Name>
+      <Version>5.1.2</Version>
+      <Test>No</Test>
+      <!--Ten gigabytes minimum size required in the working dir-->
+      <Min_Disk_Space units="MB">10240</Min_Disk_Space>
+      <Max_Time units="sec">0</Max_Time>
+      <List_of_Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/Sentinel1L0ASProcessor.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/Sentinel1CCSDSTelemetry.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/DISSlotConf.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/Sentinel1Generation.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/Sentinel1L0ProductDescriptor.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/Sentinel1ProductFileName.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/SafeProduct.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/ISIPFormat.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/DISConfiguration.xml</File_Name>
+        </Cfg_Files>
+        <Cfg_Files>
+          <Version>5.1.2</Version>
+          <File_Name>/usr/local/conf/L0ASP/ExplorerWrapper.xml</File_Name>
+        </Cfg_Files>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParam count="1">
+        <Dyn_ProcParam>
+          <Param_Name>Processing_Station</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>WILE</Param_Default> <!-- values: WILE -->
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParam>
+      <List_of_Pools count="2">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>S1L0_AS_WRAPPER</Name>
+              <Version>5.1.2</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/L0ASP/bin/S1L0ASProcessorWrapper</File_Name>
+              <List_of_Inputs count="1">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="6">
+                    <!--Stripmap Mode -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SM_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Interferometric Wide Swath Mode -->
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>IW_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Extra Wide Swath Mode -->
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>EW_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Wave Mode -->
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>WV_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--RF Characterisation Mode -->
+                    <Alternative>
+                      <Order>5</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>RF_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Elevation Notch Mode -->
+                    <Alternative>
+                      <Order>6</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>EN_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>ProcessorConfiguration</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+               </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>15</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>S1L0_AS</Name>
+              <Version>5.1.2</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>2</Criticality_Level>
+              <File_Name>/usr/local/components/L0ASP/bin/S1L0ASProcessor</File_Name>
+              <List_of_Inputs count="3">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBSCT</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>7200</T0>
+                      <T1>0</T1>
+                      <File_Type>MPL_ORBPRE</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="6">
+                    <!--Stripmap Mode -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SM_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Interferometric Wide Swath Mode -->
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>IW_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Extra Wide Swath Mode -->
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>EW_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Wave Mode -->
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>WV_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--RF Characterisation Mode -->
+                    <Alternative>
+                      <Order>5</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>RF_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <!--Elevation Notch Mode -->
+                    <Alternative>
+                      <Order>6</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>EN_RAW__0S</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="18">
+                <!--Stripmap Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0S</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Stripmap Mode : Calibration -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0C</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Stripmap Mode : Noise -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0N</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Stripmap Mode : Annotation -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SM_RAW__0A</Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : Calibration -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0C</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : Noise -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0N</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Interferometric Wide Swath Mode : Annotation -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>IW_RAW__0A</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : Calibration -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0C</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : Noise -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0N</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Extra Wide Swath Mode : Annotation -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EW_RAW__0A</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : Calibration -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0C</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : Noise -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0N</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Wave Mode : Annotation -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>WV_RAW__0A</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--RF Characterisation Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>RF_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!--Elevation Notch Mode : SAR -->
+                <Output>
+                  <Destination>DB</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>EN_RAW__0S</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0" />
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>

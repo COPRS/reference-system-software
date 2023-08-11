@@ -1,0 +1,22 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: elasticsearch-processing-index-datalifecycle
+  labels:
+    app.kubernetes.io/instance: elasticsearch-processing
+spec:
+  name: elasticsearch-processing-index-datalifecyclemetadata.yaml
+  datasources:
+    - name: elasticsearch-datalifecycle
+      type: elasticsearch
+      access: Server
+      database: "data-lifecycle-metadata"
+      url: http://elasticsearch-processing-es-coordinating.database.svc.cluster.local:9200
+      isDefault: false
+      version: 1
+      editable: true
+      jsonData:
+        tlsSkipVerify: true
+        timeField: "LastModified"
+        esVersion: 7.15.2
+        logMessageField: "productName"

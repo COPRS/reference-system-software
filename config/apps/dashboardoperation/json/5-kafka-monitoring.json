@@ -1,0 +1,773 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "description": "Kafka resource usage and throughput",
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "folderId": 521,
+    "folderName": "3. Basic Service",
+    "gnetId": 7589,
+    "graphTooltip": 0,
+    "id": null,
+    "iteration": 1649924893640,
+    "links": [
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "INFRASTRUCTURE_ENG"
+            ],
+            "title": "INFRASTRUCTURE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "SERVICE_ENG"
+            ],
+            "title": "SERVICE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PROCESSING_ENG"
+            ],
+            "title": "PROCESSING",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PI_ENG"
+            ],
+            "title": "PERFORMANCE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "ANALYSIS_ENG"
+            ],
+            "targetBlank": false,
+            "title": "ANALYSIS",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "OPS_MANAGER_ENG"
+            ],
+            "title": "OPS MANAGER",
+            "type": "dashboards"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 20,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "links": [],
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 11,
+                "w": 23,
+                "x": 0,
+                "y": 0
+            },
+            "id": 14,
+            "links": [],
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "lastNotNull",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right"
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(rate(kafka_consumergroup_current_offset{instance=\"$instance\", topic=~\"$topic\"}[10m])) by (topic)",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{topic}}",
+                    "refId": "B"
+                }
+            ],
+            "title": "Message in 10 minutes",
+            "type": "timeseries"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 18,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "links": [],
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 12,
+                "w": 23,
+                "x": 0,
+                "y": 11
+            },
+            "id": 12,
+            "links": [],
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "mean",
+                        "lastNotNull",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right",
+                    "sortBy": "Mean",
+                    "sortDesc": true
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(kafka_consumergroup_lag{topic=~\"$topic\",group!~\"console-consumer-.*\", group!~\"kafka-listener-service\"}) by (group, topic) ",
+                    "format": "time_series",
+                    "instant": false,
+                    "interval": "",
+                    "intervalFactor": 10,
+                    "legendFormat": "{{group{ '}}' }} (topic: {{topic}})",
+                    "refId": "A"
+                }
+            ],
+            "title": "Lag by  Consumer Group",
+            "type": "timeseries"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "palette-classic"
+                    },
+                    "custom": {
+                        "axisLabel": "",
+                        "axisPlacement": "auto",
+                        "barAlignment": 0,
+                        "drawStyle": "line",
+                        "fillOpacity": 23,
+                        "gradientMode": "none",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineInterpolation": "smooth",
+                        "lineWidth": 1,
+                        "pointSize": 5,
+                        "scaleDistribution": {
+                            "type": "linear"
+                        },
+                        "showPoints": "never",
+                        "spanNulls": false,
+                        "stacking": {
+                            "group": "A",
+                            "mode": "none"
+                        },
+                        "thresholdsStyle": {
+                            "mode": "off"
+                        }
+                    },
+                    "links": [],
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    },
+                    "unit": "short"
+                },
+                "overrides": []
+            },
+            "gridPos": {
+                "h": 11,
+                "w": 23,
+                "x": 0,
+                "y": 23
+            },
+            "id": 18,
+            "links": [],
+            "options": {
+                "legend": {
+                    "calcs": [
+                        "lastNotNull",
+                        "max",
+                        "min"
+                    ],
+                    "displayMode": "table",
+                    "placement": "right"
+                },
+                "tooltip": {
+                    "mode": "single"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": true,
+                    "expr": "sum(delta(kafka_consumergroup_current_offset{topic=~\"$topic\"}[10m])/10) by (group, topic)",
+                    "format": "time_series",
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{group{ '}}' }} (topic: {{topic}})",
+                    "refId": "A"
+                }
+            ],
+            "title": "Message consume per minute",
+            "type": "timeseries"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": "center",
+                        "displayMode": "auto",
+                        "filterable": false
+                    },
+                    "links": [],
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "topic"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 418
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Value"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.align",
+                                "value": "center"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "group"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 201
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Partition count"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 182
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 19,
+                "w": 10,
+                "x": 0,
+                "y": 34
+            },
+            "id": 21,
+            "links": [],
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": []
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": false,
+                    "expr": "sum(kafka_topic_partitions{}) by ( topic)",
+                    "format": "table",
+                    "instant": true,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{topic}}",
+                    "refId": "A"
+                }
+            ],
+            "title": "Partitions per Topic",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "Value": "Partition count",
+                            "Value #A": "count"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        },
+        {
+            "fieldConfig": {
+                "defaults": {
+                    "custom": {
+                        "align": "center",
+                        "displayMode": "auto",
+                        "filterable": false
+                    },
+                    "links": [],
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "topic"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 418
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Value"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.align",
+                                "value": "center"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "group"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 201
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "Partition count"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 182
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 19,
+                "w": 10,
+                "x": 10,
+                "y": 34
+            },
+            "id": 22,
+            "links": [],
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": [
+                    {
+                        "desc": true,
+                        "displayName": "consumergroup"
+                    }
+                ]
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "datasource": {
+                        "type": "prometheus",
+                        "uid": "P5DCFC7561CCDE821"
+                    },
+                    "exemplar": false,
+                    "expr": "sum (kafka_consumergroup_current_offset{}) by (topic, consumergroup)",
+                    "format": "table",
+                    "instant": true,
+                    "interval": "",
+                    "intervalFactor": 1,
+                    "legendFormat": "{{topic}}",
+                    "refId": "A"
+                }
+            ],
+            "title": "Consumer group per topic",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Time": true,
+                            "Value #A": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "Value": "Partition count",
+                            "Value #A": "count"
+                        }
+                    }
+                }
+            ],
+            "type": "table"
+        }
+    ],
+    "refresh": "",
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [
+        "SERVICE_ENG"
+    ],
+    "templating": {
+        "list": [
+            {
+                "current": {
+                    "selected": false,
+                    "text": "infra/kafka-resources-metrics",
+                    "value": "infra/kafka-resources-metrics"
+                },
+                "definition": "label_values(kafka_consumergroup_current_offset, job)",
+                "hide": 0,
+                "includeAll": false,
+                "label": "Job",
+                "multi": false,
+                "name": "job",
+                "options": [],
+                "query": {
+                    "query": "label_values(kafka_consumergroup_current_offset, job)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "current": {
+                    "selected": false,
+                    "text": "10.244.157.15:9404",
+                    "value": "10.244.157.15:9404"
+                },
+                "definition": "label_values(kafka_consumergroup_current_offset{job=~\"$job\"}, instance)",
+                "hide": 0,
+                "includeAll": false,
+                "label": "Instance",
+                "multi": false,
+                "name": "instance",
+                "options": [],
+                "query": {
+                    "query": "label_values(kafka_consumergroup_current_offset{job=~\"$job\"}, instance)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 0,
+                "tagValuesQuery": "",
+                "tagsQuery": "",
+                "type": "query",
+                "useTags": false
+            },
+            {
+                "current": {
+                    "selected": true,
+                    "text": [
+                        "All"
+                    ],
+                    "value": [
+                        "$__all"
+                    ]
+                },
+                "definition": "label_values(kafka_consumergroup_current_offset{instance='$instance',topic!='__consumer_offsets',topic!='--kafka'}, topic)",
+                "hide": 0,
+                "includeAll": true,
+                "label": "Topic",
+                "multi": true,
+                "name": "topic",
+                "options": [],
+                "query": {
+                    "query": "label_values(kafka_consumergroup_current_offset{instance='$instance',topic!='__consumer_offsets',topic!='--kafka'}, topic)",
+                    "refId": "StandardVariableQuery"
+                },
+                "refresh": 1,
+                "regex": "",
+                "skipUrlSync": false,
+                "sort": 1,
+                "tagValuesQuery": "",
+                "type": "query",
+                "useTags": false
+            }
+        ]
+    },
+    "time": {
+        "from": "now-7d",
+        "to": "now"
+    },
+    "timepicker": {
+        "refresh_intervals": [
+            "10s",
+            "30s",
+            "1m",
+            "5m",
+            "15m",
+            "30m",
+            "1h",
+            "2h",
+            "1d"
+        ],
+        "time_options": [
+            "5m",
+            "15m",
+            "1h",
+            "6h",
+            "12h",
+            "24h",
+            "2d",
+            "7d",
+            "30d"
+        ]
+    },
+    "timezone": "utc",
+    "title": "5. Kafka monitoring",
+    "uid": "6dd4e75ec2d24b555bdeec9d2fb007de8c0c6170",
+    "version": 1,
+    "weekStart": ""
+}

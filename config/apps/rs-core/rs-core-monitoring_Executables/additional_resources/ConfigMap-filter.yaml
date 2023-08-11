@@ -1,0 +1,122 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: trace-filter-config
+  namespace: monitoring
+data:
+  filter.yaml: |
+    filters:
+      -
+        name: IngestionTrigger_Dsib
+        rules:
+          log.trace.task.name: IngestionTrigger
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.input[filename_string]: DCS_.+?_DSIB\.xml$
+      -
+        name: IngestionTrigger_Chunk
+        rules:
+          log.trace.task.name: IngestionTrigger
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.input[filename_string]: DCS_.+?\.raw$
+      -
+        name: IngestionTrigger_AuxData
+        rules:
+          log.trace.task.name: IngestionTrigger
+          log.trace.task.event: END
+          log.trace.task.status: OK
+      -
+        name: IngestionWorker_Dsib
+        rules:
+          log.trace.task.name: IngestionWorker
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.output[filename_string]: DCS_.+?_DSIB\.xml$
+      -
+        name: IngestionWorker_Chunk
+        rules:
+          log.trace.task.name: IngestionWorker
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.output[filename_string]: DCS_.+?\.raw$
+      -
+        name: IngestionWorker_AuxData
+        rules:
+          log.trace.task.name: IngestionWorker
+          log.trace.task.status: OK
+          log.trace.task.event: END
+      -
+        name: MetadataExtraction_Dsib
+        rules:
+          log.trace.task.name: MetadataExtraction
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.input[filename_string]: DCS_.+?_DSIB\.xml$          
+      -
+        name: MetadataExtraction_Chunk
+        rules:
+          log.trace.task.name: MetadataExtraction
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.input[filename_string]: DCS_.+?\.raw$          
+      -
+        name: MetadataExtraction_AuxData
+        rules:
+          log.trace.task.name: MetadataExtraction
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.task.input[filename_string]: ^(S1.*(AUX_|AMH_|AMV_|MPL_ORB).*)|(S1.*(_OPER_REP_MP_MP__PDMC_|_OPER_REP__SUP___|_OPER_MPL_SP.{4}_PDMC_|_OPER_REP_STNACQ_.{4}_|_OPER_REP_STNUNV_.{4}_|_OPER_AM[VH_]_FAILUR_MPC__|_OPER_REP__MACP__).*\.(zip|ZIP))|((S2)(A|B|_)_(OPER|TEST)_((AUX|GIP)_[0-9A-Z_]{7})(.*)\.TGZ)|(S3[AB_]_([0-9a-zA-Z_]{9})AX_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_([0-9]{8}T[0-9]{6})_(_{17})_([0-9a-zA-Z_]{3})_(((O|F|R|D|_)_(NR|NT|ST|SN|NS|NN|AL|__)_([a-zA-Z0-9_]{3}))|_{8})\.SEN3\.(zip|ZIP))$
+      -
+        name: MetadataExtraction_Product
+        rules:
+          log.trace.task.name: MetadataExtraction
+          log.trace.task.event: END
+          log.trace.task.status: OK
+      -
+        name: JobProcessing_Product-multiOutput
+        rules:
+          log.trace.task.name: JobProcessing
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.header.rs_chain_name: ^(?!S3-SR1|S3-SR1-NTC|S3-SR1-STC)(S1-L0AIOP|S1-L0ASP|S1-L1|S1-L2|s2-l0u|s2-l0c|s2-l1|s2-l2|S3-ACQ|S3-OL1-SPC|S3-OL1-RAC|S3-OL2-NRT|S3-SL1-NRT|S3-SL2-NRT|S3-SL2-FRP-NRT|S3-OL1-NRT|S3-MW1-NRT|S3-SM2-HY-NRT|S3-SM2-LI-NRT|S3-SM2-SI-NRT|S3-PUG-NRT|S3-OL1-NTC|S3-OL2-NTC|S3-SL1-NTC|S3-SL2-NTC|S3-SL2-FRP-NTC|S3-SY2-NTC|S3-SY2-AOD-NTC|S3-SY2-VGS-NTC|S3-MW1-NTC|S3-SM2-HY-NTC|S3-SM2-LI-NTC|S3-SM2-SI-NTC|S3-PUG-NTC|S3-SY2-STC|S3-SY2-VGS-STC|S3-MW1-STC|S3-SM2-HY-STC|S3-SM2-LI-STC|S3-SM2-SI-STC|S3-PUG-STC).*
+          log.trace.task.output[filename_strings][0]: .+
+      -
+        name: JobProcessing_Product-singleOutput
+        rules:
+          log.trace.task.name: JobProcessing
+          log.trace.task.event: END
+          log.trace.task.status: OK
+          log.trace.header.rs_chain_name: ^(?!S3-SR1|S3-SR1-NTC|S3-SR1-STC)(S1-L2|S3-L0P|S3-OL1-SPC|S3-OL1-RAC|S3-OL2-NRT|S3-SL1-NRT|S3-SL2-NRT|S3-SL2-FRP-NRT|S3-OL1-NRT|S3-MW1-NRT|S3-SM2-HY-NRT|S3-SM2-LI-NRT|S3-SM2-SI-NRT|S3-PUG-NRT|S3-OL1-NTC|S3-OL2-NTC|S3-SL1-NTC|S3-SL2-NTC|S3-SL2-FRP-NTC|S3-SY2-NTC|S3-SY2-AOD-NTC|S3-SY2-VGS-NTC|S3-MW1-NTC|S3-SM2-HY-NTC|S3-SM2-LI-NTC|S3-SM2-SI-NTC|S3-PUG-NTC|S3-SY2-STC|S3-SY2-VGS-STC|S3-MW1-STC|S3-SM2-HY-STC|S3-SM2-LI-STC|S3-SM2-SI-STC|S3-PUG-STC).*
+          log.trace.task.output[filename_string]: .+
+      -
+        name: JobProcessing_Product-onlyMissingOutput
+        rules:
+          log.trace.task.name: JobProcessing
+          log.trace.task.event: END
+          log.trace.task.missing_output[0]: .+
+          log.trace.header.rs_chain_name: ^(?!.*?(?:S3-SR1|S3-SR1-NTC|S3-SR1-STC)).*$
+      -
+        name: PripWorker_Product
+        rules:
+          log.trace.task.name: PripWorker
+          log.trace.task.event: END
+          log.trace.task.status: OK
+      -
+        name: OQC_Product
+        rules:
+          log.trace.task.name: OQC
+          log.trace.task.event: END
+          log.trace.task.status: OK
+      -
+        name: PripTempDownloadUrl_Product
+        rules:
+          log.trace.task.name: PripTempDownloadUrl
+          log.trace.task.event: END
+          log.trace.task.status: OK
+      -
+        name: EvictionManagementWorker_Product
+        rules:
+          log.trace.task.name: EvictionManagementWorker
+          log.trace.task.event: END
+          log.trace.task.status: OK

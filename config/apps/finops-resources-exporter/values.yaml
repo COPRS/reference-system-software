@@ -1,0 +1,33 @@
+
+image:
+  registry: artifactory.coprs.esa-copernicus.eu/rs-docker
+  repository: monitoring/finops-resources-exporter
+  tag: 1.0.0
+
+metrics:
+  serviceMonitor:
+    interval: 2m
+    additionalLabels.release: prometheus-operator
+
+affinity: 
+  nodeAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      nodeSelectorTerms:
+      - matchExpressions:
+        - key: "node-role.kubernetes.io/infra"
+          operator: Exists
+  podAntiAffinity:
+    requiredDuringSchedulingIgnoredDuringExecution:
+      - labelSelector:
+          matchLabels:
+            app.kubernetes.io/instance: finops-resources-exporter
+            app.kubernetes.io/name: finops-resources-exporter
+        topologyKey: kubernetes.io/hostname
+
+rbac:
+  create: true
+
+configs:
+- name: templates
+  path: /root/.config/exporter/templates.json
+  value: '{"templates":[{"name":"s3.xlarge.2","cpu":4,"memory":8},{"name":"s3.large.2","cpu":2,"memory":4},{"name":"s3.2xlarge.2","cpu":8,"memory":16},{"name":"s3.2xlarge.4","cpu":8,"memory":32},{"name":"s3.xlarge.4","cpu":4,"memory":16},{"name":"t2.small","cpu":1,"memory":2},{"name":"c6.2xlarge.4","cpu":8,"memory":32},{"name":"m6.xlarge.8","cpu":4,"memory":32},{"name":"m6.3xlarge.8","cpu":12,"memory":95},{"name":"i3.4xlarge.8","cpu":16,"memory":126}]}'

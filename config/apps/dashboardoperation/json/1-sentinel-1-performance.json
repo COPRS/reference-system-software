@@ -1,0 +1,1990 @@
+{
+    "annotations": {
+        "list": [
+            {
+                "builtIn": 1,
+                "datasource": "-- Grafana --",
+                "enable": true,
+                "hide": true,
+                "iconColor": "rgba(0, 211, 255, 1)",
+                "name": "Annotations & Alerts",
+                "target": {
+                    "limit": 100,
+                    "matchAny": false,
+                    "tags": [],
+                    "type": "dashboard"
+                },
+                "type": "dashboard"
+            }
+        ]
+    },
+    "editable": true,
+    "fiscalYearStartMonth": 0,
+    "folderId": 523,
+    "folderName": "5. Performance Indicator",
+    "graphTooltip": 0,
+    "id": null,
+    "links": [
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "INFRASTRUCTURE_ENG"
+            ],
+            "title": "INFRASTRUCTURE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "SERVICE_ENG"
+            ],
+            "title": "SERVICE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PROCESSING_ENG"
+            ],
+            "title": "PROCESSING",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "PI_ENG"
+            ],
+            "title": "PERFORMANCE",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "ANALYSIS_ENG"
+            ],
+            "targetBlank": false,
+            "title": "ANALYSIS",
+            "type": "dashboards"
+        },
+        {
+            "asDropdown": true,
+            "icon": "external link",
+            "keepTime": true,
+            "tags": [
+                "OPS_MANAGER_ENG"
+            ],
+            "title": "OPS MANAGER",
+            "type": "dashboards"
+        }
+    ],
+    "liveNow": false,
+    "panels": [
+        {
+            "editable": true,
+            "gridPos": {
+                "h": 3,
+                "w": 24,
+                "x": 0,
+                "y": 0
+            },
+            "id": 2,
+            "links": [],
+            "options": {
+                "content": " <center>\n       \n      <h1 style=\"font-size:30px; color:#dc832b; margin:10px\">\n            Sentinel-1 Performance</h1>\n</center>",
+                "mode": "html"
+            },
+            "pluginVersion": "8.3.3",
+            "style": {},
+            "transparent": true,
+            "type": "text"
+        },
+        {
+            "datasource": {
+                "type": "datasource",
+                "uid": "-- Mixed --"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 10,
+                "x": 0,
+                "y": 3
+            },
+            "id": 29,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "center",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "retrieved",
+                    "bucketAggs": [
+                        {
+                            "field": "insertionTime",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "missionId:\"S1\"",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                },
+                {
+                    "alias": "total",
+                    "bucketAggs": [
+                        {
+                            "field": "header.timestamp",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "uid": "P44A3C202350B0095"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "field": "task.input.filenames.filename.keyword",
+                            "id": "1",
+                            "type": "cardinality"
+                        }
+                    ],
+                    "query": "message.content:*DSDB* AND task.event:END AND task.name:IngestionTrigger AND task.status:OK  AND kubernetes.pod_name:\"s1pro-ingestion-xbip-cgs02*\"",
+                    "refId": "B",
+                    "timeField": "@timestamp"
+                }
+            ],
+            "title": "S1 chunks stats",
+            "transformations": [
+                {
+                    "disabled": true,
+                    "id": "filterByValue",
+                    "options": {
+                        "filters": [
+                            {
+                                "config": {
+                                    "id": "isNotNull",
+                                    "options": {}
+                                },
+                                "fieldName": "retrieved"
+                            },
+                            {
+                                "config": {
+                                    "id": "isNotNull",
+                                    "options": {}
+                                },
+                                "fieldName": "total"
+                            }
+                        ],
+                        "match": "all",
+                        "type": "exclude"
+                    }
+                },
+                {
+                    "id": "reduce",
+                    "options": {
+                        "includeTimeField": true,
+                        "mode": "reduceFields",
+                        "reducers": [
+                            "sum"
+                        ]
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "temp",
+                        "binary": {
+                            "left": "retrieved",
+                            "operator": "/",
+                            "reducer": "sum",
+                            "right": "total"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        },
+                        "replaceFields": false
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "temp": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "retrieved": "S1 chunks retrieved",
+                            "temp": "S1 ratio",
+                            "total": "S1 chunks available"
+                        }
+                    }
+                }
+            ],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "datasource",
+                "uid": "-- Mixed --"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "dark-red",
+                                "value": null
+                            },
+                            {
+                                "color": "semi-dark-green",
+                                "value": 0.01
+                            }
+                        ]
+                    },
+                    "unit": "percentunit"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "S1 ratio"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "percentunit"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 10,
+                "x": 10,
+                "y": 3
+            },
+            "id": 31,
+            "options": {
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "showThresholdLabels": false,
+                "showThresholdMarkers": true
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "retrieved",
+                    "bucketAggs": [
+                        {
+                            "field": "insertionTime",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PF2C686F2C261DFD0"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "missionId:\"S1\"",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                },
+                {
+                    "alias": "total",
+                    "bucketAggs": [
+                        {
+                            "field": "header.timestamp",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "uid": "P44A3C202350B0095"
+                    },
+                    "hide": false,
+                    "metrics": [
+                        {
+                            "field": "task.input.filenames.filename.keyword",
+                            "id": "1",
+                            "type": "cardinality"
+                        }
+                    ],
+                    "query": "message.content:*DSDB* AND task.event:END AND task.name:IngestionTrigger AND task.status:OK  AND kubernetes.pod_name:\"s1pro-ingestion-xbip-cgs02*\"",
+                    "refId": "B",
+                    "timeField": "@timestamp"
+                }
+            ],
+            "title": "S1 chunks ingested",
+            "transformations": [
+                {
+                    "disabled": true,
+                    "id": "filterByValue",
+                    "options": {
+                        "filters": [
+                            {
+                                "config": {
+                                    "id": "isNotNull",
+                                    "options": {}
+                                },
+                                "fieldName": "retrieved"
+                            },
+                            {
+                                "config": {
+                                    "id": "isNotNull",
+                                    "options": {}
+                                },
+                                "fieldName": "total"
+                            }
+                        ],
+                        "match": "all",
+                        "type": "exclude"
+                    }
+                },
+                {
+                    "id": "reduce",
+                    "options": {
+                        "includeTimeField": true,
+                        "mode": "reduceFields",
+                        "reducers": [
+                            "sum"
+                        ]
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "temp",
+                        "binary": {
+                            "left": "retrieved",
+                            "operator": "/",
+                            "reducer": "sum",
+                            "right": "total"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        },
+                        "replaceFields": true
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {},
+                        "renameByName": {
+                            "retrieved": "S1 chunks retrieved",
+                            "temp": "S1 ratio",
+                            "total": "S1 chunks available"
+                        }
+                    }
+                }
+            ],
+            "type": "gauge"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 9
+            },
+            "id": 13,
+            "panels": [],
+            "title": "Completeness ",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "P5678C1DA9183518A"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "dataTakeId.keyword"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "string"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 12,
+                "x": 0,
+                "y": 29
+            },
+            "id": 43,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [
+                        {
+                            "field": "creationTime",
+                            "id": "5",
+                            "settings": {
+                                "min_doc_count": "1",
+                                "order": "desc",
+                                "orderBy": "_term",
+                                "size": "0"
+                            },
+                            "type": "terms"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "P5678C1DA9183518A"
+                    },
+                    "metrics": [
+                        {
+                            "field": "dataTakeId.keyword",
+                            "id": "1",
+                            "type": "cardinality"
+                        }
+                    ],
+                    "query": "(NOT swathtype:HK) AND (NOT swathtype:GP) AND (productConsolidation:FULL)",
+                    "refId": "A",
+                    "timeField": "insertionTime"
+                }
+            ],
+            "title": "count unique datatake FULL without HK & GP",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "absoluteStartOrbit": true,
+                            "absoluteStopOrbit": true,
+                            "circulationFlag": true,
+                            "creationTime": true,
+                            "cycleNumber": true,
+                            "highlight": true,
+                            "instrumentConfigurationId": true,
+                            "instrumentShortName": true,
+                            "missionDataTakeId": true,
+                            "missionId": false,
+                            "operationalMode": true,
+                            "oqcFlag": true,
+                            "pass": true,
+                            "platformSerialIdentifier": true,
+                            "platformShortName": true,
+                            "polarisation": true,
+                            "processMode": true,
+                            "productClass": true,
+                            "productConsolidation": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "qualityDataObjectID": true,
+                            "qualityNumOfElements": true,
+                            "relativeStartOrbit": true,
+                            "relativeStopOrbit": true,
+                            "resolution": true,
+                            "satelliteId": true,
+                            "site": true,
+                            "sliceCoordinates.orientation": true,
+                            "sliceOverlap": true,
+                            "sliceProductFlag": true,
+                            "sort": true,
+                            "startTime": true,
+                            "startTimeANX": true,
+                            "stopTimeANX": true,
+                            "swathIdentifier": true,
+                            "swathtype": true,
+                            "theoreticalSliceLength": true,
+                            "url": true,
+                            "validityStartTime": true,
+                            "validityStopTime": true
+                        },
+                        "indexByName": {
+                            "_id": 6,
+                            "_index": 7,
+                            "_type": 8,
+                            "absoluteStartOrbit": 9,
+                            "absoluteStopOrbit": 10,
+                            "circulationFlag": 11,
+                            "coordinates": 12,
+                            "creationTime": 13,
+                            "cycleNumber": 14,
+                            "dataTakeId": 1,
+                            "highlight": 15,
+                            "insertionTime": 0,
+                            "instrumentConfigurationId": 16,
+                            "instrumentShortName": 17,
+                            "missionDataTakeId": 18,
+                            "missionId": 19,
+                            "operationalMode": 20,
+                            "oqcFlag": 21,
+                            "pass": 22,
+                            "platformSerialIdentifier": 23,
+                            "platformShortName": 24,
+                            "polarisation": 25,
+                            "polarisationChannels": 26,
+                            "processMode": 27,
+                            "productClass": 28,
+                            "productConsolidation": 29,
+                            "productFamily": 30,
+                            "productName": 2,
+                            "productType": 31,
+                            "qualityDataObjectID": 32,
+                            "qualityNumOfCorruptedElements": 33,
+                            "qualityNumOfElements": 35,
+                            "qualityNumOfMissingElements": 34,
+                            "relativeStartOrbit": 36,
+                            "relativeStopOrbit": 37,
+                            "resolution": 38,
+                            "satelliteId": 39,
+                            "site": 40,
+                            "sliceCoordinates.coordinates": 41,
+                            "sliceCoordinates.orientation": 42,
+                            "sliceCoordinates.type": 5,
+                            "sliceNumber": 43,
+                            "sliceOverlap": 44,
+                            "sliceProductFlag": 45,
+                            "sort": 46,
+                            "startTime": 47,
+                            "startTimeANX": 48,
+                            "stopTime": 3,
+                            "stopTimeANX": 49,
+                            "swathIdentifier": 50,
+                            "swathtype": 51,
+                            "theoreticalSliceLength": 52,
+                            "timeliness": 4,
+                            "url": 53,
+                            "validityStartTime": 54,
+                            "validityStopTime": 55
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "stat"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PE138C89913AF055B"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "dataTakeId.keyword"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "string"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 7,
+                "x": 12,
+                "y": 29
+            },
+            "id": 23,
+            "options": {
+                "colorMode": "value",
+                "graphMode": "area",
+                "justifyMode": "auto",
+                "orientation": "auto",
+                "reduceOptions": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "fields": "",
+                    "values": false
+                },
+                "textMode": "auto"
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [
+                        {
+                            "field": "creationDate",
+                            "id": "2",
+                            "settings": {
+                                "interval": "1h"
+                            },
+                            "type": "date_histogram"
+                        }
+                    ],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "type": "count"
+                        }
+                    ],
+                    "query": "productFamily:L0_SLICE_ZIP",
+                    "refId": "A",
+                    "timeField": "creationDate"
+                }
+            ],
+            "title": "count slices L0 on PRIP",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "absoluteStartOrbit": true,
+                            "absoluteStopOrbit": true,
+                            "circulationFlag": true,
+                            "creationTime": true,
+                            "cycleNumber": true,
+                            "highlight": true,
+                            "instrumentConfigurationId": true,
+                            "instrumentShortName": true,
+                            "missionDataTakeId": true,
+                            "missionId": false,
+                            "operationalMode": true,
+                            "oqcFlag": true,
+                            "pass": true,
+                            "platformSerialIdentifier": true,
+                            "platformShortName": true,
+                            "polarisation": true,
+                            "processMode": true,
+                            "productClass": true,
+                            "productConsolidation": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "qualityDataObjectID": true,
+                            "qualityNumOfElements": true,
+                            "relativeStartOrbit": true,
+                            "relativeStopOrbit": true,
+                            "resolution": true,
+                            "satelliteId": true,
+                            "site": true,
+                            "sliceCoordinates.orientation": true,
+                            "sliceOverlap": true,
+                            "sliceProductFlag": true,
+                            "sort": true,
+                            "startTime": true,
+                            "startTimeANX": true,
+                            "stopTimeANX": true,
+                            "swathIdentifier": true,
+                            "swathtype": true,
+                            "theoreticalSliceLength": true,
+                            "url": true,
+                            "validityStartTime": true,
+                            "validityStopTime": true
+                        },
+                        "indexByName": {
+                            "_id": 6,
+                            "_index": 7,
+                            "_type": 8,
+                            "absoluteStartOrbit": 9,
+                            "absoluteStopOrbit": 10,
+                            "circulationFlag": 11,
+                            "coordinates": 12,
+                            "creationTime": 13,
+                            "cycleNumber": 14,
+                            "dataTakeId": 1,
+                            "highlight": 15,
+                            "insertionTime": 0,
+                            "instrumentConfigurationId": 16,
+                            "instrumentShortName": 17,
+                            "missionDataTakeId": 18,
+                            "missionId": 19,
+                            "operationalMode": 20,
+                            "oqcFlag": 21,
+                            "pass": 22,
+                            "platformSerialIdentifier": 23,
+                            "platformShortName": 24,
+                            "polarisation": 25,
+                            "polarisationChannels": 26,
+                            "processMode": 27,
+                            "productClass": 28,
+                            "productConsolidation": 29,
+                            "productFamily": 30,
+                            "productName": 2,
+                            "productType": 31,
+                            "qualityDataObjectID": 32,
+                            "qualityNumOfCorruptedElements": 33,
+                            "qualityNumOfElements": 35,
+                            "qualityNumOfMissingElements": 34,
+                            "relativeStartOrbit": 36,
+                            "relativeStopOrbit": 37,
+                            "resolution": 38,
+                            "satelliteId": 39,
+                            "site": 40,
+                            "sliceCoordinates.coordinates": 41,
+                            "sliceCoordinates.orientation": 42,
+                            "sliceCoordinates.type": 5,
+                            "sliceNumber": 43,
+                            "sliceOverlap": 44,
+                            "sliceProductFlag": 45,
+                            "sort": 46,
+                            "startTime": 47,
+                            "startTimeANX": 48,
+                            "stopTime": 3,
+                            "stopTimeANX": 49,
+                            "swathIdentifier": 50,
+                            "swathtype": 51,
+                            "theoreticalSliceLength": 52,
+                            "timeliness": 4,
+                            "url": 53,
+                            "validityStartTime": 54,
+                            "validityStopTime": 55
+                        },
+                        "renameByName": {}
+                    }
+                }
+            ],
+            "type": "stat"
+        },
+        {
+            "collapsed": false,
+            "gridPos": {
+                "h": 1,
+                "w": 24,
+                "x": 0,
+                "y": 42
+            },
+            "id": 15,
+            "panels": [],
+            "title": "Timeliness",
+            "type": "row"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PE138C89913AF055B"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "fillOpacity": 9,
+                        "gradientMode": "scheme",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 3
+                    },
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "dtdurationms"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "duration"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "ms"
+                            },
+                            {
+                                "id": "displayName",
+                                "value": "count"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 6,
+                "w": 23,
+                "x": 0,
+                "y": 43
+            },
+            "id": 33,
+            "options": {
+                "bucketOffset": 3,
+                "bucketSize": 1800000,
+                "combine": false,
+                "legend": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "3000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "productFamily:L0_SLICE_ZIP",
+                    "refId": "A",
+                    "timeField": "creationDate"
+                }
+            ],
+            "title": "S1 E2E timeliness histogram (filter <=12h)",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "absoluteStartOrbit": true,
+                            "absoluteStopOrbit": true,
+                            "attr_beginningDateTime_date": true,
+                            "attr_completionTimeFromAscendingNode_double": true,
+                            "attr_coordinates_string": true,
+                            "attr_cycleNumber_long": true,
+                            "attr_endingDateTime_date": true,
+                            "attr_instrumentConfigurationID_string": true,
+                            "attr_instrumentShortName_string": true,
+                            "attr_missionDatatakeID_long": true,
+                            "attr_operationalMode_string": true,
+                            "attr_orbitDirection_string": true,
+                            "attr_orbitNumber_long": true,
+                            "attr_platformSerialIdentifier_string": true,
+                            "attr_platformShortName_string": true,
+                            "attr_polarisationChannels_string": true,
+                            "attr_processingCenter_string": true,
+                            "attr_processingDate_date": true,
+                            "attr_processorVersion_string": true,
+                            "attr_productClass_string": true,
+                            "attr_productConsolidation_string": true,
+                            "attr_productType_string": true,
+                            "attr_relativeOrbitNumber_long": true,
+                            "attr_sliceNumber_long": true,
+                            "attr_sliceProductFlag_boolean": true,
+                            "attr_startTimeFromAscendingNode_double": true,
+                            "checksum": true,
+                            "circulationFlag": true,
+                            "contentDateEnd": false,
+                            "contentDateStart": true,
+                            "contentLength": true,
+                            "contentType": true,
+                            "coordinates": true,
+                            "creationDate": false,
+                            "creationTime": true,
+                            "cycleNumber": true,
+                            "evictionDate": true,
+                            "footprint.coordinates": true,
+                            "footprint.type": true,
+                            "highlight": true,
+                            "id": true,
+                            "insertionTime": false,
+                            "instrumentConfigurationId": true,
+                            "instrumentShortName": true,
+                            "missionDataTakeId": true,
+                            "missionId": false,
+                            "name": true,
+                            "obsKey": true,
+                            "operationalMode": true,
+                            "oqcFlag": true,
+                            "pass": true,
+                            "platformSerialIdentifier": true,
+                            "platformShortName": true,
+                            "polarisation": true,
+                            "polarisationChannels": true,
+                            "processMode": true,
+                            "productClass": true,
+                            "productConsolidation": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "qualityDataObjectID": true,
+                            "qualityNumOfCorruptedElements": true,
+                            "qualityNumOfElements": true,
+                            "qualityNumOfMissingElements": true,
+                            "relativeStartOrbit": true,
+                            "relativeStopOrbit": true,
+                            "resolution": true,
+                            "satelliteId": true,
+                            "site": true,
+                            "sliceCoordinates.coordinates": true,
+                            "sliceCoordinates.orientation": true,
+                            "sliceCoordinates.type": true,
+                            "sliceNumber": true,
+                            "sliceOverlap": true,
+                            "sliceProductFlag": true,
+                            "sort": true,
+                            "startTime": false,
+                            "startTimeANX": true,
+                            "stopTimeANX": true,
+                            "swathIdentifier": true,
+                            "swathtype": true,
+                            "theoreticalSliceLength": true,
+                            "url": true,
+                            "validityStartTime": true,
+                            "validityStopTime": true
+                        },
+                        "indexByName": {
+                            "_id": 7,
+                            "_index": 8,
+                            "_type": 9,
+                            "absoluteStartOrbit": 10,
+                            "absoluteStopOrbit": 11,
+                            "circulationFlag": 12,
+                            "coordinates": 13,
+                            "creationTime": 14,
+                            "cycleNumber": 15,
+                            "dataTakeId": 1,
+                            "highlight": 16,
+                            "insertionTime": 0,
+                            "instrumentConfigurationId": 17,
+                            "instrumentShortName": 18,
+                            "missionDataTakeId": 19,
+                            "missionId": 20,
+                            "operationalMode": 21,
+                            "oqcFlag": 22,
+                            "pass": 23,
+                            "platformSerialIdentifier": 24,
+                            "platformShortName": 25,
+                            "polarisation": 26,
+                            "polarisationChannels": 27,
+                            "processMode": 28,
+                            "productClass": 29,
+                            "productConsolidation": 30,
+                            "productFamily": 31,
+                            "productName": 2,
+                            "productType": 32,
+                            "qualityDataObjectID": 33,
+                            "qualityNumOfCorruptedElements": 34,
+                            "qualityNumOfElements": 36,
+                            "qualityNumOfMissingElements": 35,
+                            "relativeStartOrbit": 37,
+                            "relativeStopOrbit": 38,
+                            "resolution": 39,
+                            "satelliteId": 40,
+                            "site": 41,
+                            "sliceCoordinates.coordinates": 42,
+                            "sliceCoordinates.orientation": 43,
+                            "sliceCoordinates.type": 6,
+                            "sliceNumber": 44,
+                            "sliceOverlap": 45,
+                            "sliceProductFlag": 46,
+                            "sort": 47,
+                            "startTime": 3,
+                            "startTimeANX": 48,
+                            "stopTime": 4,
+                            "stopTimeANX": 49,
+                            "swathtype": 50,
+                            "theoreticalSliceLength": 51,
+                            "timeliness": 5,
+                            "url": 52,
+                            "validityStartTime": 53,
+                            "validityStopTime": 54
+                        },
+                        "renameByName": {}
+                    }
+                },
+                {
+                    "id": "convertFieldType",
+                    "options": {
+                        "conversions": [
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "contentDateEnd"
+                            },
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "creationDate"
+                            }
+                        ],
+                        "fields": {}
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "duration in ms",
+                        "binary": {
+                            "left": "creationDate",
+                            "operator": "-",
+                            "reducer": "sum",
+                            "right": "contentDateEnd"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        },
+                        "replaceFields": false
+                    }
+                },
+                {
+                    "id": "filterByValue",
+                    "options": {
+                        "filters": [
+                            {
+                                "config": {
+                                    "id": "greater",
+                                    "options": {
+                                        "value": 43200000
+                                    }
+                                },
+                                "fieldName": "duration in ms"
+                            }
+                        ],
+                        "match": "any",
+                        "type": "exclude"
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {},
+                        "renameByName": {
+                            "duration in ms": "duration"
+                        }
+                    }
+                }
+            ],
+            "type": "histogram"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PE138C89913AF055B"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "fillOpacity": 9,
+                        "gradientMode": "scheme",
+                        "hideFrom": {
+                            "legend": false,
+                            "tooltip": false,
+                            "viz": false
+                        },
+                        "lineWidth": 3
+                    },
+                    "mappings": [],
+                    "min": 0,
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            }
+                        ]
+                    },
+                    "unit": "dtdurationms"
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "duration"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dtdurationms"
+                            },
+                            {
+                                "id": "displayName",
+                                "value": "count"
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 5,
+                "w": 23,
+                "x": 0,
+                "y": 49
+            },
+            "id": 34,
+            "options": {
+                "bucketOffset": 0,
+                "bucketSize": 1800000,
+                "combine": false,
+                "legend": {
+                    "calcs": [
+                        "sum"
+                    ],
+                    "displayMode": "table",
+                    "placement": "bottom"
+                }
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "3000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "productFamily:L0_SLICE_ZIP",
+                    "refId": "A",
+                    "timeField": "creationDate"
+                }
+            ],
+            "title": "S1 E2E timeliness histogram (filter >12h)",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "absoluteStartOrbit": true,
+                            "absoluteStopOrbit": true,
+                            "attr_beginningDateTime_date": true,
+                            "attr_completionTimeFromAscendingNode_double": true,
+                            "attr_coordinates_string": true,
+                            "attr_cycleNumber_long": true,
+                            "attr_endingDateTime_date": true,
+                            "attr_instrumentConfigurationID_string": true,
+                            "attr_instrumentShortName_string": true,
+                            "attr_missionDatatakeID_long": true,
+                            "attr_operationalMode_string": true,
+                            "attr_orbitDirection_string": true,
+                            "attr_orbitNumber_long": true,
+                            "attr_platformSerialIdentifier_string": true,
+                            "attr_platformShortName_string": true,
+                            "attr_polarisationChannels_string": true,
+                            "attr_processingCenter_string": true,
+                            "attr_processingDate_date": true,
+                            "attr_processorVersion_string": true,
+                            "attr_productClass_string": true,
+                            "attr_productConsolidation_string": true,
+                            "attr_productType_string": true,
+                            "attr_relativeOrbitNumber_long": true,
+                            "attr_sliceNumber_long": true,
+                            "attr_sliceProductFlag_boolean": true,
+                            "attr_startTimeFromAscendingNode_double": true,
+                            "checksum": true,
+                            "circulationFlag": true,
+                            "contentDateEnd": false,
+                            "contentDateStart": true,
+                            "contentLength": true,
+                            "contentType": true,
+                            "coordinates": true,
+                            "creationDate": false,
+                            "creationTime": true,
+                            "cycleNumber": true,
+                            "evictionDate": true,
+                            "footprint.coordinates": true,
+                            "footprint.type": true,
+                            "highlight": true,
+                            "id": true,
+                            "insertionTime": false,
+                            "instrumentConfigurationId": true,
+                            "instrumentShortName": true,
+                            "missionDataTakeId": true,
+                            "missionId": false,
+                            "name": true,
+                            "obsKey": true,
+                            "operationalMode": true,
+                            "oqcFlag": true,
+                            "pass": true,
+                            "platformSerialIdentifier": true,
+                            "platformShortName": true,
+                            "polarisation": true,
+                            "polarisationChannels": true,
+                            "processMode": true,
+                            "productClass": true,
+                            "productConsolidation": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "qualityDataObjectID": true,
+                            "qualityNumOfCorruptedElements": true,
+                            "qualityNumOfElements": true,
+                            "qualityNumOfMissingElements": true,
+                            "relativeStartOrbit": true,
+                            "relativeStopOrbit": true,
+                            "resolution": true,
+                            "satelliteId": true,
+                            "site": true,
+                            "sliceCoordinates.coordinates": true,
+                            "sliceCoordinates.orientation": true,
+                            "sliceCoordinates.type": true,
+                            "sliceNumber": true,
+                            "sliceOverlap": true,
+                            "sliceProductFlag": true,
+                            "sort": true,
+                            "startTime": false,
+                            "startTimeANX": true,
+                            "stopTimeANX": true,
+                            "swathIdentifier": true,
+                            "swathtype": true,
+                            "theoreticalSliceLength": true,
+                            "url": true,
+                            "validityStartTime": true,
+                            "validityStopTime": true
+                        },
+                        "indexByName": {
+                            "_id": 7,
+                            "_index": 8,
+                            "_type": 9,
+                            "absoluteStartOrbit": 10,
+                            "absoluteStopOrbit": 11,
+                            "circulationFlag": 12,
+                            "coordinates": 13,
+                            "creationTime": 14,
+                            "cycleNumber": 15,
+                            "dataTakeId": 1,
+                            "highlight": 16,
+                            "insertionTime": 0,
+                            "instrumentConfigurationId": 17,
+                            "instrumentShortName": 18,
+                            "missionDataTakeId": 19,
+                            "missionId": 20,
+                            "operationalMode": 21,
+                            "oqcFlag": 22,
+                            "pass": 23,
+                            "platformSerialIdentifier": 24,
+                            "platformShortName": 25,
+                            "polarisation": 26,
+                            "polarisationChannels": 27,
+                            "processMode": 28,
+                            "productClass": 29,
+                            "productConsolidation": 30,
+                            "productFamily": 31,
+                            "productName": 2,
+                            "productType": 32,
+                            "qualityDataObjectID": 33,
+                            "qualityNumOfCorruptedElements": 34,
+                            "qualityNumOfElements": 36,
+                            "qualityNumOfMissingElements": 35,
+                            "relativeStartOrbit": 37,
+                            "relativeStopOrbit": 38,
+                            "resolution": 39,
+                            "satelliteId": 40,
+                            "site": 41,
+                            "sliceCoordinates.coordinates": 42,
+                            "sliceCoordinates.orientation": 43,
+                            "sliceCoordinates.type": 6,
+                            "sliceNumber": 44,
+                            "sliceOverlap": 45,
+                            "sliceProductFlag": 46,
+                            "sort": 47,
+                            "startTime": 3,
+                            "startTimeANX": 48,
+                            "stopTime": 4,
+                            "stopTimeANX": 49,
+                            "swathtype": 50,
+                            "theoreticalSliceLength": 51,
+                            "timeliness": 5,
+                            "url": 52,
+                            "validityStartTime": 53,
+                            "validityStopTime": 54
+                        },
+                        "renameByName": {}
+                    }
+                },
+                {
+                    "id": "convertFieldType",
+                    "options": {
+                        "conversions": [
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "contentDateEnd"
+                            },
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "creationDate"
+                            }
+                        ],
+                        "fields": {}
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "duration in ms",
+                        "binary": {
+                            "left": "creationDate",
+                            "operator": "-",
+                            "reducer": "sum",
+                            "right": "contentDateEnd"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        },
+                        "replaceFields": false
+                    }
+                },
+                {
+                    "id": "filterByValue",
+                    "options": {
+                        "filters": [
+                            {
+                                "config": {
+                                    "id": "greater",
+                                    "options": {
+                                        "value": 43200000
+                                    }
+                                },
+                                "fieldName": "duration in ms"
+                            }
+                        ],
+                        "match": "any",
+                        "type": "include"
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {},
+                        "indexByName": {},
+                        "renameByName": {
+                            "duration in ms": "duration"
+                        }
+                    }
+                }
+            ],
+            "type": "histogram"
+        },
+        {
+            "datasource": {
+                "type": "elasticsearch",
+                "uid": "PE138C89913AF055B"
+            },
+            "fieldConfig": {
+                "defaults": {
+                    "color": {
+                        "mode": "thresholds"
+                    },
+                    "custom": {
+                        "align": "auto",
+                        "displayMode": "auto"
+                    },
+                    "mappings": [],
+                    "thresholds": {
+                        "mode": "absolute",
+                        "steps": [
+                            {
+                                "color": "green",
+                                "value": null
+                            },
+                            {
+                                "color": "red",
+                                "value": 80
+                            }
+                        ]
+                    }
+                },
+                "overrides": [
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "creationTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 220
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "insertionTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 226
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "stopTime"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 197
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "coordinates"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 392
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "productName"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 637
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "missionId"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 72
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "duration"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "dtdurationms"
+                            },
+                            {
+                                "id": "displayName"
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "dataTakeId"
+                        },
+                        "properties": [
+                            {
+                                "id": "unit",
+                                "value": "string"
+                            },
+                            {
+                                "id": "custom.width",
+                                "value": 136
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "creationDate"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 253
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "contentDateEnd"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 214
+                            }
+                        ]
+                    },
+                    {
+                        "matcher": {
+                            "id": "byName",
+                            "options": "name"
+                        },
+                        "properties": [
+                            {
+                                "id": "custom.width",
+                                "value": 851
+                            }
+                        ]
+                    }
+                ]
+            },
+            "gridPos": {
+                "h": 3,
+                "w": 16,
+                "x": 0,
+                "y": 64
+            },
+            "id": 16,
+            "options": {
+                "footer": {
+                    "fields": "",
+                    "reducer": [
+                        "sum"
+                    ],
+                    "show": false
+                },
+                "showHeader": true,
+                "sortBy": []
+            },
+            "pluginVersion": "8.3.3",
+            "targets": [
+                {
+                    "alias": "",
+                    "bucketAggs": [],
+                    "datasource": {
+                        "type": "elasticsearch",
+                        "uid": "PE138C89913AF055B"
+                    },
+                    "metrics": [
+                        {
+                            "id": "1",
+                            "settings": {
+                                "size": "3000"
+                            },
+                            "type": "raw_data"
+                        }
+                    ],
+                    "query": "productFamily:L0_SLICE_ZIP",
+                    "refId": "A",
+                    "timeField": "creationDate"
+                }
+            ],
+            "title": "L0 slice on PRIP",
+            "transformations": [
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "_id": true,
+                            "_index": true,
+                            "_type": true,
+                            "absoluteStartOrbit": true,
+                            "absoluteStopOrbit": true,
+                            "attr_beginningDateTime_date": true,
+                            "attr_completionTimeFromAscendingNode_double": true,
+                            "attr_coordinates_string": true,
+                            "attr_cycleNumber_long": true,
+                            "attr_endingDateTime_date": true,
+                            "attr_instrumentConfigurationID_string": true,
+                            "attr_instrumentShortName_string": true,
+                            "attr_missionDatatakeID_long": true,
+                            "attr_operationalMode_string": true,
+                            "attr_orbitDirection_string": true,
+                            "attr_orbitNumber_long": true,
+                            "attr_platformSerialIdentifier_string": true,
+                            "attr_platformShortName_string": true,
+                            "attr_polarisationChannels_string": true,
+                            "attr_processingCenter_string": true,
+                            "attr_processingDate_date": true,
+                            "attr_processorVersion_string": true,
+                            "attr_productClass_string": true,
+                            "attr_productConsolidation_string": true,
+                            "attr_productType_string": true,
+                            "attr_relativeOrbitNumber_long": true,
+                            "attr_sliceNumber_long": true,
+                            "attr_sliceProductFlag_boolean": true,
+                            "attr_startTimeFromAscendingNode_double": true,
+                            "checksum": true,
+                            "circulationFlag": true,
+                            "contentDateEnd": false,
+                            "contentDateStart": true,
+                            "contentLength": true,
+                            "contentType": true,
+                            "coordinates": true,
+                            "creationDate": false,
+                            "creationTime": true,
+                            "cycleNumber": true,
+                            "evictionDate": true,
+                            "footprint.coordinates": true,
+                            "footprint.type": true,
+                            "highlight": true,
+                            "id": true,
+                            "insertionTime": false,
+                            "instrumentConfigurationId": true,
+                            "instrumentShortName": true,
+                            "missionDataTakeId": true,
+                            "missionId": false,
+                            "obsKey": true,
+                            "operationalMode": true,
+                            "oqcFlag": true,
+                            "pass": true,
+                            "platformSerialIdentifier": true,
+                            "platformShortName": true,
+                            "polarisation": true,
+                            "polarisationChannels": true,
+                            "processMode": true,
+                            "productClass": true,
+                            "productConsolidation": true,
+                            "productFamily": true,
+                            "productType": true,
+                            "qualityDataObjectID": true,
+                            "qualityNumOfCorruptedElements": true,
+                            "qualityNumOfElements": true,
+                            "qualityNumOfMissingElements": true,
+                            "relativeStartOrbit": true,
+                            "relativeStopOrbit": true,
+                            "resolution": true,
+                            "satelliteId": true,
+                            "site": true,
+                            "sliceCoordinates.coordinates": true,
+                            "sliceCoordinates.orientation": true,
+                            "sliceCoordinates.type": true,
+                            "sliceNumber": true,
+                            "sliceOverlap": true,
+                            "sliceProductFlag": true,
+                            "sort": true,
+                            "startTime": false,
+                            "startTimeANX": true,
+                            "stopTimeANX": true,
+                            "swathIdentifier": true,
+                            "swathtype": true,
+                            "theoreticalSliceLength": true,
+                            "url": true,
+                            "validityStartTime": true,
+                            "validityStopTime": true
+                        },
+                        "indexByName": {
+                            "_id": 7,
+                            "_index": 8,
+                            "_type": 9,
+                            "absoluteStartOrbit": 10,
+                            "absoluteStopOrbit": 11,
+                            "circulationFlag": 12,
+                            "coordinates": 13,
+                            "creationTime": 14,
+                            "cycleNumber": 15,
+                            "dataTakeId": 1,
+                            "highlight": 16,
+                            "insertionTime": 0,
+                            "instrumentConfigurationId": 17,
+                            "instrumentShortName": 18,
+                            "missionDataTakeId": 19,
+                            "missionId": 20,
+                            "operationalMode": 21,
+                            "oqcFlag": 22,
+                            "pass": 23,
+                            "platformSerialIdentifier": 24,
+                            "platformShortName": 25,
+                            "polarisation": 26,
+                            "polarisationChannels": 27,
+                            "processMode": 28,
+                            "productClass": 29,
+                            "productConsolidation": 30,
+                            "productFamily": 31,
+                            "productName": 2,
+                            "productType": 32,
+                            "qualityDataObjectID": 33,
+                            "qualityNumOfCorruptedElements": 34,
+                            "qualityNumOfElements": 36,
+                            "qualityNumOfMissingElements": 35,
+                            "relativeStartOrbit": 37,
+                            "relativeStopOrbit": 38,
+                            "resolution": 39,
+                            "satelliteId": 40,
+                            "site": 41,
+                            "sliceCoordinates.coordinates": 42,
+                            "sliceCoordinates.orientation": 43,
+                            "sliceCoordinates.type": 6,
+                            "sliceNumber": 44,
+                            "sliceOverlap": 45,
+                            "sliceProductFlag": 46,
+                            "sort": 47,
+                            "startTime": 3,
+                            "startTimeANX": 48,
+                            "stopTime": 4,
+                            "stopTimeANX": 49,
+                            "swathtype": 50,
+                            "theoreticalSliceLength": 51,
+                            "timeliness": 5,
+                            "url": 52,
+                            "validityStartTime": 53,
+                            "validityStopTime": 54
+                        },
+                        "renameByName": {}
+                    }
+                },
+                {
+                    "id": "convertFieldType",
+                    "options": {
+                        "conversions": [
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "contentDateEnd"
+                            },
+                            {
+                                "dateFormat": "YYYY-MM-DD hh:mm:ss",
+                                "destinationType": "time",
+                                "targetField": "creationDate"
+                            }
+                        ],
+                        "fields": {}
+                    }
+                },
+                {
+                    "id": "calculateField",
+                    "options": {
+                        "alias": "duration",
+                        "binary": {
+                            "left": "contentDateEnd",
+                            "operator": "-",
+                            "reducer": "sum",
+                            "right": "creationDate"
+                        },
+                        "mode": "binary",
+                        "reduce": {
+                            "reducer": "sum"
+                        },
+                        "replaceFields": false
+                    }
+                },
+                {
+                    "id": "organize",
+                    "options": {
+                        "excludeByName": {
+                            "Field": true,
+                            "attr_swathIdentifier_string": true,
+                            "contentDateEnd": true,
+                            "creationDate": true,
+                            "name": true
+                        },
+                        "indexByName": {},
+                        "renameByName": {
+                            "duration": "Total number"
+                        }
+                    }
+                },
+                {
+                    "id": "reduce",
+                    "options": {
+                        "reducers": [
+                            "count"
+                        ]
+                    }
+                }
+            ],
+            "type": "table"
+        }
+    ],
+    "refresh": false,
+    "schemaVersion": 34,
+    "style": "dark",
+    "tags": [
+        "PI_ENG"
+    ],
+    "templating": {
+        "list": []
+    },
+    "time": {
+        "from": "now-24h",
+        "to": "now"
+    },
+    "timepicker": {},
+    "timezone": "",
+    "title": "1. Sentinel-1 Performance",
+    "uid": "hUIQ0IE7z",
+    "version": 1,
+    "weekStart": ""
+}

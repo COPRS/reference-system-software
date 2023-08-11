@@ -1,0 +1,765 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-sy2-aod-ntc-tasktables
+  namespace: processing
+
+data:
+  TaskTable_S3A_SY2_AOD_01_09.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by DMS (DMS) -->
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3A_SY2_AOD</Processor_Name>
+      <Version>01.09</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="1">
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_AOD_01.09/S3A/S3IPF_SY2_AOD_Configuration.xml</File_Name>
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="4">
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>LN2</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>NTC</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>D</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>baselineCollection</Param_Name>
+          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>002</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>SY2_AOD</Name>
+              <Version>01.09</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/S3IPF_SY2_AOD_01.09/bin/SY2_AOD.bin</File_Name>
+              <List_of_Inputs count="14">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>OL_1_EFR___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SL_1_RBT___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- Time initialization: FRO > FPO > OSF > BB2 -->
+                <!--  similar approach in the OPT processors OLCI  + SLSTR -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--Land/Water Mask File -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_1_CDIBAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- OLCI inter-channel spatial misregistration data.-->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>OL_1_MCHDAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- SLSTR inter-channel spatial misregistration data.-->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SL_1_MCHDAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- Tie points database -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_1_GCPBAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--  Specific configuration, namely PCP file-->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_1_PCP_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- ===================== -->
+                <!-- INPUT for SYN AOD Level 2 -->
+                <!-- ===================== -->
+                <!-- SYN L2 Auxiliary files -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_PCPAAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_ART_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_OSR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_LSR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_ACLMAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="2">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SY_1_MISR__</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>SY_2_AOD___</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+              <!-- list of breakpoints is not exaustive;
+               <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+               <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-2</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-3</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-4</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_2-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_2-2</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_2-3</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY_1_BP_MAP_1-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_2-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_3-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-2</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-4</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-6</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_INV_LOC_1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>-->
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>
+  TaskTable_S3B_SY2_AOD_01_09.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by DMS (DMS) -->
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3B_SY2_AOD</Processor_Name>
+      <Version>01.09</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="1">
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_SY2_AOD_01.09/S3B/S3IPF_SY2_AOD_Configuration.xml</File_Name>
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="4">
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>LN2</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>NTC</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>D</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>baselineCollection</Param_Name>
+          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>002</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>SY2_AOD</Name>
+              <Version>01.09</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/S3IPF_SY2_AOD_01.09/bin/SY2_AOD.bin</File_Name>
+              <List_of_Inputs count="14">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>OL_1_EFR___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SL_1_RBT___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- Time initialization: FRO > FPO > OSF > BB2 -->
+                <!--  similar approach in the OPT processors OLCI  + SLSTR -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--Land/Water Mask File -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_1_CDIBAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- OLCI inter-channel spatial misregistration data.-->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>OL_1_MCHDAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- SLSTR inter-channel spatial misregistration data.-->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SL_1_MCHDAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- Tie points database -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect </Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_1_GCPBAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--  Specific configuration, namely PCP file-->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_1_PCP_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!-- ===================== -->
+                <!-- INPUT for SYN AOD Level 2 -->
+                <!-- ===================== -->
+                <!-- SYN L2 Auxiliary files -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_PCPAAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_ART_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_OSR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_LSR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SY_2_ACLMAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="2">
+                <Output>
+                  <Destination>PROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>SY_1_MISR__</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>SY_2_AOD___</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+              <!-- list of breakpoints is not exaustive;
+               <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+               <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-2</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-3</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_1-4</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_2-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_2-2</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_PR_2-3</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY_1_BP_MAP_1-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_2-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_3-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-2</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-4</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_MAP_4-6</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>
+              <Breakpoint>
+                                        <File_Name>SY1_BP_INV_LOC_1</File_Name>
+                                    <File_Name_Type>Physical</File_Name_Type>
+                                     </Breakpoint>-->
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>

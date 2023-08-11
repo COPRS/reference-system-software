@@ -1,0 +1,111 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-acq-tasktables
+  namespace: processing
+
+data:
+  TaskTable.S3ACQ.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3A_ACQ</Processor_Name>
+      <Version>00.01</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="0">
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParam count="0">
+      </List_of_Dyn_ProcParam>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <!-- =========================== -->
+            <!-- ACQ Wrapper Script          -->
+            <!-- =========================== -->
+            <Task>
+              <Name>ACQ</Name>
+              <Version>00.01</Version>
+              <Critical>false</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/opt/S3ACQWrapperScript.sh</File_Name>
+              <List_of_Inputs count="0">
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                <!-- Sentinel 3 L0 granules -->
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>DO_0_DOP__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>DO_0_NAV__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>GN_0_GNS__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_0_MWR__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>OL_0_CR___G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>OL_0_EFR__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>SL_0_SLT__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>SR_0_SRA__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>TM_0_HKM__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>TM_0_HKM2_G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>TM_0_NAT__G</Type>
+                  <File_Name_Type>Physical</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>

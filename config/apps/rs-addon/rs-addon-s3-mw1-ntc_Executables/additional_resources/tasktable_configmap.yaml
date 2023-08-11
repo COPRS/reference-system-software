@@ -1,0 +1,1441 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: s3-mw1-ntc-tasktables
+  namespace: processing
+
+data:
+  TaskTable_S3A_MW1_06_15.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by DMS (DMS) -->
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3A_MW1</Processor_Name>
+      <Version>06.15</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="1">
+        <Cfg_File>
+          <!-- the configuration is different for the calibration case -->
+          <File_Name>/usr/local/conf/S3IPF_MW1_06.15/S3A/S3IPF_MW1_Configuration.xml</File_Name>
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="4">
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>D</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>005</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>MW_1_MWR</Name>
+              <Version>06.15</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/S3IPF_MW1_06.15/bin/MW_1_MWR.bin</File_Name>
+              <List_of_Inputs count="13">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- MWR L0  product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_0_MWR___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- NAVATT L0 product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>5</T0>
+                      <T1>5</T1>
+                      <File_Type>TM_0_NAT___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- Orbit scenario file -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-270 -->
+                  <Mode>NRT</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="5">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___ROE_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>2</T0>
+                      <T1>2</T1>
+                      <File_Type>DO_0_NAV___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>5</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-280 -->
+                  <Mode>STC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MDO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MGNPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-290  -->
+                  <Mode>NTC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POESAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POEPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.6, GDL-PR-220 -->
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--List of ADFs -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_SLC_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDNAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDRAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___STD_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_NIR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_DNB_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                    <!-- LTM files are output in the CAL processor, not in this one -->
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_MWR___</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>
+  TaskTable_S3A_MW1_CAL_06_15.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by DMS (DMS) -->
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3A_MW1_CAL</Processor_Name>
+      <Version>06.15</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="1">
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_MW1_06.15/S3A/S3IPF_MW1_Cal_Configuration.xml</File_Name>
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="4">
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>D</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>005</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>MW_1_CAL</Name>
+              <Version>06.15</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/S3IPF_MW1_06.15/bin/MW_1_CAL.bin</File_Name>
+              <List_of_Inputs count="13">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- MWR L0  product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_0_MWR___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- NAVATT L0 product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>5</T0>
+                      <T1>5</T1>
+                      <File_Type>TM_0_NAT___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- Orbit scenario file -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-270 -->
+                  <Mode>NRT</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="5">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___ROE_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>2</T0>
+                      <T1>2</T1>
+                      <File_Type>DO_0_NAV___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>                                                                
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>5</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-280 -->
+                  <Mode>STC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MDO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MGNPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-290  -->
+                  <Mode>NTC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POESAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POEPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.6, GDL-PR-220 -->
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--List of ADFs -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_SLC_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDNAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDRAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_NIR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_DNB_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_MON_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="4">
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_CAL___</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- These files are updated by the CAL processor -->
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_NIR_AX</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_DNB_AX</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>MW_1_MON_AX</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>
+  TaskTable_S3B_MW1_06_15.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by DMS (DMS) -->
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3B_MW1</Processor_Name>
+      <Version>06.15</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="1">
+        <Cfg_File>
+          <!-- the configuration is different for the calibration case -->
+          <File_Name>/usr/local/conf/S3IPF_MW1_06.15/S3B/S3IPF_MW1_Configuration.xml</File_Name>
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="4">
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>D</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>005</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>MW_1_MWR</Name>
+              <Version>06.15</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/S3IPF_MW1_06.15/bin/MW_1_MWR.bin</File_Name>
+              <List_of_Inputs count="13">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- MWR L0  product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_0_MWR___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- NAVATT L0 product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>5</T0>
+                      <T1>5</T1>
+                      <File_Type>TM_0_NAT___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- Orbit scenario file -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-270 -->
+                  <Mode>NRT</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="5">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___ROE_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>2</T0>
+                      <T1>2</T1>
+                      <File_Type>DO_0_NAV___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>                                                                
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>5</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-280 -->
+                  <Mode>STC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MDO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MGNPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-290  -->
+                  <Mode>NTC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POESAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POEPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.6, GDL-PR-220 -->
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--List of ADFs -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_SLC_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDNAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDRAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___STD_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_NIR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_DNB_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="1">
+                    <!-- LTM files are output in the CAL processor, not in this one -->
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_MWR___</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>
+  TaskTable_S3B_MW1_CAL_06_15.xml: |
+    <?xml version="1.0" encoding="utf-8" standalone="no"?>
+    <!-- edited with XML Spy v4.2 U (http://www.xmlspy.com) by DMS (DMS) -->
+    <Ipf_Task_Table xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance">
+      <Processor_Name>S3B_MW1_CAL</Processor_Name>
+      <Version>06.15</Version>
+      <Test>No</Test>
+      <Min_Disk_Space units="MB">2048</Min_Disk_Space>
+      <Max_Time units="sec">1800</Max_Time>
+      <List_of_Cfg_Files count="1">
+        <Cfg_File>
+          <File_Name>/usr/local/conf/S3IPF_MW1_06.15/S3B/S3IPF_MW1_Cal_Configuration.xml</File_Name>
+        </Cfg_File>
+      </List_of_Cfg_Files>
+      <List_of_Dyn_ProcParams count="4">
+        <Dyn_ProcParam>
+          <Param_Name>facilityName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>MAR</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>orderType</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>NRT</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>hardwareName</Param_Name>
+          <Param_Type>String</Param_Type>
+          <Param_Default>D</Param_Default>
+        </Dyn_ProcParam>
+        <Dyn_ProcParam>
+          <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>005</Param_Default>
+        </Dyn_ProcParam>
+      </List_of_Dyn_ProcParams>
+      <Sensing_Time_flag>true</Sensing_Time_flag>
+      <List_of_Pools count="1">
+        <Pool>
+          <Detached>false</Detached>
+          <Killing_Signal>2</Killing_Signal>
+          <List_of_Tasks count="1">
+            <Task>
+              <Name>MW_1_CAL</Name>
+              <Version>06.15</Version>
+              <Critical>true</Critical>
+              <Criticality_Level>1</Criticality_Level>
+              <File_Name>/usr/local/components/S3IPF_MW1_06.15/bin/MW_1_CAL.bin</File_Name>
+              <List_of_Inputs count="13">
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- MWR L0  product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_0_MWR___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- NAVATT L0 product -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>ValIntersect</Retrieval_Mode>
+                      <T0>5</T0>
+                      <T1>5</T1>
+                      <File_Type>TM_0_NAT___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <!-- Orbit scenario file -->
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-270 -->
+                  <Mode>NRT</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="5">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___ROE_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>2</T0>
+                      <T1>2</T1>
+                      <File_Type>DO_0_NAV___</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>                                                                
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>5</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-280 -->
+                  <Mode>STC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MDO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___MGNPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.7, GDL-PR-290  -->
+                  <Mode>NTC</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="2">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POESAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>SR___POEPAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <!-- Drivers 1.6, GDL-PR-220 -->
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>No</Mandatory>
+                  <List_of_Alternatives count="4">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FRO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>2</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___FPO_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>3</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___OSF_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                    <Alternative>
+                      <Order>4</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValCover</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>AX___BB2_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <!--List of ADFs -->
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_SLC_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDNAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestValIntersect</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW___CHDRAX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_NIR_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_DNB_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+                <Input>
+                  <Mode>ALWAYS</Mode>
+                  <Mandatory>Yes</Mandatory>
+                  <List_of_Alternatives count="1">
+                    <Alternative>
+                      <Order>1</Order>
+                      <Origin>DB</Origin>
+                      <Retrieval_Mode>LatestStopValidity</Retrieval_Mode>
+                      <T0>0</T0>
+                      <T1>0</T1>
+                      <File_Type>MW_1_MON_AX</File_Type>
+                      <File_Name_Type>Physical</File_Name_Type>
+                    </Alternative>
+                  </List_of_Alternatives>
+                </Input>
+              </List_of_Inputs>
+              <List_of_Outputs count="4">
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_CAL___</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <!-- These files are updated by the CAL processor -->
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_NIR_AX</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>Yes</Mandatory>
+                  <Type>MW_1_DNB_AX</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+                <Output>
+                  <Destination>DBPROC</Destination>
+                  <Mandatory>No</Mandatory>
+                  <Type>MW_1_MON_AX</Type>
+                  <File_Name_Type>Directory</File_Name_Type>
+                </Output>
+              </List_of_Outputs>
+              <List_of_Breakpoints count="0"/>
+            </Task>
+          </List_of_Tasks>
+        </Pool>
+      </List_of_Pools>
+    </Ipf_Task_Table>

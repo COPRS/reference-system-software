@@ -1,0 +1,22 @@
+apiVersion: integreatly.org/v1alpha1
+kind: GrafanaDataSource
+metadata:
+  name: elasticsearch-processing-index-s3-aux
+  labels:
+    app.kubernetes.io/instance: elasticsearch-processing
+spec:
+  name: elasticsearch-processing-index-s3_aux.yaml
+  datasources:
+  - name: elasticsearch-s3_aux
+    type: elasticsearch
+    access: Server
+    database: s3_aux*
+    url: http://elasticsearch-processing-es-coordinating.database.svc.cluster.local:9200
+    isDefault: false
+    editable: true
+    version: 1
+    jsonData:
+      esVersion: 7.15.2
+      logMessageField: productName
+      timeField: insertionTime
+      tlsSkipVerify: true   
