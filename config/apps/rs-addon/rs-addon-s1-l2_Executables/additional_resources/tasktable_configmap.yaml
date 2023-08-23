@@ -1696,13 +1696,13 @@ data:
                   <Destination>DB</Destination>
                   <Mandatory>Yes</Mandatory>
                   <Type>SM_OCN__2S</Type>
-                  <File_Name_Type>Directory</File_Name_Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
                 </Output>
                 <Output>
                   <Destination>DB</Destination>
                   <Mandatory>No</Mandatory>
                   <Type>SM_OCN__2A</Type>
-                  <File_Name_Type>Directory</File_Name_Type>
+                  <File_Name_Type>Regexp</File_Name_Type>
                 </Output>
               </List_of_Outputs>
               <List_of_Breakpoints count="0"/>

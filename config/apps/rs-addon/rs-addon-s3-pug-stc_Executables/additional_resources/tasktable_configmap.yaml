@@ -13,7 +13,7 @@ data:
       <Test>No</Test>
       <Min_Disk_Space units="MB">1024</Min_Disk_Space>
       <Max_Time units="sec">0</Max_Time>
-      <List_of_Cfg_Files count="12">
+      <List_of_Cfg_Files count="10">
         <Cfg_File>
           <Version>1.0</Version>
           <File_Name>/usr/local/conf/PUG-3.48/S3_PUG_PCONF.01.xml</File_Name>
@@ -102,20 +102,10 @@ data:
           <Param_Type>String</Param_Type>
           <Param_Default>OLQC_Main.jasper</Param_Default>
         </Dyn_ProcParam>    
-              <Dyn_ProcParam>
-                  <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
-                  <Param_Type>String</Param_Type>
-                  <Param_Default>002</Param_Default>
-              </Dyn_ProcParam>  
         <Dyn_ProcParam>
-          <Param_Name>pduLength</Param_Name>
-          <Param_Type>number</Param_Type>
-          <Param_Default>180</Param_Default>
-        </Dyn_ProcParam>
-        <Dyn_ProcParam>
-          <Param_Name>MtdPDUFrameNumbers</Param_Name>
-          <Param_Type>number</Param_Type>
-          <!--Param_Default>0</Param_Default-->
+          <Param_Name>baselineCollection</Param_Name>          <!-- Provided by PDGS-->
+          <Param_Type>String</Param_Type>
+          <Param_Default>002</Param_Default>
         </Dyn_ProcParam>
         <Dyn_ProcParam>
           <Param_Name>pduType</Param_Name>
