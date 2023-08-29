@@ -57,7 +57,7 @@ Let's start by installing the mandatory base of our system:
 
 ### Usage
 
-To use the Reference System Software you can follow the [operationnal producedures](https://github.com/COPRS/reference-system-software/blob/main/releases/V2.0.0.md). 
+To use the Reference System Software you can follow the [operationnal producedures](https://github.com/COPRS/infrastructure/tree/main/docs/user_manuals). 
 
 ## Contribute to the project
 
