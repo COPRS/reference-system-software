@@ -132,6 +132,7 @@ If one of them does not work, it must not impact the other.
 ### Sentinel 2
 
 ![](./.github/assets/images/image26.png)
+modification par jlp
 
 ### Sentinel 3
 
