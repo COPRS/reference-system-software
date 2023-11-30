@@ -6,7 +6,7 @@ namespace: processing
 helmCharts:
 - name: rs-metadata-catalog-searchcontroller
   repo: https://artifactory.coprs.esa-copernicus.eu/artifactory/rs-helm
-  version: 1.14.0
+  version: 1.15.0
   valuesFile: values.yaml
   releaseName: "{{ app_name }}"
   namespace: processing

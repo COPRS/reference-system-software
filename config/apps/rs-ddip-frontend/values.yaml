@@ -18,7 +18,7 @@ image:
   repository: rs-docker
   
   name: rs-core-ddip-frontend
-  tag: 1.13.1-rc1
+  tag: 1.15.0
   
   imagePullSecrets: spring-cloud-dataflow-registry-dockersecret
 
