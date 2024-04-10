@@ -1,7 +1,7 @@
 <p align="center">
  <img src="/.github/assets/images/banner.jpg" width="800" height="50" />
 </p>
-<p></p>This project is funded by the EU and ESA.</p>
+<p align="center">This project is funded by the EU and ESA.</p>
 <br> <br>
 
 
