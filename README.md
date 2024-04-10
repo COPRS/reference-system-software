@@ -1,3 +1,8 @@
+<p align="center">
+ <img src="/.github/assets/images/banner.jpg" width="800" height="50" />
+</p>
+<p align="center">This project is funded by the EU and ESA.</p>
+<br> <br>
 
 
 :arrow_heading_up: Go back to the [Reference System Website](https://referencesystem.copernicus.eu/) :arrow_heading_up:
@@ -67,6 +72,4 @@ This project has been created in order to facilitate the incorporation of new sa
 
 If you're interested in contributing to the reference system project, for exemple to incorporate new processing for satellite or reporting a bug, please start by reading the [Contributing guide](/contribute/) !
 
-<p align="center">
- <img src="/.github/assets/images/banner.jpg" width="800" height="50" />
-</p>
+
